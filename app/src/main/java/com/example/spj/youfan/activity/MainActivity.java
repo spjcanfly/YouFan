@@ -1,7 +1,9 @@
-package com.example.spj.youfan;
+package com.example.spj.youfan.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+
+import com.example.spj.youfan.R;
 
 public class MainActivity extends Activity {
 
@@ -9,5 +11,6 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
     }
 }

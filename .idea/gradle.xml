@@ -10,7 +10,10 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/MaterialRefreshLayout_library" />
+            <option value="$PROJECT_DIR$/PhotoView_library" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/okhttputils_library" />
           </set>
         </option>
       </GradleProjectSettings>
