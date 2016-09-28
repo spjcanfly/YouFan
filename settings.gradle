@@ -1,1 +1,1 @@
-include ':app', ':okhttputils_library', ':PhotoView_library', ':MaterialRefreshLayout_library'
+include ':app', ':okhttputils_library', ':PhotoView_library', ':MaterialRefreshLayout_library', ':SlidingMenu_library'
