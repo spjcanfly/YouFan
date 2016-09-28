@@ -27,6 +27,9 @@ public class ShopPager extends BasePager{
 
         btn_login = (Button) view.findViewById(R.id.btn_login);
         //把子视图添加到BasePager上的Fragment上
+        if(flContent != null) {
+            flContent.removeAllViews();
+        }
         flContent.addView(view);
         super.initData();
     }

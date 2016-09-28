@@ -10,6 +10,8 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ScrollView;
 
+import com.example.spj.youfan.utils.LogUtil;
+
 /**
  * Created by spj on 2016/9/21.
  */
@@ -65,6 +67,7 @@ public class MyScrollView extends ScrollView{
             case MotionEvent.ACTION_UP:
                 break;
         }
+        LogUtil.e("down222222222222");
         return false;
     }
 
