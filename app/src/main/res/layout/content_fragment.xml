@@ -4,4 +4,44 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <com.example.spj.youfan.uiself.NoScrollViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <RadioGroup
+        android:id="@+id/rg_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@android:color/white">
+
+        <RadioButton
+            android:id="@+id/rb_home"
+            android:drawableTop="@drawable/rb_home_drawable_selector"
+            android:text="首页"
+            style="@style/bottom_tag_style" />
+        <RadioButton
+            android:id="@+id/rb_sort"
+            android:drawableTop="@drawable/rb_sort_selector"
+            android:text="分类"
+            style="@style/bottom_tag_style" />
+        <RadioButton
+            android:id="@+id/rb_inspiration"
+            android:drawableTop="@drawable/rb_inspiration_drawable_selector"
+            android:text="灵感"
+            style="@style/bottom_tag_style" />
+        <RadioButton
+            android:id="@+id/rb_shop"
+            android:drawableTop="@drawable/rb_shop_drawable_selector"
+            android:text="购物袋"
+            style="@style/bottom_tag_style" />
+        <RadioButton
+            android:id="@+id/rb_my"
+            android:drawableTop="@drawable/rb_my_drawable_selector"
+            android:text="我的"
+            style="@style/bottom_tag_style" />
+
+    </RadioGroup>
 </LinearLayout>

@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import butterknife.ButterKnife;
+
 /**
  * Created by spj on 2016/9/27.
  */
@@ -24,6 +26,7 @@ public abstract class BaseFragment extends Fragment{
     //当视图被创建的时候回调
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         return initView();
 
     }
@@ -40,5 +43,12 @@ public abstract class BaseFragment extends Fragment{
     //如果自己的页面没有数据，联网请求数据，并且绑定到initView初始化的视图上
     public void initData() {
 
+    }
+
+    //销毁后解绑
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
     }
 }
