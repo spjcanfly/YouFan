@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.spj.youfan.activity.LoginActivity">
+
+    <LinearLayout
+        android:id="@+id/ll_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <include layout="@layout/commontitle"/>
+
+        <EditText
+            android:id="@+id/et_login_phone"
+            android:paddingLeft="10dp"
+            android:drawablePadding="5dp"
+            android:drawableLeft="@drawable/login_icon_user"
+            android:hint="手机号"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/et_login_secret"
+            android:paddingLeft="10dp"
+            android:drawablePadding="5dp"
+            android:drawableLeft="@drawable/login_secret"
+            android:hint="登录密码"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btn_login"
+            android:text="登录"
+            android:textColor="#FFFFFF"
+            android:background="#FFCC00"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_register"
+        android:textColor="#999999"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_alignLeft="@+id/ll_login"
+        android:layout_below="@+id/ll_login"
+        android:textSize="15sp"
+        android:text="快速注册"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_forget_secret"
+        android:textColor="#999999"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignRight="@+id/ll_login"
+        android:layout_below="@+id/ll_login"
+        android:textSize="15sp"
+        android:text="忘记密码？"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginBottom="10dp"
+        android:padding="8dp"
+        android:layout_above="@+id/ll_other_login"
+        android:textSize="20sp"
+        android:gravity="center_horizontal"
+        android:text="-----------  其他登录方式  -------------"
+        android:textColor="#999999"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/ll_other_login"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:background="@android:color/transparent"
+            android:id="@+id/ib_qq_login"
+            android:src="@drawable/qq_login_btn"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <ImageButton
+            android:background="@android:color/transparent"
+            android:id="@+id/ib_weixin_login"
+            android:src="@drawable/weixin_login_btn"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</RelativeLayout>

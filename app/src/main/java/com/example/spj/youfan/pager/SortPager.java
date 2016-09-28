@@ -18,16 +18,13 @@ public class SortPager extends BasePager{
 
     @Override
     public void initData() {
-        super.initData();
-
-
         TextView tv = new TextView(mContext);
-
         tv.setTextSize(25);
         tv.setGravity(Gravity.CENTER);
         //把子视图添加到BasePager上的Fragment上
         flContent.addView(tv);
         tv.setText("分类");
+        super.initData();
     }
 
     @Override
@@ -35,6 +32,12 @@ public class SortPager extends BasePager{
         ibTopMenu.setVisibility(View.VISIBLE);
         ibTopSet.setVisibility(View.GONE);
         ivTopSeacher.setVisibility(View.VISIBLE);
+        ivTopBack.setVisibility(View.GONE);
         ivTopMail.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void initListener() {
+
     }
 }

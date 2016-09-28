@@ -18,15 +18,13 @@ public class InspirationPager extends BasePager{
 
     @Override
     public void initData() {
-        super.initData();
-
-
         TextView tv = new TextView(mContext);
         tv.setTextSize(25);
         tv.setGravity(Gravity.CENTER);
         //把子视图添加到BasePager上的Fragment上
         flContent.addView(tv);
         tv.setText("灵感");
+        super.initData();
     }
 
     @Override
@@ -35,6 +33,12 @@ public class InspirationPager extends BasePager{
         ibTopSet.setVisibility(View.GONE);
         ivTopSeacher.setVisibility(View.VISIBLE);
         ivTopMail.setVisibility(View.GONE);
+        ivTopBack.setVisibility(View.GONE);
         tvTop.setText("资讯");
+    }
+
+    @Override
+    public void initListener() {
+
     }
 }

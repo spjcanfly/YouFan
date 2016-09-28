@@ -5,6 +5,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.spj.youfan.activity.MainActivity;
 import com.example.spj.youfan.base.BasePager;
 
 /**
@@ -18,7 +19,7 @@ public class HomePager extends BasePager {
 
     @Override
     public void initData() {
-        super.initData();
+
         TextView tv = new TextView(mContext);
 
         tv.setTextSize(25);
@@ -26,6 +27,7 @@ public class HomePager extends BasePager {
         //把子视图添加到BasePager上的Fragment上
         flContent.addView(tv);
         tv.setText("主页");
+        super.initData();
     }
 
     @Override
@@ -33,6 +35,20 @@ public class HomePager extends BasePager {
         ibTopMenu.setVisibility(View.VISIBLE);
         ibTopSet.setVisibility(View.GONE);
         ivTopSeacher.setVisibility(View.VISIBLE);
+        ivTopBack.setVisibility(View.GONE);
         ivTopMail.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void initListener() {
+        //切换侧滑
+        ibTopMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity mainActivity = (MainActivity) mContext;
+                //切换左侧的开和关
+                mainActivity.getSlidingMenu().toggle();
+            }
+        });
     }
 }

@@ -1,10 +1,9 @@
 package com.example.spj.youfan.pager;
 
 import android.content.Context;
-import android.view.Gravity;
 import android.view.View;
-import android.widget.TextView;
 
+import com.example.spj.youfan.R;
 import com.example.spj.youfan.base.BasePager;
 
 /**
@@ -18,16 +17,13 @@ public class MePager extends BasePager{
 
     @Override
     public void initData() {
-        super.initData();
 
+        //把这个放在这里，防止空指针
+        View view = View.inflate(mContext, R.layout.my_pager, null);
 
-        TextView tv = new TextView(mContext);
-
-        tv.setTextSize(25);
-        tv.setGravity(Gravity.CENTER);
         //把子视图添加到BasePager上的Fragment上
-        flContent.addView(tv);
-        tv.setText("分类");
+        flContent.addView(view);
+        super.initData();
     }
 
     @Override
@@ -36,6 +32,12 @@ public class MePager extends BasePager{
         ibTopSet.setVisibility(View.VISIBLE);
         ivTopSeacher.setVisibility(View.GONE);
         ivTopMail.setVisibility(View.VISIBLE);
+        ivTopBack.setVisibility(View.GONE);
         tvTop.setText("我的");
+    }
+
+    @Override
+    public void initListener() {
+
     }
 }

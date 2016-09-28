@@ -1,144 +1,57 @@
 package com.example.spj.youfan.utils;
 
 import android.app.Activity;
-import android.app.ActivityManager;
-import android.content.ComponentName;
-import android.content.Context;
 
-import java.util.List;
 import java.util.Stack;
 
 /**
- * app管理器
- *
- * @author PengZhenjin
- * @date 2016/5/24
+ * Created by spj on 2016/9/19.
+ * 统一应用程序中所有的Activity的栈管理，
+ * 涉及到Activity的添加，删除指定，删除当前，删除所有，返回栈大小的方法
  */
 public class AppManager {
+    private Stack<Activity> activityStack = new Stack<>();
 
-    private static volatile AppManager sInstance;
-    private static Stack<Activity> activityStack;
+    //设置当前类是单例的
+    private static AppManager appManager = new AppManager();
 
     private AppManager() {
+
     }
 
-    /**
-     * 单一实例
-     */
     public static AppManager getInstance() {
-        if (sInstance == null) {
-            synchronized (AppManager.class) {
-                if (sInstance == null) {
-                    sInstance = new AppManager();
-                }
-            }
-        }
-        return sInstance;
+        return appManager;
     }
 
-    /**
-     * 添加Activity到堆栈
-     */
     public void addActivity(Activity activity) {
-        if (activityStack == null) {
-            activityStack = new Stack<Activity>();
-        }
         activityStack.add(activity);
     }
 
-    /**
-     * 获取当前Activity（堆栈中最后一个压入的）
-     */
-    public Activity currentActivity() {
+    public void removeActivity(Activity activity) {
+        for (int i = activityStack.size() - 1; i >= 0; i--) {
+            if (activityStack.get(i).getClass().equals(activity.getClass())) {
+                activity.finish();
+                activityStack.remove(i);
+                break;
+            }
+
+        }
+    }
+
+    public void removeCurrent() {
         Activity activity = activityStack.lastElement();
-        return activity;
+        activity.finish();
+        activityStack.remove(activity);
     }
 
-    /**
-     * 结束当前Activity（堆栈中最后一个压入的）
-     */
-    public void finishActivity() {
-        Activity activity = activityStack.lastElement();
-        finishActivity(activity);
-    }
-
-    /**
-     * 结束指定的Activity
-     */
-    public void finishActivity(Activity activity) {
-        if (activity != null) {
-            activityStack.remove(activity);
-            activity.finish();
-            activity = null;
+    public void removeAll() {
+        for (int i = activityStack.size() - 1; i >= 0; i--) {
+            activityStack.get(i).finish();
+            activityStack.remove(i);
         }
     }
 
-    /**
-     * 结束指定类名的Activity
-     */
-    public void finishActivity(Class<?> cls) {
-        for (Activity activity : activityStack) {
-            if (activity.getClass().equals(cls)) {
-                finishActivity(activity);
-            }
-        }
-    }
-
-    /**
-     * 结束所有Activity
-     */
-    public void finishAllActivity() {
-        for (int i = 0, size = activityStack.size(); i < size; i++) {
-            if (null != activityStack.get(i)) {
-                activityStack.get(i).finish();
-            }
-        }
-        activityStack.clear();
-    }
-
-    /**
-     * 退出应用程序
-     */
-    public void AppExit(Context context) {
-        try {
-            finishAllActivity();
-            ActivityManager activityMgr = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-            activityMgr.killBackgroundProcesses(context.getPackageName());
-            System.exit(0);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * 是否退出应用程序
-     *
-     * @return
-     */
-    public boolean isAppExit() {
-        return activityStack == null || activityStack.isEmpty();
-    }
-
-    /**
-     * 判断某个activity是否在栈顶
-     *
-     * @param context
-     * @param activityClass 某个activity
-     * @return
-     */
-    public boolean isTopActivity(Context context, Class activityClass) {
-        if (context == null || activityClass == null) {
-            return false;
-        }
-        String activityName = activityClass.getName();
-        ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-        List<ActivityManager.RunningTaskInfo> runningTaskInfoList = am.getRunningTasks(1);
-        if (runningTaskInfoList != null && runningTaskInfoList.size() > 0) {
-            ComponentName cpn = runningTaskInfoList.get(0).topActivity;
-            if (activityName.equals(cpn.getClassName())) {
-                return true;
-            }
-        }
-        return false;
+    public int size() {
+        return activityStack == null ? 0 : activityStack.size();
     }
 }

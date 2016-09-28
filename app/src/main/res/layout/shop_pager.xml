@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <TextView
+        android:gravity="center_horizontal"
+        android:layout_above="@+id/iv_nobag"
+        android:textSize="20sp"
+        android:text="您还未登录"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/iv_nobag"
+        android:layout_centerInParent="true"
+        android:src="@drawable/ico_nobag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_alignLeft="@+id/iv_nobag"
+        android:layout_below="@+id/iv_nobag"
+        android:textSize="20sp"
+        android:text="去登陆"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

@@ -1,10 +1,12 @@
 package com.example.spj.youfan.pager;
 
 import android.content.Context;
-import android.view.Gravity;
+import android.content.Intent;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.Button;
 
+import com.example.spj.youfan.R;
+import com.example.spj.youfan.activity.LoginActivity;
 import com.example.spj.youfan.base.BasePager;
 
 /**
@@ -12,22 +14,21 @@ import com.example.spj.youfan.base.BasePager;
  */
 public class ShopPager extends BasePager{
 
+    private Button btn_login;
+
     public ShopPager(Context context) {
         super(context);
     }
 
     @Override
     public void initData() {
-        super.initData();
+        //把这个放在这里，防止空指针
+        View view = View.inflate(mContext, R.layout.shop_pager, null);
 
-
-        TextView tv = new TextView(mContext);
-
-        tv.setTextSize(25);
-        tv.setGravity(Gravity.CENTER);
+        btn_login = (Button) view.findViewById(R.id.btn_login);
         //把子视图添加到BasePager上的Fragment上
-        flContent.addView(tv);
-        tv.setText("购物车");
+        flContent.addView(view);
+        super.initData();
     }
 
     @Override
@@ -36,6 +37,20 @@ public class ShopPager extends BasePager{
         ibTopSet.setVisibility(View.GONE);
         ivTopSeacher.setVisibility(View.GONE);
         ivTopMail.setVisibility(View.GONE);
+        ivTopBack.setVisibility(View.GONE);
         tvTop.setText("购物袋");
     }
+
+    //为按钮设置监听
+    @Override
+    public void initListener() {
+        btn_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext,LoginActivity.class);
+                mContext.startActivity(intent);
+            }
+        });
+    }
+
 }
