@@ -1,10 +1,14 @@
 package com.example.spj.youfan.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.DisplayMetrics;
+import android.view.KeyEvent;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.example.spj.youfan.R;
 import com.example.spj.youfan.fragment.ContentFragment;
@@ -23,6 +27,18 @@ public class MainActivity extends SlidingFragmentActivity {
     private FragmentManager fm;
     private int screenWidth;
     private int screenHeight;
+
+    private boolean isExit = true;
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (msg.what == 0) {
+                isExit = true;
+            }
+
+        }
+    };
 
     @Bind(R.id.fl_main_content)
     FrameLayout flMainContent;
@@ -83,4 +99,27 @@ public class MainActivity extends SlidingFragmentActivity {
         return (ContentFragment) getSupportFragmentManager().findFragmentByTag(MAIN_CONTENT_TAG);
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        //再按一次后退出
+        if (keyCode == event.KEYCODE_BACK) {
+            if (isExit) {
+                Toast.makeText(MainActivity.this, "再按一次退出", Toast.LENGTH_SHORT).show();
+                isExit = false;
+                handler.sendEmptyMessageDelayed(0, 2000);
+                return true;
+            }
+
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);
+        handler.removeCallbacksAndMessages(null);
+        handler = null;
+    }
 }
