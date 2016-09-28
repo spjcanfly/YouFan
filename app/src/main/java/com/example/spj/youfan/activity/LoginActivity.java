@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import com.example.spj.youfan.R;
 import com.example.spj.youfan.base.BaseActivity;
-import com.example.spj.youfan.utils.AppManager;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -71,7 +70,7 @@ public class LoginActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.iv_top_back:
                 //点击后退按钮
-                AppManager.getInstance().removeCurrent();
+               closeCurrentActivity();
                 break;
             case R.id.btn_login:
                 //判断登录
@@ -90,7 +89,7 @@ public class LoginActivity extends BaseActivity {
                 Toast.makeText(LoginActivity.this, "微信登录", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.tv_register:
-                Toast.makeText(LoginActivity.this, "快速注册", Toast.LENGTH_SHORT).show();
+                goToActivity(RegisterActivity.class,null);
                 break;
             case R.id.tv_forget_secret:
                 Toast.makeText(LoginActivity.this, "找回密码", Toast.LENGTH_SHORT).show();
