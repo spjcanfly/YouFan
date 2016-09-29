@@ -67,7 +67,6 @@ public class MyScrollView extends ScrollView{
             case MotionEvent.ACTION_UP:
                 break;
         }
-        LogUtil.e("down222222222222");
         return false;
     }
 
@@ -87,9 +86,11 @@ public class MyScrollView extends ScrollView{
                 int dy = eventY - lastY;//获得移动的距离
                 if(isNeedMove()) {
                     //记录在临界位置时候的childview的坐标
+                    LogUtil.e("normal"+normal);
                     if(normal.isEmpty()) {
                         //未被赋值
                         normal.set(childView.getLeft(),childView.getTop(),childView.getRight(),childView.getBottom());
+                        LogUtil.e("normal2222222222" + normal);
                     }
                     //给childView重新布局(dy/2为了不让移动的太多)
                     childView.layout(childView.getLeft(),childView.getTop()+dy/2,childView.getRight(),childView.getBottom()+dy/2);
@@ -147,6 +148,7 @@ public class MyScrollView extends ScrollView{
         int dHeight = measuredHeight - height;
         //获取子视图在y轴上的滚动量，特点上加下减
         int scrollY = childView.getScrollY();
+        LogUtil.e("scrollY" + scrollY);
         if(scrollY <= 0 || scrollY >= dHeight) {
             return true;
         }

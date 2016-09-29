@@ -7,7 +7,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.spj.youfan.R;
-import com.example.spj.youfan.utils.LogUtil;
+
+import org.angmarch.views.NiceSpinner;
 
 /**
  * Created by spj on 2016/8/14.
@@ -24,12 +25,12 @@ public abstract class BasePager {
     public ImageView ivTopBack;
     public FrameLayout flContent;
     public TextView tvTop;
+    public NiceSpinner nice_spinner;
 
     public BasePager(Context context) {
         this.mContext = context;
         //构造执行，视图初始化
         rootView = initView();
-        LogUtil.e("mcontext" + mContext);
     }
 
     private View initView() {
@@ -50,6 +51,7 @@ public abstract class BasePager {
         ivTopSeacher = (ImageView) view.findViewById(R.id.iv_top_seacher);
         ivTopBack = (ImageView) view.findViewById(R.id.iv_top_back);
         tvTop = (TextView) view.findViewById(R.id.tv_top);
+        nice_spinner = (NiceSpinner) view.findViewById(R.id.nice_spinner);
 
         flContent = (FrameLayout) view.findViewById(R.id.fl_content);
         return view;

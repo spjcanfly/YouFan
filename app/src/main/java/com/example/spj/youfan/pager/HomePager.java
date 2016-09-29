@@ -1,12 +1,16 @@
 package com.example.spj.youfan.pager;
 
 import android.content.Context;
-import android.view.Gravity;
+import android.graphics.Color;
 import android.view.View;
-import android.widget.TextView;
 
+import com.example.spj.youfan.R;
 import com.example.spj.youfan.activity.MainActivity;
 import com.example.spj.youfan.base.BasePager;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by spj on 2016/9/28.
@@ -20,14 +24,18 @@ public class HomePager extends BasePager {
     @Override
     public void initData() {
 
-        TextView tv = new TextView(mContext);
+        View view = View.inflate(mContext, R.layout.home_pager, null);
 
-        tv.setTextSize(25);
-        tv.setGravity(Gravity.CENTER);
-        //把子视图添加到BasePager上的Fragment上
-        flContent.addView(tv);
-        tv.setText("主页");
+        initSpinner();
         super.initData();
+    }
+
+    private void initSpinner() {
+        List<String> dataset = new ArrayList<>(Arrays.asList("男生", "女生", "生活"));
+        nice_spinner.setTextColor(Color.BLACK);
+        nice_spinner.setPadding(0, 0, 0, 0);
+        nice_spinner.setTextSize(23);
+        nice_spinner.attachDataSource(dataset);
     }
 
     @Override
@@ -37,6 +45,8 @@ public class HomePager extends BasePager {
         ivTopSeacher.setVisibility(View.VISIBLE);
         ivTopBack.setVisibility(View.GONE);
         ivTopMail.setVisibility(View.GONE);
+        tvTop.setVisibility(View.GONE);
+        nice_spinner.setVisibility(View.VISIBLE);
     }
 
     @Override

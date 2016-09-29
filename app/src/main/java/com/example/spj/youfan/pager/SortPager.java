@@ -5,6 +5,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.spj.youfan.activity.MainActivity;
 import com.example.spj.youfan.base.BasePager;
 
 /**
@@ -38,6 +39,14 @@ public class SortPager extends BasePager{
 
     @Override
     public void initListener() {
-
+        //切换侧滑
+        ibTopMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity mainActivity = (MainActivity) mContext;
+                //切换左侧的开和关
+                mainActivity.getSlidingMenu().toggle();
+            }
+        });
     }
 }

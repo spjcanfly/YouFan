@@ -92,7 +92,7 @@ public class LoginActivity extends BaseActivity {
                 goToActivity(RegisterActivity.class,null);
                 break;
             case R.id.tv_forget_secret:
-                Toast.makeText(LoginActivity.this, "找回密码", Toast.LENGTH_SHORT).show();
+                goToActivity(FindSecretActivity.class,null);
                 break;
         }
     }
