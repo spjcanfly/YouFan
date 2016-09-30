@@ -1,1 +1,1 @@
-include ':app', ':okhttputils_library', ':PhotoView_library', ':MaterialRefreshLayout_library', ':SlidingMenu_library', ':nice-spinner-master'
+include ':app', ':okhttputils_library', ':PhotoView_library', ':MaterialRefreshLayout_library', ':SlidingMenu_library', ':nice-spinner-master', ':banner'

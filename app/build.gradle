@@ -32,4 +32,7 @@ dependencies {
     compile project(':SlidingMenu_library')
     compile 'com.android.support:design:23.0.1'
     compile project(':nice-spinner-master')
+    compile 'com.android.support:recyclerview-v7:23.0.1'
+    compile 'com.android.support:design:23.0.1'
+    compile project(':banner')
 }
