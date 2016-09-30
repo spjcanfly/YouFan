@@ -13,6 +13,7 @@ import com.example.spj.youfan.viewholder.DefaultHolder;
 import com.example.spj.youfan.viewholder.JinRiXinPinViewHolder;
 import com.example.spj.youfan.viewholder.LunboViewHolder;
 import com.example.spj.youfan.viewholder.PinPaiViewHolder;
+import com.example.spj.youfan.viewholder.YouFanViewHolder;
 
 import java.util.List;
 
@@ -58,6 +59,9 @@ public class ShouYeAdapter extends RecyclerView.Adapter<BaseRecyviewViewHolder> 
 
     //猜你喜欢
     private static final int LIKE = 11;
+
+    //有范公告
+    private static final int NOTICE =12;
 
     private BaseRecyviewViewHolder baseRecyviewViewHolder;
     private View convertView;
@@ -129,6 +133,12 @@ public class ShouYeAdapter extends RecyclerView.Adapter<BaseRecyviewViewHolder> 
             case LIKE:
 
                 break;
+            //有范公告
+            case NOTICE:
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.youfan_notice_item,parent,false);
+                //将布局传递给HomeViewHolder，便于找控件，显示
+                baseRecyviewViewHolder = new YouFanViewHolder(mContext, convertView);
+                break;
 
         }
 
@@ -186,6 +196,9 @@ public class ShouYeAdapter extends RecyclerView.Adapter<BaseRecyviewViewHolder> 
                 break;
             case "likeModule":
                 itemViewType = LIKE;
+                break;
+            case "noticeModule":
+                itemViewType = NOTICE;
                 break;
 
         }

@@ -55,6 +55,8 @@ public class HomePager extends BasePager {
         tv_nomedia = (TextView) view.findViewById(R.id.tv_nomedia);
         //把子试图添加到BasePager上的Fragment上,此处是坑
         if(flContent != null) {
+            //解决重影
+            flContent.removeAllViews();
             flContent.addView(view);
         }
         //初始化spinner控件

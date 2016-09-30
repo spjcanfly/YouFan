@@ -19,12 +19,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/btn_login"
-        android:layout_alignLeft="@+id/iv_nobag"
+    <LinearLayout
+        android:gravity="center_horizontal"
         android:layout_below="@+id/iv_nobag"
-        android:textSize="20sp"
-        android:text="去登陆"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content" />
+        android:id="@+id/ll_login"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <Button
+            android:id="@+id/btn_login"
+            android:background="@drawable/btn_gou_wu_style"
+            android:textSize="15sp"
+            android:text="去登陆"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
 </RelativeLayout>

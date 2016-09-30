@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="140dp"
     android:src="@drawable/ic_launcher"
-    android:paddingBottom="10dp"
-    android:paddingTop="10dp"
+    android:paddingBottom="6dp"
+    android:paddingTop="6dp"
     android:background="#CCCCCC"
     />
 
