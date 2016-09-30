@@ -6,10 +6,10 @@
     tools:context="com.example.spj.youfan.activity.SplashActivity">
 
     <ImageView
-        android:src="@drawable/splash_5"
+        android:src="@drawable/pic_start"
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
+        android:background="#ffffff"
         />
 </RelativeLayout>

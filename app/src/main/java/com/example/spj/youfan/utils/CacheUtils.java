@@ -11,8 +11,9 @@ public class CacheUtils {
      * 得到缓存
      */
     public static boolean getBoolean(Context context,String key){
-        SharedPreferences sp = context.getSharedPreferences("atguigu",Context.MODE_PRIVATE);
-        return sp.getBoolean(key,false);
+        SharedPreferences sp = context.getSharedPreferences("first",Context.MODE_PRIVATE);
+        //默认是true
+        return sp.getBoolean(key,true);
     }
 
     /**
@@ -20,7 +21,7 @@ public class CacheUtils {
      */
 
     public static void putBoolean(Context context,String key,boolean value){
-        SharedPreferences sp = context.getSharedPreferences("atguigu",Context.MODE_PRIVATE);
+        SharedPreferences sp = context.getSharedPreferences("first",Context.MODE_PRIVATE);
         sp.edit().putBoolean(key,value).commit();
     }
     /**

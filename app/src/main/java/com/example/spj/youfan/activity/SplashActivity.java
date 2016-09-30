@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.example.spj.youfan.R;
+import com.example.spj.youfan.utils.CacheUtils;
 
 /**
  * 点击app后进入的页面
@@ -13,6 +14,8 @@ import com.example.spj.youfan.R;
 public class SplashActivity extends Activity {
 
     private Handler handler = new Handler();
+    public static final String START_First = "start_first";
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,16 +24,23 @@ public class SplashActivity extends Activity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                //进入选择男生，女生，生活的页面
-                startChoiceActivity();
+                //判断是否是第一次进入
+                boolean isFisrt = CacheUtils.getBoolean(SplashActivity.this,START_First);
+                if(isFisrt) {
+                    //是第一次进入
+                    intent = new Intent(SplashActivity.this,  GuideActivity.class);
+                }else {
+                    //不是第一次进入
+                    //进入选择男生，女生，生活的页面
+                    intent = new Intent(SplashActivity.this, ChoiceActivity.class);
+                }
+                startActivity(intent);
+                // 关闭页面
+                finish();
             }
         },3000);
     }
 
-    private void startChoiceActivity() {
-        Intent intent = new Intent(this, ChoiceActivity.class);
-        startActivity(intent);
-    }
 
     @Override
     protected void onDestroy() {

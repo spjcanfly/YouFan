@@ -5,4 +5,49 @@
     android:layout_height="match_parent"
     tools:context="com.example.spj.youfan.activity.ChoiceActivity">
 
+    <ImageView
+        android:src="@drawable/splash_welcome_bg"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        />
+
+    <Button
+        android:layout_above="@+id/btn_choice_women"
+        android:layout_marginBottom="25dp"
+        android:drawableRight="@drawable/ico_jiantou"
+        android:paddingRight="10dp"
+        android:id="@+id/btn_choice_men"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/btn_choice_activity_style"
+        android:text="男生   MEN"
+        android:textColor="@android:color/white"
+        />
+    <Button
+        android:drawableRight="@drawable/ico_jiantou"
+        android:paddingRight="10dp"
+        android:id="@+id/btn_choice_women"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/btn_choice_activity_style"
+        android:text="女生   WOMEN"
+        android:textColor="@android:color/white"
+        />
+    <Button
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/btn_choice_women"
+        android:drawableRight="@drawable/ico_jiantou"
+        android:paddingRight="10dp"
+        android:id="@+id/btn_choice_life"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/btn_choice_activity_style"
+        android:text="生活   LIFESTYLE"
+        android:textColor="@android:color/white"
+        />
 </RelativeLayout>
