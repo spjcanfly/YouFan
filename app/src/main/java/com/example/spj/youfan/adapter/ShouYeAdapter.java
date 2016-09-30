@@ -10,7 +10,9 @@ import com.example.spj.youfan.R;
 import com.example.spj.youfan.base.BaseRecyviewViewHolder;
 import com.example.spj.youfan.bean.ShouYe;
 import com.example.spj.youfan.viewholder.DefaultHolder;
+import com.example.spj.youfan.viewholder.JinRiXinPinViewHolder;
 import com.example.spj.youfan.viewholder.LunboViewHolder;
+import com.example.spj.youfan.viewholder.PinPaiViewHolder;
 
 import java.util.List;
 
@@ -75,17 +77,21 @@ public class ShouYeAdapter extends RecyclerView.Adapter<BaseRecyviewViewHolder> 
             //轮播图
             case TOPIMAGE:
 //                convertView = View.inflate(mContext, R.layout.top_play_image, null);
-                convertView = LayoutInflater.from(mContext).inflate(R.layout.top_play_image,null);
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.top_play_image,parent,false);
                 //将布局传递给HomeViewHolder，便于找控件，显示
                 baseRecyviewViewHolder = new LunboViewHolder(mContext, convertView);
                 break;
             //今日新品，人气单品
             case ICON:
-
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.jinri_xinpin_recycle,parent,false);
+                //将布局传递给HomeViewHolder，便于找控件，显示
+                baseRecyviewViewHolder = new JinRiXinPinViewHolder(mContext, convertView);
                 break;
             //新品Chok好货 vol.22
             case BANNER:
-
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.pin_pai_item,parent,false);
+                //将布局传递给HomeViewHolder，便于找控件，显示
+                baseRecyviewViewHolder = new PinPaiViewHolder(mContext, convertView);
                 break;
             //新人专享
             case NEW:
