@@ -1,21 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="50dp"
     android:gravity="center_vertical"
-    android:orientation="horizontal">
+    >
 
     <TextView
+        android:gravity="center"
         android:id="@+id/tv_shou_ye_chinese"
         android:text="热门分类"
         android:textSize="20sp"
         android:layout_marginLeft="10dp"
-        android:textColor="@android:color/black"
+        android:textColor="#000000"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:layout_toRightOf="@+id/tv_shou_ye_chinese"
+        android:background="#999999"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"/>
+
+    <TextView
+        android:layout_marginLeft="8dp"
+        android:gravity="center"
+        android:layout_toRightOf="@+id/view"
+        android:id="@+id/tv_shou_ye_english"
+        android:text="NEW"
+        android:textSize="20sp"
+        android:textColor="#999999"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
+
+    <ImageView
+        android:layout_alignParentRight="true"
+        android:src="@drawable/btn_more_a"
+        android:id="@+id/iv_shou_ye_common"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <View
-
-        android:layout_width="1dp"
-        android:layout_height="20dp"/>
-</LinearLayout>
+</RelativeLayout>
