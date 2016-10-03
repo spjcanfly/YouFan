@@ -20,7 +20,6 @@ import com.example.spj.youfan.base.BaseFragment;
  */
 public class LeftmenuFragment extends BaseFragment {
 
-    private int goPreposition;
     private LeftmenuFragmentAdapter adapter;
     private String data;
     private ListView listView;
@@ -41,7 +40,7 @@ public class LeftmenuFragment extends BaseFragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 //点击后记录位置
-                goPreposition = position;
+                int goPreposition = position;
 
                 //点击后关闭左侧菜单
                 MainActivity mainActivity = (MainActivity) mContext;
@@ -72,7 +71,7 @@ public class LeftmenuFragment extends BaseFragment {
         switchPager(0);
     }
 
-    private void switchPager(int goPreposition) {
+    private void switchPager(int position) {
         MainActivity mainActivity = (MainActivity) mContext;
         ContentFragment contentFragment = mainActivity.getContentFragment();
 

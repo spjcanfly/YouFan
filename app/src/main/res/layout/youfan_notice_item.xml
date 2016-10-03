@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="40dp"
-    android:gravity="center_horizontal"
-    android:text="有范发神经公告"
-    android:textSize="25sp"
-    android:textColor="@android:color/holo_orange_dark"
-    android:padding="5dp"
-    />
+    android:layout_height="40dp">
+
+    <TextView
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:text="有范公告"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textColor="#000000"
+        android:textStyle="bold|italic"
+        android:layout_height="match_parent" />
+
+    <TextSwitcher
+        android:id="@+id/ts_gong_gao"
+        android:layout_weight="3"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        />
+</LinearLayout>
+
 
 
