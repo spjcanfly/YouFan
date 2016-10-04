@@ -106,7 +106,9 @@ public class ShouYeAdapter extends RecyclerView.Adapter<BaseRecyviewViewHolder> 
                 break;
             //热门品类
             case HOTCATE:
-
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.pin_lei_recycle,parent,false);
+                //将布局传递给HomeViewHolder，便于找控件，显示
+                baseRecyviewViewHolder = new PinLeiViewHolder(mContext, convertView);
                 break;
             //热门品牌
             case HOTBRAND:

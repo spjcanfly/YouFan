@@ -5,16 +5,10 @@
     android:orientation="vertical">
 
     <include layout="@layout/common_shouye_title"/>
-    
-    <ImageView
-        android:id="@+id/iv_xin_ren_big"
-        android:layout_width="match_parent"
-        android:layout_height="260dp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycleview"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="450dp">
     </android.support.v7.widget.RecyclerView>
-
 </LinearLayout>
