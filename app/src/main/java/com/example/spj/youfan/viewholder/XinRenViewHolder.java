@@ -20,6 +20,7 @@ import java.util.List;
 
 /**
  * Created by spj on 2016/10/3.
+ * 新人专享那个栏目
  */
 public class XinRenViewHolder extends BaseRecyviewViewHolder{
 
@@ -68,12 +69,12 @@ public class XinRenViewHolder extends BaseRecyviewViewHolder{
 
         @Override
         public void onBindViewHolder(MyXinRenAdapter.ViewHolder holder, int position) {
-
+            //position=0的位置已经有图片了
             if(position < datas.size()-1) {
                 String title = datas.get(position+1).getTitle();
                 String img = datas.get(position+1).getImg();
                 String price = datas.get(position+1).getProduct_price();
-                String[] split = price.split("\\.");
+                String[] split = price.split("\\.");//分割价格的.前面的
                 holder.tv_xin_ren.setText(title);
                 holder.tv_xin_ren_price.setText("￥ "+split[0]);
                 Glide.with(mContext).load(img).

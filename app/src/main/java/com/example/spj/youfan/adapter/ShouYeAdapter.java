@@ -12,6 +12,7 @@ import com.example.spj.youfan.bean.ShouYe;
 import com.example.spj.youfan.viewholder.DefaultHolder;
 import com.example.spj.youfan.viewholder.JinRiXinPinViewHolder;
 import com.example.spj.youfan.viewholder.LunboViewHolder;
+import com.example.spj.youfan.viewholder.PinLeiViewHolder;
 import com.example.spj.youfan.viewholder.PinPaiViewHolder;
 import com.example.spj.youfan.viewholder.XinRenViewHolder;
 import com.example.spj.youfan.viewholder.YouFanViewHolder;
