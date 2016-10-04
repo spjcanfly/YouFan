@@ -113,11 +113,16 @@ public class ShouYeAdapter extends RecyclerView.Adapter<BaseRecyviewViewHolder> 
                 break;
             //热门品牌
             case HOTBRAND:
-
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.remem_pin_pai_recycle,parent,false);
+                //将布局传递给HomeViewHolder，便于找控件，显示,复用热门品类
+                baseRecyviewViewHolder = new PinLeiViewHolder(mContext, convertView);
                 break;
             //搭配趋势
             case COLLOSPECIAL:
-
+                //复用热门品牌的Recycle
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.remem_pin_pai_recycle,parent,false);
+                //将布局传递给HomeViewHolder，便于找控件，显示,复用热门品类
+                baseRecyviewViewHolder = new PinLeiViewHolder(mContext, convertView);
                 break;
             //流行资讯
             case IMG:

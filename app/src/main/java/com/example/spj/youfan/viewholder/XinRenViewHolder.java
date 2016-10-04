@@ -84,9 +84,10 @@ public class XinRenViewHolder extends BaseRecyviewViewHolder{
             }
         }
 
+        //注意条目的数量
         @Override
         public int getItemCount() {
-            return datas.size();
+            return datas.size()-1;
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {
