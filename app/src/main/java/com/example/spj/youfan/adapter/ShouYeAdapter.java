@@ -126,7 +126,10 @@ public class ShouYeAdapter extends RecyclerView.Adapter<BaseRecyviewViewHolder> 
                 break;
             //流行资讯
             case IMG:
-
+                //这个也是轮播图类型的
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.liuxing_item,parent,false);
+                //将布局传递给HomeViewHolder，便于找控件，显示
+                baseRecyviewViewHolder = new LunboViewHolder(mContext, convertView);
                 break;
             //上装
             case LISTV1:

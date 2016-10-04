@@ -58,6 +58,7 @@ public class PinLeiViewHolder extends BaseRecyviewViewHolder{
             //注意recycleview必须要加上这一句
             recycleview.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL,false));
         }else{
+            //热门品牌，热门品类
             MyPinLeiAdapter adapter = new MyPinLeiAdapter();
             recycleview.setAdapter(adapter);
             //注意recycleview必须要加上这一句
