@@ -14,6 +14,7 @@ import com.example.spj.youfan.viewholder.JinRiXinPinViewHolder;
 import com.example.spj.youfan.viewholder.LunboViewHolder;
 import com.example.spj.youfan.viewholder.PinLeiViewHolder;
 import com.example.spj.youfan.viewholder.PinPaiViewHolder;
+import com.example.spj.youfan.viewholder.ShangZhuangViewHolder;
 import com.example.spj.youfan.viewholder.XinRenViewHolder;
 import com.example.spj.youfan.viewholder.YouFanViewHolder;
 
@@ -67,6 +68,7 @@ public class ShouYeAdapter extends RecyclerView.Adapter<BaseRecyviewViewHolder> 
 
     private BaseRecyviewViewHolder baseRecyviewViewHolder;
     private View convertView;
+    private String e_title;
 
 
     public ShouYeAdapter(Context mContext, List<ShouYe.DataBean.ModuleBean> bean) {
@@ -133,11 +135,16 @@ public class ShouYeAdapter extends RecyclerView.Adapter<BaseRecyviewViewHolder> 
                 break;
             //上装
             case LISTV1:
-
+                    convertView = LayoutInflater.from(mContext).inflate(R.layout.xin_ren_item,parent,false);
+                    //将布局传递给HomeViewHolder，便于找控件，显示，复用新人专享的布局
+//                    convertView.setTag(e_title);
+                    baseRecyviewViewHolder = new ShangZhuangViewHolder(mContext, convertView);
                 break;
             //今日最大牌
             case LISTV3:
-
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.jinri_dapai_item,parent,false);
+                //将布局传递给HomeViewHolder，便于找控件，显示,复用品牌的holder
+                baseRecyviewViewHolder = new PinPaiViewHolder(mContext, convertView);
                 break;
             //新入驻品牌
             case LISTV4:
@@ -162,6 +169,7 @@ public class ShouYeAdapter extends RecyclerView.Adapter<BaseRecyviewViewHolder> 
     @Override
     public void onBindViewHolder(BaseRecyviewViewHolder holder, int position) {
         baseRecyviewViewHolder.setData(datas.get(position));
+        e_title = datas.get(position).getE_title();
     }
 
     @Override

@@ -19,10 +19,10 @@ import com.example.spj.youfan.bean.ShouYeModuleData;
 import java.util.List;
 
 /**
- * Created by spj on 2016/10/3.
- * 新人专享那个栏目
+ * Created by spj on 2016/10/4.
+ * 上装，鞋子
  */
-public class XinRenViewHolder extends BaseRecyviewViewHolder{
+public class ShangZhuangViewHolder extends BaseRecyviewViewHolder{
 
     private final Context mContext;
     private final TextView tv_shou_ye_chinese;
@@ -30,11 +30,13 @@ public class XinRenViewHolder extends BaseRecyviewViewHolder{
     private final ImageView iv_shou_ye_common;
     private final RecyclerView recycleview;
     private final ImageView iv_xin_ren_big;
+    private final View mItemView;
     private List<ShouYeModuleData> datas;
 
-    public XinRenViewHolder(Context context, View itemView) {
+    public ShangZhuangViewHolder(Context context, View itemView) {
         super(context, itemView);
         this.mContext = context;
+        this.mItemView = itemView;
         tv_shou_ye_chinese = (TextView) itemView.findViewById(R.id.tv_shou_ye_chinese);
         tv_shou_ye_english = (TextView) itemView.findViewById(R.id.tv_shou_ye_english);
         iv_shou_ye_common = (ImageView) itemView.findViewById(R.id.iv_shou_ye_common);
@@ -42,7 +44,6 @@ public class XinRenViewHolder extends BaseRecyviewViewHolder{
         //更多的那个图片消失
         iv_shou_ye_common.setVisibility(View.GONE);
         recycleview = (RecyclerView) itemView.findViewById(R.id.recycleview);
-
     }
 
     @Override
@@ -50,38 +51,34 @@ public class XinRenViewHolder extends BaseRecyviewViewHolder{
         datas = moduleBean.getData();
         tv_shou_ye_chinese.setText(moduleBean.getC_title());
         tv_shou_ye_english.setText(moduleBean.getE_title());
-        Glide.with(mContext).load(datas.get(0).getImg())
-                .placeholder(R.drawable.ic_error_page)
-                .diskCacheStrategy(DiskCacheStrategy.ALL).into(iv_xin_ren_big);
-
-        MyXinRenAdapter adapter = new MyXinRenAdapter();
+        if(datas != null && datas.get(0) != null ) {
+            Glide.with(mContext).load(datas.get(0).getImg())
+                    .placeholder(R.drawable.ic_error_page)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL).into(iv_xin_ren_big);
+        }
+        MyShangZhuangAdapter adapter = new MyShangZhuangAdapter();
         recycleview.setAdapter(adapter);
         //注意recycleview必须要加上这一句
         recycleview.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL,false));
     }
 
-    class MyXinRenAdapter extends RecyclerView.Adapter<MyXinRenAdapter.ViewHolder> {
+    class MyShangZhuangAdapter extends RecyclerView.Adapter<MyShangZhuangAdapter.ViewHolder> {
         @Override
-        public MyXinRenAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View convertView = LayoutInflater.from(mContext).inflate(R.layout.xinren_zhuan_item, parent, false);
+        public MyShangZhuangAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View convertView = LayoutInflater.from(mContext).inflate(R.layout.shang_zhuang_item, parent, false);
             return new ViewHolder(convertView);
         }
 
         @Override
-        public void onBindViewHolder(MyXinRenAdapter.ViewHolder holder, int position) {
+        public void onBindViewHolder(MyShangZhuangAdapter.ViewHolder holder, int position) {
             //position=0的位置已经有图片了
             if(position < datas.size()-1) {
-                //新人专享特有的
-                    String price = datas.get(position+1).getProduct_price();
-                    String[] split = price.split("\\.");//分割价格的.前面的
-                    holder.tv_xin_ren_price.setText("￥ "+split[0]);
-                    String title = datas.get(position+1).getTitle();
-                    holder.tv_xin_ren.setText(title);
                 String img = datas.get(position+1).getImg();
-                Glide.with(mContext).load(img).
-                        placeholder(R.drawable.ic_error_page)
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)
-                        .into(holder.iv_xin_ren_small);
+                    Glide.with(mContext).load(img).
+                            placeholder(R.drawable.ic_error_page)
+                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                            .into(holder.iv_xin_ren_small);
+
             }
         }
 
@@ -93,16 +90,11 @@ public class XinRenViewHolder extends BaseRecyviewViewHolder{
 
         class ViewHolder extends RecyclerView.ViewHolder {
 
-            TextView tv_xin_ren_price;
             ImageView iv_xin_ren_small;
-            TextView tv_xin_ren;
 
             public ViewHolder(View itemView) {
                 super(itemView);
                 iv_xin_ren_small = (ImageView) itemView.findViewById(R.id.iv_xin_ren_small);
-                tv_xin_ren = (TextView) itemView.findViewById(R.id.tv_xin_ren);
-                tv_xin_ren_price = (TextView) itemView.findViewById(R.id.tv_xin_ren_price);
-
             }
 
         }
