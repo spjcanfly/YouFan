@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.example.spj.youfan.R;
 import com.example.spj.youfan.base.BaseRecyviewViewHolder;
 import com.example.spj.youfan.bean.ShouYe;
+import com.example.spj.youfan.viewholder.CaiNiLikeViewHolder;
 import com.example.spj.youfan.viewholder.DefaultHolder;
 import com.example.spj.youfan.viewholder.JinRiXinPinViewHolder;
 import com.example.spj.youfan.viewholder.LunboViewHolder;
@@ -16,6 +17,7 @@ import com.example.spj.youfan.viewholder.PinLeiViewHolder;
 import com.example.spj.youfan.viewholder.PinPaiViewHolder;
 import com.example.spj.youfan.viewholder.ShangZhuangViewHolder;
 import com.example.spj.youfan.viewholder.XinRenViewHolder;
+import com.example.spj.youfan.viewholder.XinRuZhuViewHolder;
 import com.example.spj.youfan.viewholder.YouFanViewHolder;
 
 import java.util.List;
@@ -148,11 +150,15 @@ public class ShouYeAdapter extends RecyclerView.Adapter<BaseRecyviewViewHolder> 
                 break;
             //新入驻品牌
             case LISTV4:
-
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.ruzhu_pinpai_recycle,parent,false);
+                //将布局传递给HomeViewHolder，便于找控件，显示
+                baseRecyviewViewHolder = new XinRuZhuViewHolder(mContext, convertView);
                 break;
             //猜你喜欢
             case LIKE:
-
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.caini_xihuan_recycle,parent,false);
+                //将布局传递给HomeViewHolder，便于找控件，显示
+                baseRecyviewViewHolder = new CaiNiLikeViewHolder(mContext, convertView);
                 break;
             //有范公告
             case NOTICE:
@@ -160,9 +166,7 @@ public class ShouYeAdapter extends RecyclerView.Adapter<BaseRecyviewViewHolder> 
                 //将布局传递给HomeViewHolder，便于找控件，显示
                 baseRecyviewViewHolder = new YouFanViewHolder(mContext, convertView);
                 break;
-
         }
-
         return baseRecyviewViewHolder;
     }
 

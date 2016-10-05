@@ -85,7 +85,7 @@ public class HomePager extends BasePager {
     }
 
     private void getMoreDataFromNet() {
-
+        refresh.finishRefreshLoadMore();
     }
 
     private void getDataFromCache() {

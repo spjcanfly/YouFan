@@ -4,6 +4,6 @@
     android:layout_height="200dp"
     android:id="@+id/iv_xin_ren_small"
     android:scaleType="centerCrop"
-    >
+    android:layout_marginBottom="8dp"
+    />
 
-</ImageView>
