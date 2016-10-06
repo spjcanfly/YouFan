@@ -90,7 +90,7 @@ public class InspirationPager extends BasePager {
         //准备灵感详情页面的数据
         tabDetailPagers = new ArrayList<>();
         for (int i = 0; i < attrs.size(); i++) {
-            tabDetailPagers.add(new TabDetailPager(mContext, attrs.get(i).getId()));
+            tabDetailPagers.add(new TabDetailPager(mContext, attrs.get(i).getName()));
         }
 
         //设置ViewPager的适配器

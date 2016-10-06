@@ -59,7 +59,6 @@ public class Constants {
     //灵感咨询
 
 
-    public static final String LG = "http://api.funwear.com/mbfun_server/index.php?m=Special&a=getSpecialListForInsp&osCode=android&cid=4&pageIndex=";
     public static final String LG_1 = "http://api.funwear.com/mbfun_server/index.php?m=Special&a=getSpecialListForInsp&osCode=android&cid=4&pageIndex=0";
 
     public static final String LG_2 = "http://api.funwear.com/mbfun_server/index.php?m=Special&a=getSpecialListForInsp&osCode=android&cid=4&pageIndex=1&aid=101";
@@ -81,6 +80,8 @@ public class Constants {
     public static final String LG_10 = "http://api.funwear.com/mbfun_server/index.php?m=Special&a=getSpecialListForInsp&osCode=android&cid=4&pageIndex=1&aid=99";
 
     public static final String LG_11 = "http://api.funwear.com/mbfun_server/index.php?m=Special&a=getSpecialListForInsp&osCode=android&cid=4&pageIndex=1&aid=2733";
+
+    public static final String LG_12 = "http://api.funwear.com/mbfun_server/index.php?m=Special&a=getSpecialListForInsp&osCode=android&cid=4&pageIndex=1&aid=104";
 
     //    单品搜索页面
     public static  final  String SERACH="http://api.funwear.com/mbfun_server/index.php?m=Search&a=getProductListByKey&osCode=android&cid=0&useNewSearchEngine=1&sortType=0&osVersion=19&deviceId=ffffffff-a66b-bc18-95f9-8e737e716946&token=&sortField=3&source=android&version=v4.2.2&osName=SM-G3818&page=0&pageSize=20&appName=youfanguanfang&keyword=";

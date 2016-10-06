@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:text="TREND｜后SM时代"
         android:background="@drawable/text_inspiration_bg"
-        android:textSize="18sp"
-        android:padding="12dp"
+        android:textSize="15sp"
+        android:padding="10dp"
         />
 </RelativeLayout>

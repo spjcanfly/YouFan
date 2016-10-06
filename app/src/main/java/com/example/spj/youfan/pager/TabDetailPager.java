@@ -31,15 +31,15 @@ import okhttp3.Call;
 public class TabDetailPager {
 
     private final Context mContext;
-    private String mId;
+    private String mName;
     public View rootView;
     private RecyclerView recycleview;
     private String url;
     private List<LingGanZiXun.DataBean.ListBean> lists;
 
-    public TabDetailPager(Context context, String id) {
+    public TabDetailPager(Context context, String name) {
         this.mContext = context;
-        this.mId = id;
+        this.mName = name;
         rootView = initView();
     }
 
@@ -50,13 +50,24 @@ public class TabDetailPager {
     }
 
     public void initData() {
-        //这是全部那个页面的数据
-        if ("".equals(mId)) {
-            mId = "0";
-        }
         //请求的地址
-        url = Constants.LG + mId;
-        LogUtil.e("url222222222222"+url);
+        if ("全部".equals(mName)) {
+            url = Constants.LG_1;
+        }else if("实验室".equals(mName)) {
+            url = Constants.LG_2;
+        }else if("咖啡馆".equals(mName)) {
+            url = Constants.LG_3;
+        }else if("趋势".equals(mName)) {
+            url = Constants.LG_4;
+        }else if("热闻".equals(mName)) {
+            url = Constants.LG_6;
+        }else if("特辑".equals(mName)) {
+            url = Constants.LG_9;
+        }else if("生活".equals(mName)) {
+            url = Constants.LG_10;
+        }else if("健身房".equals(mName)) {
+            url = Constants.LG_12;
+        }
         //把之前的缓存取出
         String saveJason = CacheUtils.getString(mContext, url);
         if (!TextUtils.isEmpty(saveJason)) {
