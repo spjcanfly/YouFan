@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="260dp"
+    >
+
+    <ImageView
+        android:scaleType="centerCrop"
+        android:id="@+id/iv_inspiration"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/tv_inspiration"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TREND｜后SM时代"
+        android:background="@drawable/text_inspiration_bg"
+        android:textSize="18sp"
+        android:padding="12dp"
+        />
+</RelativeLayout>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--#5000000前两位是透明的效果参数从00到99（透明到不怎么透明） -->
+    <solid android:color="#60ffffff"/>
+</shape>

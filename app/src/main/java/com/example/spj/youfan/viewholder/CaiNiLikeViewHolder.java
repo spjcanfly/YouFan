@@ -98,8 +98,6 @@ public class CaiNiLikeViewHolder extends BaseRecyviewViewHolder{
             String price = lists.get(position).getPrice();
             String[] split1 = price.split("\\.");
             holder.tv_like_price_now.setText("￥"+split1[0]);
-
-
         }
 
         //注意条目的数量
