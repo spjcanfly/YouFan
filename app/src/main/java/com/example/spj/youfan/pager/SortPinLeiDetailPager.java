@@ -1,6 +1,7 @@
 package com.example.spj.youfan.pager;
 
 import android.content.Context;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.chanven.lib.cptr.PtrClassicFrameLayout;
+import com.chanven.lib.cptr.PtrDefaultHandler;
+import com.chanven.lib.cptr.PtrFrameLayout;
 import com.example.spj.youfan.R;
 import com.example.spj.youfan.base.BaseSortViewPager;
 import com.example.spj.youfan.bean.PinLeiNan;
@@ -34,6 +38,8 @@ public class SortPinLeiDetailPager extends BaseSortViewPager{
     private ExpandableListView eplistview;
     private String url;
     private List<PinLeiNan.DataBean> datas;
+    private PtrClassicFrameLayout test_recycler_view_frame;
+    private Handler handler = new Handler();
 
 
     public SortPinLeiDetailPager(Context context) {
@@ -45,8 +51,21 @@ public class SortPinLeiDetailPager extends BaseSortViewPager{
         url = Constants.KIND_PINLEI;
         View view = View.inflate(mContext, R.layout.sort_pager_item, null);
         eplistview = (ExpandableListView) view.findViewById(R.id.eplistview);
+        test_recycler_view_frame = (PtrClassicFrameLayout) view.findViewById(R.id.test_recycler_view_frame);
         //把左边的箭头去掉
         eplistview.setGroupIndicator(null);
+        test_recycler_view_frame.setPtrHandler(new PtrDefaultHandler() {
+
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        test_recycler_view_frame.refreshComplete();
+                    }
+                }, 1500);
+            }
+        });
         return view;
     }
 
@@ -94,6 +113,13 @@ public class SortPinLeiDetailPager extends BaseSortViewPager{
             //有数据
             MyExpandableListAdapter adapter = new MyExpandableListAdapter();
             eplistview.setAdapter(adapter);
+            test_recycler_view_frame.postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    test_recycler_view_frame.autoRefresh(true);
+                }
+            }, 150);
         }
     }
 

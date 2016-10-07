@@ -1,6 +1,7 @@
 package com.example.spj.youfan.pager;
 
 import android.content.Context;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -12,6 +13,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.chanven.lib.cptr.PtrClassicFrameLayout;
+import com.chanven.lib.cptr.PtrDefaultHandler;
+import com.chanven.lib.cptr.PtrFrameLayout;
 import com.example.spj.youfan.R;
 import com.example.spj.youfan.bean.LingGanZiXun;
 import com.example.spj.youfan.utils.CacheUtils;
@@ -37,6 +41,8 @@ public class TabDetailPager {
     private RecyclerView recycleview;
     private String url;
     private List<LingGanZiXun.DataBean.ListBean> lists;
+    private PtrClassicFrameLayout test_recycler_view_frame;
+    private Handler handler = new Handler();
 
     public TabDetailPager(Context context, String name) {
         this.mContext = context;
@@ -47,6 +53,27 @@ public class TabDetailPager {
     private View initView() {
         View view = View.inflate(mContext, R.layout.linggan_recycle, null);
         recycleview = (RecyclerView) view.findViewById(R.id.recycleview);
+        test_recycler_view_frame = (PtrClassicFrameLayout) view.findViewById(R.id.test_recycler_view_frame);
+        test_recycler_view_frame.setPtrHandler(new PtrDefaultHandler() {
+
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+//                        for (int i = 0; i < 17; i++) {
+//                            mData.add(new String("  ListView item  -" + i));
+//                        }
+//                        mAdapter.notifyDataSetChanged();
+                        test_recycler_view_frame.refreshComplete();
+
+//                        if (!test_recycler_view_frame.isLoadMoreEnable()) {
+//                            test_recycler_view_frame.setLoadMoreEnable(true);
+//                        }
+                    }
+                }, 1500);
+            }
+        });
         return view;
     }
 
@@ -106,7 +133,8 @@ public class TabDetailPager {
         lists = bean.getData().getList();
         if (lists != null && lists.size() > 0) {
             //有数据,准备适配器
-            MyInspirationAdapter adapter = new MyInspirationAdapter();
+            MyInspirationAdapter adapter = new MyInspirationAdapter(mContext);
+//            RecyclerAdapterWithHF madapter = new RecyclerAdapterWithHF(adapter);
             recycleview.setAdapter(adapter);
             recycleview.setLayoutManager(new LinearLayoutManager(mContext,LinearLayoutManager.VERTICAL,false));
         }
@@ -119,6 +147,10 @@ public class TabDetailPager {
     }
 
     class MyInspirationAdapter extends RecyclerView.Adapter<ViewHolder> {
+        public MyInspirationAdapter(Context mContext) {
+            super();
+        }
+
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View itemView = LayoutInflater.from(mContext).inflate(R.layout.inspiration_item, parent, false);

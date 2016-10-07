@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/YouFan.iml" filepath="$PROJECT_DIR$/YouFan.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/banner/banner.iml" filepath="$PROJECT_DIR$/banner/banner.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cptr/cptr.iml" filepath="$PROJECT_DIR$/cptr/cptr.iml" />
       <module fileurl="file://$PROJECT_DIR$/nice-spinner-master/nice-spinner-master.iml" filepath="$PROJECT_DIR$/nice-spinner-master/nice-spinner-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/okhttputils_library/okhttputils_library.iml" filepath="$PROJECT_DIR$/okhttputils_library/okhttputils_library.iml" />
       <module fileurl="file://$PROJECT_DIR$/quicksidebar/quicksidebar.iml" filepath="$PROJECT_DIR$/quicksidebar/quicksidebar.iml" />
