@@ -37,6 +37,7 @@ public class CaiNiLikeViewHolder extends BaseRecyviewViewHolder{
     private final TextView tv_shou_ye_chinese;
     private final TextView tv_shou_ye_english;
     private final ImageView iv_shou_ye_common;
+//    private final RecyclerView recycleview;
     private final RecyclerView recycleview;
     private List<ShouYeModuleData> datas;
     private MyCaiNiLikeAdapter adapter;

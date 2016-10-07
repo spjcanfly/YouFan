@@ -28,15 +28,13 @@ public class ShangZhuangViewHolder extends BaseRecyviewViewHolder{
     private final TextView tv_shou_ye_chinese;
     private final TextView tv_shou_ye_english;
     private final ImageView iv_shou_ye_common;
-    private final RecyclerView recycleview;
     private final ImageView iv_xin_ren_big;
-    private final View mItemView;
     private List<ShouYeModuleData> datas;
+    private final RecyclerView recycleview;
 
     public ShangZhuangViewHolder(Context context, View itemView) {
         super(context, itemView);
         this.mContext = context;
-        this.mItemView = itemView;
         tv_shou_ye_chinese = (TextView) itemView.findViewById(R.id.tv_shou_ye_chinese);
         tv_shou_ye_english = (TextView) itemView.findViewById(R.id.tv_shou_ye_english);
         iv_shou_ye_common = (ImageView) itemView.findViewById(R.id.iv_shou_ye_common);
@@ -59,7 +57,7 @@ public class ShangZhuangViewHolder extends BaseRecyviewViewHolder{
         MyShangZhuangAdapter adapter = new MyShangZhuangAdapter();
         recycleview.setAdapter(adapter);
         //注意recycleview必须要加上这一句
-        recycleview.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL,false));
+        recycleview.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
     }
 
     class MyShangZhuangAdapter extends RecyclerView.Adapter<MyShangZhuangAdapter.ViewHolder> {

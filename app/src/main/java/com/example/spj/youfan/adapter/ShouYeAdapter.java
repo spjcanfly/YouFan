@@ -70,7 +70,6 @@ public class ShouYeAdapter extends RecyclerView.Adapter<BaseRecyviewViewHolder> 
 
     private BaseRecyviewViewHolder baseRecyviewViewHolder;
     private View convertView;
-    private String e_title;
 
 
     public ShouYeAdapter(Context mContext, List<ShouYe.DataBean.ModuleBean> bean) {
@@ -172,8 +171,7 @@ public class ShouYeAdapter extends RecyclerView.Adapter<BaseRecyviewViewHolder> 
 
     @Override
     public void onBindViewHolder(BaseRecyviewViewHolder holder, int position) {
-        baseRecyviewViewHolder.setData(datas.get(position));
-        e_title = datas.get(position).getE_title();
+        holder.setData(datas.get(position));
     }
 
     @Override

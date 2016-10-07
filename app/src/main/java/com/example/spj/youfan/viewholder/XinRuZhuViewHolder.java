@@ -14,6 +14,7 @@ import com.example.spj.youfan.R;
 import com.example.spj.youfan.base.BaseRecyviewViewHolder;
 import com.example.spj.youfan.bean.ShouYe;
 import com.example.spj.youfan.bean.ShouYeModuleData;
+import com.example.spj.youfan.utils.LogUtil;
 
 import java.util.List;
 
@@ -37,6 +38,7 @@ public class XinRuZhuViewHolder extends BaseRecyviewViewHolder{
     @Override
     public void setData(ShouYe.DataBean.ModuleBean moduleBean) {
         datas = moduleBean.getData();
+        LogUtil.e("新入驻品牌"+moduleBean.getC_title());
         //最上面的那个图片
         Glide.with(mContext).load(datas.get(0).getImg())
                 .placeholder(R.drawable.ic_error_page)
