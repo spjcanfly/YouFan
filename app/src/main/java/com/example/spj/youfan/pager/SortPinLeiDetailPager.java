@@ -45,6 +45,8 @@ public class SortPinLeiDetailPager extends BaseSortViewPager{
         url = Constants.KIND_PINLEI;
         View view = View.inflate(mContext, R.layout.sort_pager_item, null);
         eplistview = (ExpandableListView) view.findViewById(R.id.eplistview);
+        //把左边的箭头去掉
+        eplistview.setGroupIndicator(null);
         return view;
     }
 
