@@ -3,6 +3,7 @@ package com.example.spj.youfan.pager;
 import android.content.Context;
 import android.view.View;
 
+import com.example.spj.youfan.R;
 import com.example.spj.youfan.base.BaseSortViewPager;
 
 /**
@@ -16,7 +17,8 @@ public class SortDongTaiDetailPager extends BaseSortViewPager{
 
     @Override
     public View initView() {
-        return null;
+        View view = View.inflate(mContext, R.layout.sort_dongtai_pager, null);
+        return view;
     }
 
     @Override

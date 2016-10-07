@@ -125,6 +125,7 @@ public class HomePager extends BasePager {
         ivTopMail.setVisibility(View.GONE);
         tvTop.setVisibility(View.GONE);
         nice_spinner.setVisibility(View.VISIBLE);
+        tablayout.setVisibility(View.INVISIBLE);
     }
 
     @Override
