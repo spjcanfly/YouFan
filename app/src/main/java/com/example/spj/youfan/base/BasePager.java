@@ -1,6 +1,7 @@
 package com.example.spj.youfan.base;
 
 import android.content.Context;
+import android.support.design.widget.TabLayout;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -26,6 +27,7 @@ public abstract class BasePager {
     public FrameLayout flContent;
     public TextView tvTop;
     public NiceSpinner nice_spinner;
+    public TabLayout tablayout;
 
     public BasePager(Context context) {
         this.mContext = context;
@@ -52,6 +54,7 @@ public abstract class BasePager {
         ivTopBack = (ImageView) view.findViewById(R.id.iv_top_back);
         tvTop = (TextView) view.findViewById(R.id.tv_top);
         nice_spinner = (NiceSpinner) view.findViewById(R.id.nice_spinner);
+        tablayout = (TabLayout) view.findViewById(R.id.tablayout);
 
         flContent = (FrameLayout) view.findViewById(R.id.fl_content);
         return view;

@@ -27,6 +27,7 @@ import okhttp3.Call;
 
 /**
  * Created by spj on 2016/10/5.
+ * 灵感的具体
  */
 public class TabDetailPager {
 
