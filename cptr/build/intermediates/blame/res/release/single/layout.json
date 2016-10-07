@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "E:\\androidstudio-exersice\\YouFan\\cptr\\build\\intermediates\\res\\merged\\release\\layout\\cube_ptr_classic_default_header.xml",
+        "source": "E:\\androidstudio-exersice\\YouFan\\cptr\\res\\layout\\cube_ptr_classic_default_header.xml"
+    },
+    {
+        "merged": "E:\\androidstudio-exersice\\YouFan\\cptr\\build\\intermediates\\res\\merged\\release\\layout\\loadmore_default_footer.xml",
+        "source": "E:\\androidstudio-exersice\\YouFan\\cptr\\res\\layout\\loadmore_default_footer.xml"
+    }
+]
