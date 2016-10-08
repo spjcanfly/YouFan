@@ -31,14 +31,13 @@ import okhttp3.Call;
 /**
  * Created by spj on 2016/10/5.
  */
-public class CaiNiLikeViewHolder extends BaseRecyviewViewHolder{
+public class CaiNiLikeViewHolder extends BaseRecyviewViewHolder {
 
-    private final Context mContext;
-    private final TextView tv_shou_ye_chinese;
-    private final TextView tv_shou_ye_english;
-    private final ImageView iv_shou_ye_common;
-//    private final RecyclerView recycleview;
-    private final RecyclerView recycleview;
+    private  Context mContext;
+    private  TextView tv_shou_ye_chinese;
+    private  TextView tv_shou_ye_english;
+    private  ImageView iv_shou_ye_common;
+    private  RecyclerView recycleview;
     private List<ShouYeModuleData> datas;
     private MyCaiNiLikeAdapter adapter;
     private List<CaiNiLike.DataBean.ListBean> lists;
@@ -95,16 +94,16 @@ public class CaiNiLikeViewHolder extends BaseRecyviewViewHolder{
             String[] split = market_price.split("\\.");
             //设置中划线
             holder.tv_like_price_market.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-            holder.tv_like_price_market.setText("￥"+split[0]);
+            holder.tv_like_price_market.setText("￥" + split[0]);
             String price = lists.get(position).getPrice();
             String[] split1 = price.split("\\.");
-            holder.tv_like_price_now.setText("￥"+split1[0]);
+            holder.tv_like_price_now.setText("￥" + split1[0]);
         }
 
         //注意条目的数量
         @Override
         public int getItemCount() {
-            return lists.size();
+            return lists == null ? 0 : lists.size();
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {
@@ -147,7 +146,7 @@ public class CaiNiLikeViewHolder extends BaseRecyviewViewHolder{
         //解析json数据
         CaiNiLike bean = parsedJson(response);
         lists = bean.getData().getList();
-        if(lists != null && lists.size()>0) {
+        if (lists != null && lists.size() > 0) {
             //有数据
             adapter = new MyCaiNiLikeAdapter();
             recycleview.setAdapter(adapter);
@@ -159,6 +158,6 @@ public class CaiNiLikeViewHolder extends BaseRecyviewViewHolder{
 
     //解析json数据
     private CaiNiLike parsedJson(String response) {
-        return new Gson().fromJson(response,CaiNiLike.class);
+        return new Gson().fromJson(response, CaiNiLike.class);
     }
 }

@@ -27,8 +27,8 @@ import java.util.List;
  */
 public class ShouYeAdapter extends RecyclerView.Adapter<BaseRecyviewViewHolder> {
 
-    private final Context mContext;
-    private final List<ShouYe.DataBean.ModuleBean> datas;
+    private  Context mContext;
+    private  List<ShouYe.DataBean.ModuleBean> datas;
 
     //轮播图
     private static final int TOPIMAGE = 0;
@@ -70,7 +70,6 @@ public class ShouYeAdapter extends RecyclerView.Adapter<BaseRecyviewViewHolder> 
 
     private BaseRecyviewViewHolder baseRecyviewViewHolder;
     private View convertView;
-
 
     public ShouYeAdapter(Context mContext, List<ShouYe.DataBean.ModuleBean> bean) {
         this.mContext = mContext;

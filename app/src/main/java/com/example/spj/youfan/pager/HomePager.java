@@ -6,8 +6,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
@@ -15,6 +17,7 @@ import com.example.spj.youfan.R;
 import com.example.spj.youfan.activity.MainActivity;
 import com.example.spj.youfan.adapter.ShouYeAdapter;
 import com.example.spj.youfan.base.BasePager;
+import com.example.spj.youfan.bean.CaiNiLike;
 import com.example.spj.youfan.bean.ShouYe;
 import com.example.spj.youfan.utils.CacheUtils;
 import com.example.spj.youfan.utils.Constants;
@@ -76,16 +79,50 @@ public class HomePager extends BasePager {
             @Override
             public void onRefreshLoadMore(MaterialRefreshLayout materialRefreshLayout) {
                 //更多的请求
-                getMoreDataFromNet();
+//                getMoreDataFromNet();
             }
         });
-
 
         super.initData();
     }
 
     private void getMoreDataFromNet() {
-        refresh.finishRefreshLoadMore();
+        //使用OKhttp第三方封装库请求网络,请求男生
+        OkHttpUtils.get()
+                .url(Constants.HOMECASH_MAN_MORE)
+                .id(100)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        //缓存数据
+                        CacheUtils.putString(mContext, Constants.HOMECASH_MAN_MORE, response);
+
+                        processedMoreData(response);
+                        refresh.finishRefreshLoadMore();
+                    }
+                });
+
+    }
+
+    //解析加载更多的数据,猜你喜欢的数据
+    private void processedMoreData(String response) {
+        //解析json数据
+        CaiNiLike bean = parsedMoreJson(response);
+        List<CaiNiLike.DataBean.ListBean> lists = bean.getData().getList();
+        if(lists != null && lists.size()>0) {
+            //有数据
+        }
+    }
+
+    //解析json数据
+    private CaiNiLike parsedMoreJson(String response) {
+        return new Gson().fromJson(response,CaiNiLike.class);
     }
 
     private void getDataFromCache() {
@@ -108,12 +145,22 @@ public class HomePager extends BasePager {
     }
 
     private void initSpinner() {
-        List<String> dataset = new ArrayList<>(Arrays.asList("男生", "女生", "生活"));
+        final List<String> dataset = new ArrayList<>(Arrays.asList("男生", "女生", "生活"));
         nice_spinner.setTextColor(Color.BLACK);
         nice_spinner.setPadding(0, 0, 0, 0);
         nice_spinner.setTextSize(23);
-        nice_spinner.attachDataSource(dataset);
+        nice_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(mContext, "你点击的是"+dataset.get(position), Toast.LENGTH_SHORT).show();
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        nice_spinner.attachDataSource(dataset);
     }
 
     @Override

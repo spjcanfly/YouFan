@@ -19,4 +19,5 @@ public abstract class BaseRecyviewViewHolder extends RecyclerView.ViewHolder{
     }
 
     public abstract void setData(ShouYe.DataBean.ModuleBean moduleBean);
+
 }

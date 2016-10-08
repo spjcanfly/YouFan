@@ -34,7 +34,7 @@ import okhttp3.Call;
 
 /**
  * Created by spj on 2016/10/5.
- * 灵感的具体
+ * 灵感的具体,有下拉刷新，点击加载更多
  */
 public class TabDetailPager {
 
@@ -66,6 +66,7 @@ public class TabDetailPager {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        //下拉刷新完成后消失
                         test_recycler_view_frame.refreshComplete();
                         test_recycler_view_frame.setLoadMoreEnable(true);
                     }
@@ -80,6 +81,7 @@ public class TabDetailPager {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        //加载更多
                         page++;
                         getMoreDataFromNet();
                         adapter.notifyDataSetChanged();
@@ -180,6 +182,7 @@ public class TabDetailPager {
             recycleview.setAdapter(mAdapter);
             recycleview.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
 
+            //每次进入自动下拉刷新
             test_recycler_view_frame.postDelayed(new Runnable() {
 
                 @Override
@@ -196,6 +199,7 @@ public class TabDetailPager {
         return new Gson().fromJson(json, LingGanZiXun.class);
     }
 
+    //注意，这里继承的不是RecyclerView.Adapter<MyInspirationAdapter.ViewHolder>，这样才能加载更多
     class MyInspirationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         @Override
@@ -205,17 +209,18 @@ public class TabDetailPager {
         }
 
         @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-            ViewHolder holder1 = (ViewHolder) holder;
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
+            //把参数viewholder强转为下面类的名
+            ViewHolder holder = (ViewHolder) viewHolder;
             String img = lists.get(position).getImg();
             String title = lists.get(position).getTitle();
 
             Glide.with(mContext).load(img).
                     placeholder(R.drawable.ic_error_page)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(holder1.iv_inspiration);
+                    .into(holder.iv_inspiration);
 
-            holder1.tv_inspiration.setText(title);
+            holder.tv_inspiration.setText(title);
         }
 
 //        @Override
