@@ -54,18 +54,7 @@ public class SortPinLeiDetailPager extends BaseSortViewPager{
         test_recycler_view_frame = (PtrClassicFrameLayout) view.findViewById(R.id.test_recycler_view_frame);
         //把左边的箭头去掉
         eplistview.setGroupIndicator(null);
-        test_recycler_view_frame.setPtrHandler(new PtrDefaultHandler() {
 
-            @Override
-            public void onRefreshBegin(PtrFrameLayout frame) {
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        test_recycler_view_frame.refreshComplete();
-                    }
-                }, 1500);
-            }
-        });
         return view;
     }
 
@@ -101,6 +90,19 @@ public class SortPinLeiDetailPager extends BaseSortViewPager{
                         //缓存的数据放到sp存储中
                         CacheUtils.putString(mContext, url, response);
                         processData(response);
+                        //成功获取数据后，消失下拉刷新
+                        test_recycler_view_frame.setPtrHandler(new PtrDefaultHandler() {
+
+                            @Override
+                            public void onRefreshBegin(PtrFrameLayout frame) {
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        test_recycler_view_frame.refreshComplete();
+                                    }
+                                }, 1500);
+                            }
+                        });
                     }
                 });
     }

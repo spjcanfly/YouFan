@@ -10,12 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.chanven.lib.cptr.PtrClassicFrameLayout;
 import com.chanven.lib.cptr.PtrDefaultHandler;
 import com.chanven.lib.cptr.PtrFrameLayout;
+import com.chanven.lib.cptr.loadmore.OnLoadMoreListener;
+import com.chanven.lib.cptr.recyclerview.RecyclerAdapterWithHF;
 import com.example.spj.youfan.R;
 import com.example.spj.youfan.bean.LingGanZiXun;
 import com.example.spj.youfan.utils.CacheUtils;
@@ -43,6 +46,8 @@ public class TabDetailPager {
     private List<LingGanZiXun.DataBean.ListBean> lists;
     private PtrClassicFrameLayout test_recycler_view_frame;
     private Handler handler = new Handler();
+    private int page = 1;
+    private MyInspirationAdapter adapter;
 
     public TabDetailPager(Context context, String name) {
         this.mContext = context;
@@ -61,20 +66,57 @@ public class TabDetailPager {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-//                        for (int i = 0; i < 17; i++) {
-//                            mData.add(new String("  ListView item  -" + i));
-//                        }
-//                        mAdapter.notifyDataSetChanged();
                         test_recycler_view_frame.refreshComplete();
-
-//                        if (!test_recycler_view_frame.isLoadMoreEnable()) {
-//                            test_recycler_view_frame.setLoadMoreEnable(true);
-//                        }
+                        test_recycler_view_frame.setLoadMoreEnable(true);
                     }
                 }, 1500);
             }
         });
+
+        test_recycler_view_frame.setOnLoadMoreListener(new OnLoadMoreListener() {
+
+            @Override
+            public void loadMore() {
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        page++;
+                        getMoreDataFromNet();
+                        adapter.notifyDataSetChanged();
+                        test_recycler_view_frame.loadMoreComplete(true);
+                        Toast.makeText(mContext, "load more complete", Toast.LENGTH_SHORT).show();
+                    }
+                }, 1000);
+            }
+        });
         return view;
+    }
+
+    private void getMoreDataFromNet() {
+        url = Constants.LG_more + page;
+        //使用OKhttp第三方封装库请求网络
+        OkHttpUtils.get()
+                .url(url)
+                .id(100)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        LogUtil.e("使用okhttp联网请求失败==灵感资讯" + e.getMessage());
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        LogUtil.e("使用okhttp联网请求数据成功==灵感资讯" + response);
+                        //缓存的数据放到sp存储中
+                        CacheUtils.putString(mContext, url, response);
+                        processMoreData(response);
+                    }
+                });
+    }
+
+    private void processMoreData(String response) {
+        lists.addAll(parsedJson(response).getData().getList());
     }
 
     public void initData() {
@@ -133,10 +175,18 @@ public class TabDetailPager {
         lists = bean.getData().getList();
         if (lists != null && lists.size() > 0) {
             //有数据,准备适配器
-            MyInspirationAdapter adapter = new MyInspirationAdapter(mContext);
-//            RecyclerAdapterWithHF madapter = new RecyclerAdapterWithHF(adapter);
-            recycleview.setAdapter(adapter);
-            recycleview.setLayoutManager(new LinearLayoutManager(mContext,LinearLayoutManager.VERTICAL,false));
+            adapter = new MyInspirationAdapter();
+            RecyclerAdapterWithHF mAdapter = new RecyclerAdapterWithHF(adapter);
+            recycleview.setAdapter(mAdapter);
+            recycleview.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
+
+            test_recycler_view_frame.postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    test_recycler_view_frame.autoRefresh(true);
+                }
+            }, 150);
         }
     }
 
@@ -146,10 +196,7 @@ public class TabDetailPager {
         return new Gson().fromJson(json, LingGanZiXun.class);
     }
 
-    class MyInspirationAdapter extends RecyclerView.Adapter<ViewHolder> {
-        public MyInspirationAdapter(Context mContext) {
-            super();
-        }
+    class MyInspirationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -158,34 +205,50 @@ public class TabDetailPager {
         }
 
         @Override
-        public void onBindViewHolder(ViewHolder holder, int position) {
+        public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+            ViewHolder holder1 = (ViewHolder) holder;
             String img = lists.get(position).getImg();
             String title = lists.get(position).getTitle();
 
             Glide.with(mContext).load(img).
                     placeholder(R.drawable.ic_error_page)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(holder.iv_inspiration);
+                    .into(holder1.iv_inspiration);
 
-            holder.tv_inspiration.setText(title);
+            holder1.tv_inspiration.setText(title);
         }
+
+//        @Override
+//        public void onBindViewHolder(ViewHolder holder, int position) {
+//            String img = lists.get(position).getImg();
+//            String title = lists.get(position).getTitle();
+//
+//            Glide.with(mContext).load(img).
+//                    placeholder(R.drawable.ic_error_page)
+//                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                    .into(holder.iv_inspiration);
+//
+//            holder.tv_inspiration.setText(title);
+//        }
 
         @Override
         public int getItemCount() {
             return lists == null ?0:lists.size();
         }
-    }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+        class ViewHolder extends RecyclerView.ViewHolder {
 
-         ImageView iv_inspiration;
-         TextView tv_inspiration;
+            ImageView iv_inspiration;
+            TextView tv_inspiration;
 
-        public ViewHolder(View itemView) {
-            super(itemView);
-            iv_inspiration = (ImageView) itemView.findViewById(R.id.iv_inspiration);
-            tv_inspiration = (TextView) itemView.findViewById(R.id.tv_inspiration);
+            public ViewHolder(View itemView) {
+                super(itemView);
+                iv_inspiration = (ImageView) itemView.findViewById(R.id.iv_inspiration);
+                tv_inspiration = (TextView) itemView.findViewById(R.id.tv_inspiration);
+            }
+
         }
-
     }
+
+
 }

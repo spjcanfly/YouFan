@@ -1,6 +1,7 @@
 package com.example.spj.youfan.pager;
 
 import android.content.Context;
+import android.os.Handler;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -11,6 +12,9 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.chanven.lib.cptr.PtrClassicFrameLayout;
+import com.chanven.lib.cptr.PtrDefaultHandler;
+import com.chanven.lib.cptr.PtrFrameLayout;
 import com.example.spj.youfan.R;
 import com.example.spj.youfan.base.BaseSortViewPager;
 import com.example.spj.youfan.bean.FenLeiPinPai;
@@ -33,6 +37,8 @@ public class SortPinPaiDetailPager extends BaseSortViewPager{
     private String url;
     private RecyclerView recycleview;
     private List<FenLeiPinPai.DataBean> datas;
+    private PtrClassicFrameLayout test_recycler_view_frame;
+    private Handler handler = new Handler();
 
     public SortPinPaiDetailPager(Context context) {
         super(context);
@@ -43,6 +49,20 @@ public class SortPinPaiDetailPager extends BaseSortViewPager{
         url = Constants.KIND_PINPAI;
         View view = View.inflate(mContext, R.layout.sort_pinpai_pager_recycle, null);
         recycleview = (RecyclerView) view.findViewById(R.id.recycleview);
+        test_recycler_view_frame = (PtrClassicFrameLayout) view.findViewById(R.id.test_recycler_view_frame);
+        //下拉刷新消失
+        test_recycler_view_frame.setPtrHandler(new PtrDefaultHandler() {
+
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        test_recycler_view_frame.refreshComplete();
+                    }
+                }, 1500);
+            }
+        });
         return view;
     }
 
@@ -66,7 +86,15 @@ public class SortPinPaiDetailPager extends BaseSortViewPager{
             //有数据
             MySortPinPaiAdapter adapter = new MySortPinPaiAdapter();
             recycleview.setAdapter(adapter);
-            recycleview.setLayoutManager(new GridLayoutManager(mContext,3));
+            recycleview.setLayoutManager(new GridLayoutManager(mContext, 3));
+            //自动刷新
+            test_recycler_view_frame.postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    test_recycler_view_frame.autoRefresh(true);
+                }
+            }, 150);
         }
     }
 
@@ -93,6 +121,7 @@ public class SortPinPaiDetailPager extends BaseSortViewPager{
                         //缓存的数据放到sp存储中
                         CacheUtils.putString(mContext, url, response);
                         processData(response);
+
                     }
                 });
     }

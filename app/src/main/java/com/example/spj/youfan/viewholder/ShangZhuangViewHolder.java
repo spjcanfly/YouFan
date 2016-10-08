@@ -76,7 +76,6 @@ public class ShangZhuangViewHolder extends BaseRecyviewViewHolder{
                             placeholder(R.drawable.ic_error_page)
                             .diskCacheStrategy(DiskCacheStrategy.ALL)
                             .into(holder.iv_xin_ren_small);
-
             }
         }
 

@@ -60,6 +60,7 @@ public class Constants {
 
 
     public static final String LG_1 = "http://api.funwear.com/mbfun_server/index.php?m=Special&a=getSpecialListForInsp&osCode=android&cid=4&pageIndex=0";
+    public static final String LG_more = "http://api.funwear.com/mbfun_server/index.php?m=Special&a=getSpecialListForInsp&osCode=android&cid=4&pageIndex=";
 
     public static final String LG_2 = "http://api.funwear.com/mbfun_server/index.php?m=Special&a=getSpecialListForInsp&osCode=android&cid=4&pageIndex=1&aid=101";
 
