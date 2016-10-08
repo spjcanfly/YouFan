@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.spj.youfan.R;
-import com.example.spj.youfan.activity.LoginActivity;
+import com.example.spj.youfan.activity.user.LoginActivity;
 import com.example.spj.youfan.base.BasePager;
 
 /**

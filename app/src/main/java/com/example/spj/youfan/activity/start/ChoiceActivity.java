@@ -1,4 +1,4 @@
-package com.example.spj.youfan.activity;
+package com.example.spj.youfan.activity.start;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.spj.youfan.R;
+import com.example.spj.youfan.activity.MainActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

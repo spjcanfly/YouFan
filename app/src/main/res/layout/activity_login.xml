@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.spj.youfan.activity.LoginActivity">
+    tools:context=".activity.user.LoginActivity">
 
     <LinearLayout
         android:id="@+id/ll_login"

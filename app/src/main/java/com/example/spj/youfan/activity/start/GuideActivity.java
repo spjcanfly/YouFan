@@ -1,4 +1,4 @@
-package com.example.spj.youfan.activity;
+package com.example.spj.youfan.activity.start;
 
 import android.app.Activity;
 import android.content.Intent;

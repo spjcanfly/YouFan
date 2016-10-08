@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -24,13 +25,13 @@ import java.util.List;
  */
 public class PinLeiViewHolder extends BaseRecyviewViewHolder{
 
-    private final Context mContext;
+    private static  Context mContext;
     private final TextView tv_shou_ye_chinese;
     private final TextView tv_shou_ye_english;
     private final ImageView iv_shou_ye_common;
     private final RecyclerView recycleview;
-    private List<ShouYeModuleData> datas;
-    private String c_title;
+    private static List<ShouYeModuleData> datas;
+    private static String c_title;
 
     public PinLeiViewHolder(Context context, View itemView) {
         super(context, itemView);
@@ -63,14 +64,46 @@ public class PinLeiViewHolder extends BaseRecyviewViewHolder{
             recycleview.setAdapter(adapter);
             //注意recycleview必须要加上这一句
             recycleview.setLayoutManager(new GridLayoutManager(mContext, 3));
+            //点击事件
+            adapter.setmOnItemClickListener(new MyPinLeiAdapter.OnRecyclerViewItemClickListener() {
+                @Override
+                public void onItemClick(View view, ShouYeModuleData data) {
+                    String name = data.getJump().getName();
+                    Toast.makeText(mContext, "name"+name, Toast.LENGTH_SHORT).show();
+//                    Intent intent = new Intent(mContext, .class);
+//                    intent.putExtra("name",name);
+//                    mContext.startActivity(intent);
+                }
+            });
         }
     }
 
-    class MyPinLeiAdapter extends RecyclerView.Adapter<MyPinLeiAdapter.ViewHolder> {
+    static class MyPinLeiAdapter extends RecyclerView.Adapter<MyPinLeiAdapter.ViewHolder> implements View.OnClickListener{
+
+        private OnRecyclerViewItemClickListener mOnItemClickListener = null;
+
+        @Override
+        public void onClick(View v) {
+            if(mOnItemClickListener != null) {
+                mOnItemClickListener.onItemClick(v, (ShouYeModuleData) v.getTag());
+            }
+        }
+
+        //自定义Recycleview点击事件的监听
+        public interface OnRecyclerViewItemClickListener {
+            void onItemClick(View view, ShouYeModuleData data);
+        }
+
+        public void setmOnItemClickListener(OnRecyclerViewItemClickListener mOnItemClickListener) {
+            this.mOnItemClickListener = mOnItemClickListener;
+        }
+
         @Override
         public MyPinLeiAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             if("热门品牌".equals(c_title)) {
                 View convertView = LayoutInflater.from(mContext).inflate(R.layout.remen_pinpai_item, parent, false);
+                //为创建的view注册点击事件
+                convertView.setOnClickListener(this);
                 return new ViewHolder(convertView);
             }else if("搭配趋势".equals(c_title)) {
                 View convertView = LayoutInflater.from(mContext).inflate(R.layout.dapei_qushi_item, parent, false);
@@ -89,12 +122,16 @@ public class PinLeiViewHolder extends BaseRecyviewViewHolder{
                         placeholder(R.drawable.ic_error_page)
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .into(holder.iv_pin_lei);
+            //将数据保存在itemView的Tag中，以便点击时进行获取
+            holder.itemView.setTag(datas.get(position));
         }
 
         @Override
         public int getItemCount() {
             return datas.size();
         }
+
+
 
         class ViewHolder extends RecyclerView.ViewHolder {
 

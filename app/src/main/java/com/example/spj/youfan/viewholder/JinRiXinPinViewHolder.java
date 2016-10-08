@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.spj.youfan.R;
-import com.example.spj.youfan.activity.ShopDetailActivity;
+import com.example.spj.youfan.activity.shop.ShopDetailActivity;
 import com.example.spj.youfan.base.BaseRecyviewViewHolder;
 import com.example.spj.youfan.bean.shouye.ShouYe;
 import com.example.spj.youfan.bean.shouye.ShouYeModuleData;

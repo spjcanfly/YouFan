@@ -8,7 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.spj.youfan.R;
-import com.example.spj.youfan.activity.LoginActivity;
+import com.example.spj.youfan.activity.user.LoginActivity;
 import com.example.spj.youfan.base.BasePager;
 
 /**

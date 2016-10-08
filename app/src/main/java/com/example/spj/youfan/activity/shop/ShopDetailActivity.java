@@ -1,4 +1,4 @@
-package com.example.spj.youfan.activity;
+package com.example.spj.youfan.activity.shop;
 
 import android.app.Activity;
 import android.os.Bundle;

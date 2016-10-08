@@ -1,4 +1,4 @@
-package com.example.spj.youfan.activity;
+package com.example.spj.youfan.activity.user;
 
 import android.text.TextUtils;
 import android.view.View;

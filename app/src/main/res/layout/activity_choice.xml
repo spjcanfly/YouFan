@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.spj.youfan.activity.ChoiceActivity">
+    tools:context=".activity.start.ChoiceActivity">
 
     <ImageView
         android:src="@drawable/splash_welcome_bg"
