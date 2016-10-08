@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import com.example.spj.youfan.R;
 import com.example.spj.youfan.base.BaseRecyviewViewHolder;
-import com.example.spj.youfan.bean.ShouYe;
+import com.example.spj.youfan.bean.shouye.ShouYe;
 import com.example.spj.youfan.viewholder.CaiNiLikeViewHolder;
 import com.example.spj.youfan.viewholder.DefaultHolder;
 import com.example.spj.youfan.viewholder.JinRiXinPinViewHolder;

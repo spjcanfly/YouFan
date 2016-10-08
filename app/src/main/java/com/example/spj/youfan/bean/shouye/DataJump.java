@@ -1,4 +1,4 @@
-package com.example.spj.youfan.bean;
+package com.example.spj.youfan.bean.shouye;
 
 /**
  * Created by spj on 2016/9/29.

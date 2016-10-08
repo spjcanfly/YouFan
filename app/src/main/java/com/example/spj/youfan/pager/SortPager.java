@@ -11,6 +11,9 @@ import com.example.spj.youfan.R;
 import com.example.spj.youfan.activity.MainActivity;
 import com.example.spj.youfan.base.BasePager;
 import com.example.spj.youfan.base.BaseSortViewPager;
+import com.example.spj.youfan.pager.detailpager.SortDongTaiDetailPager;
+import com.example.spj.youfan.pager.detailpager.SortPinLeiDetailPager;
+import com.example.spj.youfan.pager.detailpager.SortPinPaiDetailPager;
 
 import java.util.ArrayList;
 import java.util.List;

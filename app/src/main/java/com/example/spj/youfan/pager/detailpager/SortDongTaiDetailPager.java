@@ -1,4 +1,4 @@
-package com.example.spj.youfan.pager;
+package com.example.spj.youfan.pager.detailpager;
 
 import android.content.Context;
 import android.view.View;

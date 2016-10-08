@@ -8,8 +8,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.spj.youfan.R;
 import com.example.spj.youfan.base.BaseRecyviewViewHolder;
-import com.example.spj.youfan.bean.ShouYe;
-import com.example.spj.youfan.bean.ShouYeModuleData;
+import com.example.spj.youfan.bean.shouye.ShouYe;
+import com.example.spj.youfan.bean.shouye.ShouYeModuleData;
 
 /**
  * Created by spj on 2016/9/30.

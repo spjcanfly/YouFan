@@ -12,9 +12,15 @@ import com.youth.banner.loader.ImageLoader;
  * Created by spj on 2016/9/30.
  * 加载轮播图的地址
  */
-public class GlideImageLoader implements ImageLoader{
+public class GlideImageLoader implements ImageLoader {
     @Override
     public void displayImage(Context context, Object path, ImageView imageView) {
-        Glide.with(context).load(path).placeholder(R.drawable.ic_error_page).diskCacheStrategy(DiskCacheStrategy.ALL).into(imageView);
+        Glide.with(context)
+                .load(path)
+                .placeholder(R.drawable.ic_error_page)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(imageView);
     }
+
+
 }

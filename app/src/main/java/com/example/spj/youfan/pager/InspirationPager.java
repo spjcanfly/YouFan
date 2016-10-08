@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.example.spj.youfan.R;
 import com.example.spj.youfan.base.BasePager;
 import com.example.spj.youfan.bean.LingGanZiXun;
+import com.example.spj.youfan.pager.detailpager.TabDetailPager;
 import com.example.spj.youfan.utils.CacheUtils;
 import com.example.spj.youfan.utils.Constants;
 import com.example.spj.youfan.utils.LogUtil;
@@ -116,7 +117,7 @@ public class InspirationPager extends BasePager {
         ibTopSet.setVisibility(View.GONE);
         ivTopSeacher.setVisibility(View.VISIBLE);
         ivTopMail.setVisibility(View.GONE);
-        ivTopBack.setVisibility(View.GONE);
+        ivTopBack.setVisibility(View.INVISIBLE);
         tvTop.setText("资讯");
     }
 

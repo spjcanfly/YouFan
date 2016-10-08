@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 
 import com.example.spj.youfan.base.BaseRecyviewViewHolder;
-import com.example.spj.youfan.bean.ShouYe;
+import com.example.spj.youfan.bean.shouye.ShouYe;
 
 /**
  * Created by spj on 2016/9/30.

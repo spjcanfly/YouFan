@@ -14,8 +14,8 @@ import android.widget.ViewSwitcher;
 
 import com.example.spj.youfan.R;
 import com.example.spj.youfan.base.BaseRecyviewViewHolder;
-import com.example.spj.youfan.bean.ShouYe;
-import com.example.spj.youfan.bean.ShouYeModuleData;
+import com.example.spj.youfan.bean.shouye.ShouYe;
+import com.example.spj.youfan.bean.shouye.ShouYeModuleData;
 
 import java.util.List;
 import java.util.Timer;

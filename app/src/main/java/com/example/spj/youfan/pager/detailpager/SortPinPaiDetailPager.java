@@ -1,4 +1,4 @@
-package com.example.spj.youfan.pager;
+package com.example.spj.youfan.pager.detailpager;
 
 import android.content.Context;
 import android.os.Handler;
@@ -17,7 +17,7 @@ import com.chanven.lib.cptr.PtrDefaultHandler;
 import com.chanven.lib.cptr.PtrFrameLayout;
 import com.example.spj.youfan.R;
 import com.example.spj.youfan.base.BaseSortViewPager;
-import com.example.spj.youfan.bean.FenLeiPinPai;
+import com.example.spj.youfan.bean.fenlei.FenLeiPinPai;
 import com.example.spj.youfan.utils.CacheUtils;
 import com.example.spj.youfan.utils.Constants;
 import com.example.spj.youfan.utils.LogUtil;

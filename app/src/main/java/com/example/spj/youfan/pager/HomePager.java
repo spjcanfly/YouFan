@@ -17,8 +17,8 @@ import com.example.spj.youfan.R;
 import com.example.spj.youfan.activity.MainActivity;
 import com.example.spj.youfan.adapter.ShouYeAdapter;
 import com.example.spj.youfan.base.BasePager;
-import com.example.spj.youfan.bean.CaiNiLike;
-import com.example.spj.youfan.bean.ShouYe;
+import com.example.spj.youfan.bean.shouye.CaiNiLike;
+import com.example.spj.youfan.bean.shouye.ShouYe;
 import com.example.spj.youfan.utils.CacheUtils;
 import com.example.spj.youfan.utils.Constants;
 import com.example.spj.youfan.utils.LogUtil;
@@ -148,7 +148,8 @@ public class HomePager extends BasePager {
         final List<String> dataset = new ArrayList<>(Arrays.asList("男生", "女生", "生活"));
         nice_spinner.setTextColor(Color.BLACK);
         nice_spinner.setPadding(0, 0, 0, 0);
-        nice_spinner.setTextSize(23);
+        nice_spinner.setCompoundDrawablePadding(10);
+        nice_spinner.setTextSize(18);
         nice_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

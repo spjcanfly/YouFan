@@ -1,4 +1,4 @@
-package com.example.spj.youfan.bean;
+package com.example.spj.youfan.bean.fenlei;
 
 import java.util.List;
 
