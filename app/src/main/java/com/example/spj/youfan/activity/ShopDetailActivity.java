@@ -13,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.spj.youfan.R;
-import com.example.spj.youfan.utils.LogUtil;
 
 import org.angmarch.views.NiceSpinner;
 
@@ -45,11 +44,10 @@ public class ShopDetailActivity extends Activity implements View.OnClickListener
 
     private void initData() {
         //得到顶部的标题
-        String title = getIntent().getStringExtra("title");
-        tvTop.setText(title);
+        final String title = getIntent().getStringExtra("title");
+        tvTop.setText("页面正在加载中...");
         //得到要去的网页地址
         String url = getIntent().getStringExtra("url");
-        LogUtil.e("11111111111111" + url);
         WebSettings webSettings = webview.getSettings();
         webSettings.setJavaScriptEnabled(true);
         //设置双击变大变小
@@ -62,6 +60,7 @@ public class ShopDetailActivity extends Activity implements View.OnClickListener
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
+                tvTop.setText(title);
                 pgb.setVisibility(View.GONE);
             }
         });
