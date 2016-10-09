@@ -2,6 +2,7 @@ package com.example.spj.youfan.viewholder;
 
 import android.content.Context;
 import android.graphics.Paint;
+import android.os.Handler;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -41,6 +42,7 @@ public class CaiNiLikeViewHolder extends BaseRecyviewViewHolder {
     private List<ShouYeModuleData> datas;
     private MyCaiNiLikeAdapter adapter;
     private List<CaiNiLike.DataBean.ListBean> lists;
+    private Handler handler = new Handler();
 
     public CaiNiLikeViewHolder(Context context, View itemView) {
         super(context, itemView);
@@ -48,6 +50,7 @@ public class CaiNiLikeViewHolder extends BaseRecyviewViewHolder {
         tv_shou_ye_chinese = (TextView) itemView.findViewById(R.id.tv_shou_ye_chinese);
         tv_shou_ye_english = (TextView) itemView.findViewById(R.id.tv_shou_ye_english);
         iv_shou_ye_common = (ImageView) itemView.findViewById(R.id.iv_shou_ye_common);
+
         //更多的那个图片消失
         iv_shou_ye_common.setVisibility(View.GONE);
         recycleview = (RecyclerView) itemView.findViewById(R.id.recycleview);

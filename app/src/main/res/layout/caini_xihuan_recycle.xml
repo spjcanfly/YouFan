@@ -6,14 +6,8 @@
 
     <include layout="@layout/common_shouye_title" />
 
-    <android.support.v7.widget.RecyclerView
-    android:id="@+id/recycleview"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    </android.support.v7.widget.RecyclerView>
-    <!--<com.example.spj.youfan.uiself.MyRecycleView-->
-        <!--android:background="#33ff0000"-->
-        <!--android:id="@+id/recycleview"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="300dp" />-->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycleview"
+            android:layout_width="match_parent"
+            android:layout_height="2400dp"/>
 </LinearLayout>

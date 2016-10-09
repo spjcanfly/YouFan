@@ -216,7 +216,7 @@ public class TabDetailPager {
             String title = lists.get(position).getTitle();
 
             Glide.with(mContext).load(img).
-                    placeholder(R.drawable.ic_error_page)
+                    placeholder(R.drawable.fun_loading_0)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(holder.iv_inspiration);
 
