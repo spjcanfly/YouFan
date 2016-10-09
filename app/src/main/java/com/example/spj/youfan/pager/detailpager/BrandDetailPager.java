@@ -34,6 +34,7 @@ import okhttp3.Call;
 public class BrandDetailPager {
     private final Context mContext;
     private final String mName;
+    private final String mTitle;
     public View rootView;
     private RecyclerView recycleview;
     private PtrClassicFrameLayout test_recycler_view_frame;
@@ -41,9 +42,10 @@ public class BrandDetailPager {
     private MyBrandAdapter adapter;
     private List<PinPaiDetail.ResultsBean> results;
 
-    public BrandDetailPager(Context context, String name) {
+    public BrandDetailPager(Context context, String name, String title) {
         this.mContext = context;
         this.mName = name;
+        this.mTitle = title;
         rootView = initView();
     }
 
@@ -72,9 +74,9 @@ public class BrandDetailPager {
     public void initData() {
 
         String url = null;
-        if ("上新".equals(mName) || "热销".equals(mName)) {
+        if ("上新".equals(mTitle) || "热销".equals(mTitle)) {
             url = Constants.BRANDDETAIL_PRE + mName + Constants.BRANDDETAIL_TAIL;
-        } else if ("价格".equals(mName)) {
+        } else if ("价格".equals(mTitle)) {
             url = Constants.BRANDDETAIL_PRICE_PRE + mName + Constants.BRANDDETAIL_PRICE_TAIL;
         }
 
@@ -139,11 +141,10 @@ public class BrandDetailPager {
              Glide.with(mContext).load(img).placeholder(R.drawable.fun_loading_0).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.iv_xin_ren_small);
 
 
-             String imgUrl = results.get(position).getProdClsTag().get(0).getTagUrl();
-             Glide.with(mContext).load(imgUrl).placeholder(R.drawable.fun_loading_0).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.iv_brand_sale);
-
-             String imgUrl2 = results.get(position).getProdClsTag().get(1).getTagUrl();
-             Glide.with(mContext).load(imgUrl2).placeholder(R.drawable.fun_loading_0).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.iv_brand_new);
+             for (int i = 0; i < results.get(position).getProdClsTag().size(); i++) {
+                 String imgUrl = results.get(position).getProdClsTag().get(i).getTagUrl();
+                 Glide.with(mContext).load(imgUrl).placeholder(R.drawable.fun_loading_0).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.iv_brand_sale);
+             }
 
          }
 

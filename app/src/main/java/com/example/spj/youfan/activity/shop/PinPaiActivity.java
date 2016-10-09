@@ -21,6 +21,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.spj.youfan.R;
 import com.example.spj.youfan.bean.PinPaiStory;
 import com.example.spj.youfan.pager.detailpager.BrandDetailPager;
+import com.example.spj.youfan.uiself.NoScrollViewPager;
 import com.example.spj.youfan.uiself.ObservableScrollView;
 import com.example.spj.youfan.utils.Constants;
 import com.example.spj.youfan.utils.LogUtil;
@@ -56,8 +57,6 @@ public class PinPaiActivity extends FragmentActivity implements ObservableScroll
     ImageView ivTopSeacher;
     @Bind(R.id.iv_top_mail)
     ImageView ivTopMail;
-    @Bind(R.id.ll_common_title)
-    LinearLayout llCommonTitle;
     @Bind(R.id.iv_brand)
     ImageView ivBrand;
     @Bind(R.id.iv_brand_logo)
@@ -71,7 +70,7 @@ public class PinPaiActivity extends FragmentActivity implements ObservableScroll
     @Bind(R.id.stopView)
     View stopView;
     @Bind(R.id.brand_viewpager)
-    ViewPager brandViewpager;
+    NoScrollViewPager brandViewpager;
     @Bind(R.id.scrollView)
     ObservableScrollView scrollView;
     @Bind(R.id.tablayout)
@@ -126,7 +125,7 @@ public class PinPaiActivity extends FragmentActivity implements ObservableScroll
         attrs = new String[]{"上新", "热销", "价格"};
 
         for (int i = 0; i < attrs.length; i++) {
-            brandDetails.add(new BrandDetailPager(PinPaiActivity.this, name));
+            brandDetails.add(new BrandDetailPager(PinPaiActivity.this, name,attrs[i]));
         }
 
         //设置viewpager的高度，使其能够滑动

@@ -49,25 +49,6 @@
                 android:background="@drawable/btn_gou_wu_style"
                 android:text="收藏品牌" />
 
-            <LinearLayout
-                android:id="@+id/ll_brand"
-                android:layout_width="match_parent"
-                android:layout_height="60dp">
-            <android.support.design.widget.TabLayout
-                android:id="@+id/tablayout_brand"
-                android:layout_weight="3"
-                android:layout_width="0dp"
-                style="@style/MyCustomTabLayout"
-                android:layout_height="60dp"
-                android:layout_gravity="center_vertical"
-                />
-                <TextView
-                    android:gravity="center"
-                    android:text="筛选"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-            </LinearLayout>
             <View
                 android:layout_below="@+id/tv_brand"
                 android:id="@+id/stopView"
@@ -75,12 +56,35 @@
                 android:layout_height="60dp"
                 />
 
-            <android.support.v4.view.ViewPager
+            <com.example.spj.youfan.uiself.NoScrollViewPager
                 android:layout_below="@+id/stopView"
                 android:id="@+id/brand_viewpager"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"/>
 
+            <LinearLayout
+                android:background="#ffffff"
+                android:id="@+id/ll_brand"
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/tablayout_brand"
+                    android:layout_weight="4"
+                    android:layout_width="0dp"
+                    style="@style/MyCustomTabLayout2"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center_vertical"
+                    />
+
+                <TextView
+                    android:gravity="center"
+                    android:text="筛选"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
 
             <ImageView
                 android:background="#ffffff"
