@@ -40,7 +40,7 @@ public class PinPaiViewHolder extends BaseRecyviewViewHolder{
             final ShouYeModuleData data = moduleBean.getData().get(0);
             String img = data.getImg();
             Glide.with(mContext).load(img)
-                    .placeholder(R.drawable.ic_error_page)
+                    .placeholder(R.drawable.fun_loading_0)
                     .diskCacheStrategy(DiskCacheStrategy.ALL).into(iv_pinpai);
 
             iv_pinpai.setOnClickListener(new View.OnClickListener() {
@@ -57,10 +57,10 @@ public class PinPaiViewHolder extends BaseRecyviewViewHolder{
             iv_dapai = (ImageView) mItemView.findViewById(R.id.iv_dapai);
             iv_fenlei = (ImageView) mItemView.findViewById(R.id.iv_fenlei);
             Glide.with(mContext).load(moduleBean.getData().get(0).getImg())
-                    .placeholder(R.drawable.ic_error_page)
+                    .placeholder(R.drawable.fun_loading_0)
                     .diskCacheStrategy(DiskCacheStrategy.ALL).into(iv_dapai);
             Glide.with(mContext).load(moduleBean.getData().get(1).getImg())
-                    .placeholder(R.drawable.ic_error_page)
+                    .placeholder(R.drawable.fun_loading_0)
                     .diskCacheStrategy(DiskCacheStrategy.ALL).into(iv_fenlei);
             iv_dapai.setOnClickListener(new View.OnClickListener() {
                 @Override

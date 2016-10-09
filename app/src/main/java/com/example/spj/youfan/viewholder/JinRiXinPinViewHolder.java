@@ -93,7 +93,7 @@ public class JinRiXinPinViewHolder extends BaseRecyviewViewHolder {
             String title = datas.get(position).getTitle();
             String img = datas.get(position).getImg();
             holder.tv_jinri.setText(title);
-            Glide.with(mContext).load(img).placeholder(R.drawable.ic_error_page).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.iv_jinri);
+            Glide.with(mContext).load(img).placeholder(R.drawable.fun_loading_0).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.iv_jinri);
             //将数据保存在itemView的Tag中，以便点击时进行获取
             holder.itemView.setTag(datas.get(position));
         }

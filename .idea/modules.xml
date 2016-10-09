@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MaterialRefreshLayout_library/MaterialRefreshLayout_library.iml" filepath="$PROJECT_DIR$/MaterialRefreshLayout_library/MaterialRefreshLayout_library.iml" />
-      <module fileurl="file://$PROJECT_DIR$/PhotoView_library/PhotoView_library.iml" filepath="$PROJECT_DIR$/PhotoView_library/PhotoView_library.iml" />
       <module fileurl="file://$PROJECT_DIR$/QuickSideBarApp/QuickSideBarApp.iml" filepath="$PROJECT_DIR$/QuickSideBarApp/QuickSideBarApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/SlidingMenu_library/SlidingMenu_library.iml" filepath="$PROJECT_DIR$/SlidingMenu_library/SlidingMenu_library.iml" />
       <module fileurl="file://$PROJECT_DIR$/YouFan.iml" filepath="$PROJECT_DIR$/YouFan.iml" />

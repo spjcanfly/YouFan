@@ -51,7 +51,7 @@ public class XinRenViewHolder extends BaseRecyviewViewHolder{
         tv_shou_ye_chinese.setText(moduleBean.getC_title());
         tv_shou_ye_english.setText(moduleBean.getE_title());
         Glide.with(mContext).load(datas.get(0).getImg())
-                .placeholder(R.drawable.ic_error_page)
+                .placeholder(R.drawable.fun_loading_0)
                 .diskCacheStrategy(DiskCacheStrategy.ALL).into(iv_xin_ren_big);
 
         MyXinRenAdapter adapter = new MyXinRenAdapter();
@@ -79,7 +79,7 @@ public class XinRenViewHolder extends BaseRecyviewViewHolder{
                     holder.tv_xin_ren.setText(title);
                 String img = datas.get(position+1).getImg();
                 Glide.with(mContext).load(img).
-                        placeholder(R.drawable.ic_error_page)
+                        placeholder(R.drawable.fun_loading_0)
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .into(holder.iv_xin_ren_small);
             }

@@ -17,7 +17,7 @@ public class GlideImageLoader implements ImageLoader {
     public void displayImage(Context context, Object path, ImageView imageView) {
         Glide.with(context)
                 .load(path)
-                .placeholder(R.drawable.ic_error_page)
+                .placeholder(R.drawable.fun_loading_0)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imageView);
     }

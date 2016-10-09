@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <include layout="@layout/commontitle" />
+
+    <com.example.spj.youfan.uiself.ObservableScrollView
+        android:id="@+id/scrollView"
+        android:fadingEdge="none"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <ImageView
+                android:id="@+id/iv_brand"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:scaleType="centerCrop" />
+
+
+            <TextView
+                android:layout_alignBottom="@+id/iv_brand"
+                android:id="@+id/tv_brand"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#33000000"
+                android:gravity="center_horizontal"
+                android:padding="8dp"
+                android:text="The 2nd Law"
+                android:textColor="#ffffff"
+                android:textSize="18sp" />
+
+            <Button
+                android:textSize="10sp"
+                android:layout_marginRight="8dp"
+                android:id="@+id/btn_brand"
+                android:layout_width="65dp"
+                android:layout_height="23dp"
+                android:layout_alignBottom="@+id/tv_brand"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="6dp"
+                android:background="@drawable/btn_gou_wu_style"
+                android:text="收藏品牌" />
+
+            <LinearLayout
+                android:id="@+id/ll_brand"
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tablayout_brand"
+                android:layout_weight="3"
+                android:layout_width="0dp"
+                style="@style/MyCustomTabLayout"
+                android:layout_height="60dp"
+                android:layout_gravity="center_vertical"
+                />
+                <TextView
+                    android:gravity="center"
+                    android:text="筛选"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+            <View
+                android:layout_below="@+id/tv_brand"
+                android:id="@+id/stopView"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                />
+
+            <android.support.v4.view.ViewPager
+                android:layout_below="@+id/stopView"
+                android:id="@+id/brand_viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
+
+
+            <ImageView
+                android:background="#ffffff"
+                android:layout_alignBottom="@+id/tv_brand"
+                android:id="@+id/iv_brand_logo"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="10dp" />
+        </RelativeLayout>
+
+
+    </com.example.spj.youfan.uiself.ObservableScrollView>
+
+</LinearLayout>

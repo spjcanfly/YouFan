@@ -25,16 +25,17 @@
         <activity android:name=".activity.user.FindSecretActivity" />
         <activity android:name=".activity.start.SplashActivity">
 
-             <!--<intent-filter>-->
-             <!--<action android:name="android.intent.action.MAIN" />-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
 
 
-             <!--<category android:name="android.intent.category.LAUNCHER" />-->
-             <!--</intent-filter>-->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity android:name=".activity.start.ChoiceActivity" />
         <activity android:name=".activity.start.GuideActivity" />
-        <activity android:name=".activity.shop.ShopDetailActivity"></activity>
+        <activity android:name=".activity.shop.ShopDetailActivity" />
+        <activity android:name=".activity.shop.PinPaiActivity"></activity>
     </application>
 
 </manifest>

@@ -11,7 +11,6 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/MaterialRefreshLayout_library" />
-            <option value="$PROJECT_DIR$/PhotoView_library" />
             <option value="$PROJECT_DIR$/QuickSideBarApp" />
             <option value="$PROJECT_DIR$/SlidingMenu_library" />
             <option value="$PROJECT_DIR$/app" />

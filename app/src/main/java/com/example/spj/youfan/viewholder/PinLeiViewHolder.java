@@ -1,6 +1,7 @@
 package com.example.spj.youfan.viewholder;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.spj.youfan.R;
+import com.example.spj.youfan.activity.shop.PinPaiActivity;
 import com.example.spj.youfan.base.BaseRecyviewViewHolder;
 import com.example.spj.youfan.bean.shouye.ShouYe;
 import com.example.spj.youfan.bean.shouye.ShouYeModuleData;
@@ -70,9 +72,9 @@ public class PinLeiViewHolder extends BaseRecyviewViewHolder{
                 public void onItemClick(View view, ShouYeModuleData data) {
                     String name = data.getJump().getName();
                     Toast.makeText(mContext, "name"+name, Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(mContext, .class);
-//                    intent.putExtra("name",name);
-//                    mContext.startActivity(intent);
+                    Intent intent = new Intent(mContext, PinPaiActivity.class);
+                    intent.putExtra("name",name);
+                    mContext.startActivity(intent);
                 }
             });
         }
@@ -119,7 +121,7 @@ public class PinLeiViewHolder extends BaseRecyviewViewHolder{
         public void onBindViewHolder(MyPinLeiAdapter.ViewHolder holder, int position) {
                 String img = datas.get(position).getImg();
                 Glide.with(mContext).load(img).
-                        placeholder(R.drawable.ic_error_page)
+                        placeholder(R.drawable.fun_loading_0)
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .into(holder.iv_pin_lei);
             //将数据保存在itemView的Tag中，以便点击时进行获取

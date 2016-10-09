@@ -83,7 +83,7 @@ public class CaiNiLikeViewHolder extends BaseRecyviewViewHolder {
         public void onBindViewHolder(MyCaiNiLikeAdapter.ViewHolder holder, int position) {
             String product_url = lists.get(position).getProduct_url();
             Glide.with(mContext).load(product_url).
-                    placeholder(R.drawable.ic_error_page)
+                    placeholder(R.drawable.fun_loading_0)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(holder.iv_xin_ren_small);
             String brand_name = lists.get(position).getBrandName();

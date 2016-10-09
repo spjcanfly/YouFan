@@ -39,7 +39,7 @@ public class XinRuZhuViewHolder extends BaseRecyviewViewHolder{
         datas = moduleBean.getData();
         //最上面的那个图片
         Glide.with(mContext).load(datas.get(0).getImg())
-                .placeholder(R.drawable.ic_error_page)
+                .placeholder(R.drawable.fun_loading_0)
                 .diskCacheStrategy(DiskCacheStrategy.ALL).into(iv_xin_ren_big);
         MyXinRenAdapter adapter = new MyXinRenAdapter();
         recycleview.setAdapter(adapter);
@@ -61,7 +61,7 @@ public class XinRuZhuViewHolder extends BaseRecyviewViewHolder{
                 //新人专享特有的
                 String img = datas.get(position+1).getImg();
                 Glide.with(mContext).load(img).
-                        placeholder(R.drawable.ic_error_page)
+                        placeholder(R.drawable.fun_loading_0)
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .into(holder.iv_pin_lei);
             }

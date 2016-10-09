@@ -136,12 +136,12 @@
         "source": "E:\\androidstudio-exersice\\YouFan\\MaterialRefreshLayout_library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\drawable-hdpi\\abc_list_pressed_holo_light.9.png"
     },
     {
-        "merged": "E:\\androidstudio-exersice\\YouFan\\MaterialRefreshLayout_library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\abc_ic_menu_moreoverflow_mtrl_alpha.png",
-        "source": "E:\\androidstudio-exersice\\YouFan\\MaterialRefreshLayout_library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\drawable-hdpi\\abc_ic_menu_moreoverflow_mtrl_alpha.png"
-    },
-    {
         "merged": "E:\\androidstudio-exersice\\YouFan\\MaterialRefreshLayout_library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\abc_ic_go_search_api_mtrl_alpha.png",
         "source": "E:\\androidstudio-exersice\\YouFan\\MaterialRefreshLayout_library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\drawable-hdpi\\abc_ic_go_search_api_mtrl_alpha.png"
+    },
+    {
+        "merged": "E:\\androidstudio-exersice\\YouFan\\MaterialRefreshLayout_library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\abc_ic_menu_moreoverflow_mtrl_alpha.png",
+        "source": "E:\\androidstudio-exersice\\YouFan\\MaterialRefreshLayout_library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\drawable-hdpi\\abc_ic_menu_moreoverflow_mtrl_alpha.png"
     },
     {
         "merged": "E:\\androidstudio-exersice\\YouFan\\MaterialRefreshLayout_library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\abc_btn_rating_star_on_mtrl_alpha.png",

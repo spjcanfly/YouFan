@@ -51,7 +51,7 @@ public class ShangZhuangViewHolder extends BaseRecyviewViewHolder{
         tv_shou_ye_english.setText(moduleBean.getE_title());
         if(datas != null && datas.get(0) != null ) {
             Glide.with(mContext).load(datas.get(0).getImg())
-                    .placeholder(R.drawable.ic_error_page)
+                    .placeholder(R.drawable.fun_loading_0)
                     .diskCacheStrategy(DiskCacheStrategy.ALL).into(iv_xin_ren_big);
         }
         MyShangZhuangAdapter adapter = new MyShangZhuangAdapter();
@@ -73,7 +73,7 @@ public class ShangZhuangViewHolder extends BaseRecyviewViewHolder{
             if(position < datas.size()-1) {
                 String img = datas.get(position+1).getImg();
                     Glide.with(mContext).load(img).
-                            placeholder(R.drawable.ic_error_page)
+                            placeholder(R.drawable.fun_loading_0)
                             .diskCacheStrategy(DiskCacheStrategy.ALL)
                             .into(holder.iv_xin_ren_small);
             }
