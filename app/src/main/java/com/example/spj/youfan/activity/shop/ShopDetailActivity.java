@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import com.example.spj.youfan.R;
 
-import org.angmarch.views.NiceSpinner;
 
 public class ShopDetailActivity extends Activity implements View.OnClickListener{
 
@@ -25,7 +24,7 @@ public class ShopDetailActivity extends Activity implements View.OnClickListener
     private ImageView ivTopSeacher;
     private ImageView ivTopBack;
     private TextView tvTop;
-    private NiceSpinner nice_spinner;
+    private TextView tv_popwindow;
     private TabLayout tablayout;
     private WebView webview;
     private ProgressBar pgb;
@@ -74,7 +73,7 @@ public class ShopDetailActivity extends Activity implements View.OnClickListener
         ivTopBack.setVisibility(View.VISIBLE);
         ivTopMail.setVisibility(View.VISIBLE);
         tvTop.setVisibility(View.VISIBLE);
-        nice_spinner.setVisibility(View.GONE);
+        tv_popwindow.setVisibility(View.GONE);
         tablayout.setVisibility(View.INVISIBLE);
     }
 
@@ -85,7 +84,7 @@ public class ShopDetailActivity extends Activity implements View.OnClickListener
         ivTopSeacher = (ImageView) findViewById(R.id.iv_top_seacher);
         ivTopBack = (ImageView) findViewById(R.id.iv_top_back);
         tvTop = (TextView) findViewById(R.id.tv_top);
-        nice_spinner = (NiceSpinner) findViewById(R.id.nice_spinner);
+        tv_popwindow = (TextView) findViewById(R.id.tv_popwindow);
         tablayout = (TabLayout) findViewById(R.id.tablayout);
         webview = (WebView) findViewById(R.id.webview);
         pgb = (ProgressBar) findViewById(R.id.pb_loading);

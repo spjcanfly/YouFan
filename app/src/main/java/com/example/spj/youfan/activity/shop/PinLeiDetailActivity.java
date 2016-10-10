@@ -19,7 +19,6 @@ import com.example.spj.youfan.pager.detailpager.PinLeiDetailPager;
 import com.example.spj.youfan.uiself.NoScrollViewPager;
 import com.example.spj.youfan.uiself.ObservableScrollView;
 
-import org.angmarch.views.NiceSpinner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,8 +36,6 @@ public class PinLeiDetailActivity extends Activity implements ObservableScrollVi
     ImageView ivTopBack;
     @Bind(R.id.tv_top)
     TextView tvTop;
-    @Bind(R.id.nice_spinner)
-    NiceSpinner niceSpinner;
     @Bind(R.id.tablayout)
     TabLayout tablayout;
     @Bind(R.id.iv_top_seacher)
@@ -55,6 +52,8 @@ public class PinLeiDetailActivity extends Activity implements ObservableScrollVi
     TabLayout tablayoutBrand;
     @Bind(R.id.scrollView)
     ObservableScrollView scrollView;
+    @Bind(R.id.tv_popwindow)
+    TextView tv_popwindow;
     private String[] attrs;
     private List<PinLeiDetailPager> pinLeiDetails;
     private String id;
@@ -137,9 +136,8 @@ public class PinLeiDetailActivity extends Activity implements ObservableScrollVi
         ivTopBack.setVisibility(View.VISIBLE);
         ivTopMail.setVisibility(View.GONE);
         tvTop.setVisibility(View.VISIBLE);
-        niceSpinner.setVisibility(View.GONE);
+        tv_popwindow.setVisibility(View.GONE);
         tablayout.setVisibility(View.INVISIBLE);
-
         ivTopBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

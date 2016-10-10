@@ -84,14 +84,21 @@ public class CaiNiLikeViewHolder extends BaseRecyviewViewHolder {
         @Override
         public void onBindViewHolder(MyCaiNiLikeAdapter.ViewHolder holder, int position) {
             String product_url = lists.get(position).getProduct_url();
-            Glide.with(mContext).load(product_url).
-                    placeholder(R.drawable.fun_loading_0)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(holder.iv_xin_ren_small);
+            List<CaiNiLike.DataBean.ListBean.ProdClsTagBean> prodClsTag = lists.get(position).getProdClsTag();
+            //加载图片
+            Glide.with(mContext).load(product_url).placeholder(R.drawable.fun_loading_0).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.iv_xin_ren_small);
+            if(prodClsTag != null && prodClsTag.size()>0) {
+                String tagUrl = prodClsTag.get(0).getTagUrl();
+                //加载打折小图片
+                Glide.with(mContext).load(tagUrl).placeholder(R.drawable.fun_loading_0).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.iv_like_sale);
+            }
+            //品牌名字
             String brand_name = lists.get(position).getBrandName();
             holder.tv_like_brand.setText(brand_name);
+            //衣服的名字
             String product_name = lists.get(position).getProduct_name();
             holder.tv_like_name.setText(product_name);
+            //衣服的过去的价格
             String market_price = lists.get(position).getMarket_price();
             String[] split = market_price.split("\\.");
             //设置中划线
@@ -99,7 +106,9 @@ public class CaiNiLikeViewHolder extends BaseRecyviewViewHolder {
             holder.tv_like_price_market.setText("￥" + split[0]);
             String price = lists.get(position).getPrice();
             String[] split1 = price.split("\\.");
+            //衣服现在的价格
             holder.tv_like_price_now.setText("￥" + split1[0]);
+
         }
 
         //注意条目的数量
@@ -111,6 +120,7 @@ public class CaiNiLikeViewHolder extends BaseRecyviewViewHolder {
         class ViewHolder extends RecyclerView.ViewHolder {
 
             ImageView iv_xin_ren_small;
+            ImageView iv_like_sale;
             TextView tv_like_brand;
             TextView tv_like_name;
             TextView tv_like_price_now;
@@ -119,6 +129,7 @@ public class CaiNiLikeViewHolder extends BaseRecyviewViewHolder {
             public ViewHolder(View itemView) {
                 super(itemView);
                 iv_xin_ren_small = (ImageView) itemView.findViewById(R.id.iv_xin_ren_small);
+                iv_like_sale = (ImageView) itemView.findViewById(R.id.iv_like_sale);
                 tv_like_brand = (TextView) itemView.findViewById(R.id.tv_like_brand);
                 tv_like_name = (TextView) itemView.findViewById(R.id.tv_like_name);
                 tv_like_price_now = (TextView) itemView.findViewById(R.id.tv_like_price_now);

@@ -1,6 +1,5 @@
 package com.example.spj.youfan.activity.shop;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentActivity;
@@ -9,12 +8,10 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -29,10 +26,7 @@ import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
-import org.angmarch.views.NiceSpinner;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import butterknife.Bind;
@@ -51,8 +45,8 @@ public class PinPaiActivity extends FragmentActivity implements ObservableScroll
     ImageView ivTopBack;
     @Bind(R.id.tv_top)
     TextView tvTop;
-    @Bind(R.id.nice_spinner)
-    NiceSpinner niceSpinner;
+    @Bind(R.id.tv_popwindow)
+    TextView tv_popwindow;
     @Bind(R.id.iv_top_seacher)
     ImageView ivTopSeacher;
     @Bind(R.id.iv_top_mail)
@@ -209,26 +203,9 @@ public class PinPaiActivity extends FragmentActivity implements ObservableScroll
         ivTopBack.setVisibility(View.VISIBLE);
         ivTopMail.setVisibility(View.GONE);
         tvTop.setVisibility(View.GONE);
-        niceSpinner.setVisibility(View.VISIBLE);
+        tv_popwindow.setVisibility(View.VISIBLE);
         tablayout.setVisibility(View.INVISIBLE);
 
-        final List<String> dataset = new ArrayList<>(Arrays.asList("全部", "男生"));
-        niceSpinner.setTextColor(Color.BLACK);
-        niceSpinner.setPadding(0, 0, 0, 0);
-        niceSpinner.setCompoundDrawablePadding(10);
-        niceSpinner.setTextSize(18);
-        niceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(PinPaiActivity.this, "你点击的是" + dataset.get(position), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        niceSpinner.attachDataSource(dataset);
     }
 
     //实现ObservableScrollView.Callbacks的方法

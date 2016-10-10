@@ -47,14 +47,19 @@
             android:textSize="18sp"
             android:singleLine="true"
             android:text="男生"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <org.angmarch.views.NiceSpinner
-            app:textTint="@color/colorPrimaryDark"
+        <TextView
             android:layout_centerInParent="true"
-            android:visibility="gone"
-            android:id="@+id/nice_spinner"
+            android:id="@+id/tv_popwindow"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:singleLine="true"
+            android:text="男生"
+            android:drawablePadding="3dp"
+            android:drawableRight="@drawable/top_filter_down_arrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

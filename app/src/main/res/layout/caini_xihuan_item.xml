@@ -1,58 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    >
+
+    <ImageView
+        android:id="@+id/iv_xin_ren_small"
+        android:layout_width="170dp"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/tv_like_brand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:layout_below="@+id/iv_xin_ren_small"
+        android:layout_margin="5dp"
+        android:singleLine="true"
+        android:text="puma" />
 
-        <ImageView
-            android:id="@+id/iv_xin_ren_small"
-            android:layout_width="170dp"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop" />
+    <TextView
+        android:id="@+id/tv_like_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_like_brand"
+        android:layout_marginLeft="5dp"
+        android:gravity="center_horizontal"
+        android:singleLine="true"
+        android:text="PUMA中性Blaze"
+        android:textColor="#000000" />
 
-        <TextView
-            android:id="@+id/tv_like_brand"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/iv_xin_ren_small"
-            android:layout_margin="5dp"
-            android:singleLine="true"
-            android:text="puma" />
+    <TextView
+        android:id="@+id/tv_like_price_now"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_like_name"
+        android:layout_marginLeft="5dp"
+        android:gravity="center_horizontal"
+        android:text="￥608"
+        android:textColor="#000000" />
 
-        <TextView
-            android:id="@+id/tv_like_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_like_brand"
-            android:layout_marginLeft="5dp"
-            android:gravity="center_horizontal"
-            android:singleLine="true"
-            android:text="PUMA中性Blaze"
-            android:textColor="#000000" />
+    <TextView
+        android:id="@+id/tv_like_price_market"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tv_like_price_now"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/tv_like_price_now"
+        android:gravity="center_horizontal"
+        android:text="￥869"
+        android:textSize="12sp" />
 
-        <TextView
-            android:id="@+id/tv_like_price_now"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_like_name"
-            android:layout_marginLeft="5dp"
-            android:gravity="center_horizontal"
-            android:text="￥608"
-            android:textColor="#000000" />
-
-        <TextView
-            android:id="@+id/tv_like_price_market"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/tv_like_price_now"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@+id/tv_like_price_now"
-            android:gravity="center_horizontal"
-            android:text="￥869"
-            android:textSize="12sp" />
-    </RelativeLayout>
-</LinearLayout>
+    <ImageView
+        android:id="@+id/iv_like_sale"
+        android:layout_width="30dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        />
+</RelativeLayout>

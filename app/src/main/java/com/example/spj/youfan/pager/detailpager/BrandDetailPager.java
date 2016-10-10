@@ -110,7 +110,7 @@ public class BrandDetailPager {
              String brand = results.get(position).getClsInfo().getBrand();
              holder.tv_like_brand.setText(brand);
 
-             int sale_price = results.get(position).getClsInfo().getSale_price();
+             float sale_price = results.get(position).getClsInfo().getSale_price();
              holder.tv_like_price_now.setText("￥" + sale_price);
 
              int price = results.get(position).getClsInfo().getPrice();

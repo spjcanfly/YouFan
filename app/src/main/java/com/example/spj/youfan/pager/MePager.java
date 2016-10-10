@@ -13,6 +13,7 @@ import com.example.spj.youfan.base.BasePager;
 
 /**
  * Created by spj on 2016/9/28.
+ * 完美兼容的scrollview
  */
 public class MePager extends BasePager {
 

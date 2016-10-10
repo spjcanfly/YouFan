@@ -39,9 +39,9 @@ public class Constants {
 
     //热门
     public static final String KIND_HOTCATE_WOMAN = "http://api.funwear.com/mbfun_server/index.php?m=Home&a=getAppHotLayout&osVersion=23&appName=youfanguanfang&source=android&osName=SM-C7000&version=v4.2.2&deviceId=00000000-692b-6411-ffff-ffffc905313a&cid=2&token=80454872de770ff363de91ef688ab634&osCode=android";
-    //品类
+    //品类女生
     public static final String KIND_SORTS_WOMAN = "http://api.funwear.com/mbfun_server/index.php?m=Category&a=getCategoryList&cid=2&osVersion=23&appName=youfanguanfang&source=android&osName=SM-C7000&version=v4.2.2&deviceId=00000000-692b-6411-ffff-ffffc905313a&token=80454872de770ff363de91ef688ab634&osCode=android";
-    //品牌
+    //品牌女生
     public static final String KIND_BRAND_WOMAN = "http://api.funwear.com/mbfun_server/index.php?m=BrandMb&a=getAppBrandList&osVersion=23&pageIndex=0&appName=youfanguanfang&pageSize=45&source=android&osName=SM-C7000&version=v4.2.2&deviceId=00000000-692b-6411-ffff-ffffc905313a&cid=2&token=80454872de770ff363de91ef688ab634&osCode=android";
 
 

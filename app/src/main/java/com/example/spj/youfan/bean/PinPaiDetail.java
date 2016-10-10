@@ -126,7 +126,7 @@ public class PinPaiDetail {
             private String salE_ATTRIBUTE;
             private String remark;
             private int stockCount;
-            private int sale_price;
+            private float sale_price;
             private int status;
             private int favoriteCount;
             private String mainImage;
@@ -243,7 +243,7 @@ public class PinPaiDetail {
                 this.stockCount = stockCount;
             }
 
-            public int getSale_price() {
+            public float getSale_price() {
                 return sale_price;
             }
 

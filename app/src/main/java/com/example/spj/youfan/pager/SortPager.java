@@ -78,6 +78,7 @@ public class SortPager extends BasePager {
         ivTopBack.setVisibility(View.GONE);
         tvTop.setVisibility(View.GONE);
         tablayout.setVisibility(View.VISIBLE);
+        tv_popwindow.setVisibility(View.GONE);
     }
 
     private class MySortPagerAdapter extends PagerAdapter {

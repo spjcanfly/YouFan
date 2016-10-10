@@ -1,15 +1,12 @@
 package com.example.spj.youfan.pager;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
@@ -18,6 +15,7 @@ import com.example.spj.youfan.activity.MainActivity;
 import com.example.spj.youfan.adapter.ShouYeAdapter;
 import com.example.spj.youfan.base.BasePager;
 import com.example.spj.youfan.bean.shouye.ShouYe;
+import com.example.spj.youfan.uiself.MyPopWindow;
 import com.example.spj.youfan.utils.CacheUtils;
 import com.example.spj.youfan.utils.Constants;
 import com.example.spj.youfan.utils.LogUtil;
@@ -25,8 +23,6 @@ import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import okhttp3.Call;
@@ -56,17 +52,17 @@ public class HomePager extends BasePager {
         progressbar = (ProgressBar) view.findViewById(R.id.progressbar);
         tv_nomedia = (TextView) view.findViewById(R.id.tv_nomedia);
         //把子试图添加到BasePager上的Fragment上,此处是坑
-        if(flContent != null) {
+        if (flContent != null) {
             //解决重影
             flContent.removeAllViews();
             flContent.addView(view);
         }
-        //初始化spinner控件
-        initSpinner();
 
-        final String url = Constants.HOME_MEN;
-        //首先判断缓存中有没有
-        getDataFromCache(url);
+        String name = CacheUtils.getString(mContext, "name");
+        tv_popwindow.setText(name);
+
+        //根据name判断请求的网址
+        final String url = getData(name);
 
         //联网请求数据
         refresh.setMaterialRefreshListener(new MaterialRefreshListener() {
@@ -79,9 +75,27 @@ public class HomePager extends BasePager {
         super.initData();
     }
 
+    private String getData(String name) {
+        String url = null;
+        if (TextUtils.isEmpty(name)) {
+            url = Constants.HOME_MEN;
+        } else {
+            if ("男生".equals(name)) {
+                url = Constants.HOME_MEN;
+            } else if ("女生".equals(name)) {
+                url = Constants.HOME_WOMEN;
+            } else if ("生活".equals(name)) {
+                url = Constants.HOME_LIFE;
+            }
+        }
+        //首先判断缓存中有没有
+        getDataFromCache(url);
+        return url;
+    }
+
     private void getDataFromCache(String url) {
         String saveJson = CacheUtils.getString(mContext, url);
-        if(!TextUtils.isEmpty(saveJson)) {
+        if (!TextUtils.isEmpty(saveJson)) {
             //缓存中有数据,直接解析
             processedData(saveJson);
         }
@@ -89,44 +103,29 @@ public class HomePager extends BasePager {
         getDataFromNet(url);
     }
 
-    private void getDataFromNet(String url) {
+    private void getDataFromNet(final String url) {
         //使用OKhttp第三方封装库请求网络,请求男生
         OkHttpUtils.get()
                 .url(url)
                 .id(100)
                 .build()
-                .execute(new MyStringCallback());
-    }
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        LogUtil.e("使用okhttp联网请求失败==" + e.getMessage());
+                    }
 
-    private void initSpinner() {
-        final List<String> dataset = new ArrayList<>(Arrays.asList("男生", "女生", "生活"));
-        nice_spinner.setTextColor(Color.BLACK);
-        nice_spinner.setPadding(0, 0, 0, 0);
-        nice_spinner.setCompoundDrawablePadding(10);
-        nice_spinner.setTextSize(18);
-        nice_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(mContext, "你点击的是"+dataset.get(position), Toast.LENGTH_SHORT).show();
-                String url = null;
-                if("男生".equals(dataset.get(position))) {
-                    url = Constants.HOME_MEN;
-                }else if("女生".equals(dataset.get(position))) {
-                    url = Constants.HOME_WOMEN;
-                }
-                else if("生活".equals(dataset.get(position))) {
-                    url = Constants.HOME_LIFE;
-                }
+                    @Override
+                    public void onResponse(String response, int id) {
+                        LogUtil.e("使用okhttp联网请求数据成功==" + response);
 
-                getDataFromCache(url);
-            }
+                        //缓存数据
+                        CacheUtils.putString(mContext, url, response);
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        nice_spinner.attachDataSource(dataset);
+                        processedData(response);
+                        refresh.finishRefresh();
+                    }
+                });
     }
 
     @Override
@@ -137,8 +136,8 @@ public class HomePager extends BasePager {
         ivTopBack.setVisibility(View.GONE);
         ivTopMail.setVisibility(View.GONE);
         tvTop.setVisibility(View.GONE);
-        nice_spinner.setVisibility(View.VISIBLE);
         tablayout.setVisibility(View.INVISIBLE);
+        tv_popwindow.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -150,6 +149,25 @@ public class HomePager extends BasePager {
                 MainActivity mainActivity = (MainActivity) mContext;
                 //切换左侧的开和关
                 mainActivity.getSlidingMenu().toggle();
+            }
+        });
+        //点击弹出来popwindow
+        tv_popwindow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopupWindow();
+            }
+        });
+    }
+
+    private void showPopupWindow() {
+        MyPopWindow popWindow = new MyPopWindow(mContext);
+        popWindow.showAsDropDown(tv_popwindow);
+        popWindow.setmOnItemClickListener(new MyPopWindow.OnPopItemClickListener() {
+            @Override
+            public void onItemClick(String name) {
+                tv_popwindow.setText(name);
+                getData(name);
             }
         });
     }
@@ -164,9 +182,6 @@ public class HomePager extends BasePager {
         public void onResponse(String response, int id) {
             LogUtil.e("使用okhttp联网请求数据成功==" + response);
 
-            //缓存数据
-            CacheUtils.putString(mContext, Constants.HOME_MEN, response);
-
             processedData(response);
             refresh.finishRefresh();
         }
@@ -177,14 +192,14 @@ public class HomePager extends BasePager {
         //解析json数据
         ShouYe bean = parsedJson(response);
         module = bean.getData().getModule();
-        if(module != null && module.size()>0) {
+        if (module != null && module.size() > 0) {
             //有数据
             tv_nomedia.setVisibility(View.GONE);
-            adapter = new ShouYeAdapter(mContext,module);
+            adapter = new ShouYeAdapter(mContext, module);
             recycleview.setAdapter(adapter);
             //注意recycleview必须要加上这一句
             recycleview.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
-        }else {
+        } else {
             //没有数据
             tv_nomedia.setVisibility(View.VISIBLE);
             tv_nomedia.setText("啥也没有啊，看看是否连上网络了");
@@ -194,6 +209,7 @@ public class HomePager extends BasePager {
 
     //解析json数据
     private ShouYe parsedJson(String response) {
-        return new Gson().fromJson(response,ShouYe.class);
+        return new Gson().fromJson(response, ShouYe.class);
     }
+
 }

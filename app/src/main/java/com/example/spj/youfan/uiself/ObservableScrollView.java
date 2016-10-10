@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.ScrollView;
 
+//顶部悬浮需要用到的scrollview
 public class ObservableScrollView extends ScrollView {
 
 	public ObservableScrollView(Context context, AttributeSet attrs) {

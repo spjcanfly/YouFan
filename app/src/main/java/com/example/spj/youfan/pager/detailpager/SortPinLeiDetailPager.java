@@ -51,7 +51,18 @@ public class SortPinLeiDetailPager extends BaseSortViewPager{
 
     @Override
     public View initView() {
-        url = Constants.KIND_PINLEI;
+        //得到本地存储的，spinner控件点击的值
+        String name = CacheUtils.getString(mContext, "name");
+        if("男生".equals(name)) {
+            url = Constants.KIND_PINLEI;
+        }else if("女生".equals(name)) {
+            url = Constants.KIND_SORTS_WOMAN;
+        }else if("生活".equals(name)) {
+            url = Constants.KIND_PINLEI_LIFE;
+        }
+        if(TextUtils.isEmpty(url)) {
+            url = Constants.KIND_PINLEI;
+        }
         View view = View.inflate(mContext, R.layout.sort_pager_item, null);
         eplistview = (ExpandableListView) view.findViewById(R.id.eplistview);
         test_recycler_view_frame = (PtrClassicFrameLayout) view.findViewById(R.id.test_recycler_view_frame);

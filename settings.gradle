@@ -1,1 +1,1 @@
-include ':app', ':okhttputils_library', ':MaterialRefreshLayout_library', ':SlidingMenu_library', ':nice-spinner-master', ':banner', ':QuickSideBarApp', ':quicksidebar', ':cptr'
+include ':app', ':okhttputils_library', ':MaterialRefreshLayout_library', ':SlidingMenu_library', ':banner', ':QuickSideBarApp', ':quicksidebar', ':cptr'
