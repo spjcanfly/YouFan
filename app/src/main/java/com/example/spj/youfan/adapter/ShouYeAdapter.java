@@ -27,8 +27,8 @@ import java.util.List;
  */
 public class ShouYeAdapter extends RecyclerView.Adapter<BaseRecyviewViewHolder> {
 
-    private  Context mContext;
-    private  List<ShouYe.DataBean.ModuleBean> datas;
+    private Context mContext;
+    private List<ShouYe.DataBean.ModuleBean> datas;
 
     //轮播图
     private static final int TOPIMAGE = 0;
@@ -66,7 +66,7 @@ public class ShouYeAdapter extends RecyclerView.Adapter<BaseRecyviewViewHolder> 
     private static final int LIKE = 11;
 
     //有范公告
-    private static final int NOTICE =12;
+    private static final int NOTICE = 12;
 
     private BaseRecyviewViewHolder baseRecyviewViewHolder;
     private View convertView;
@@ -85,82 +85,81 @@ public class ShouYeAdapter extends RecyclerView.Adapter<BaseRecyviewViewHolder> 
             //轮播图
             case TOPIMAGE:
 //                convertView = View.inflate(mContext, R.layout.top_play_image, null);
-                convertView = LayoutInflater.from(mContext).inflate(R.layout.top_play_image,parent,false);
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.top_play_image, parent, false);
                 //将布局传递给HomeViewHolder，便于找控件，显示
                 baseRecyviewViewHolder = new LunboViewHolder(mContext, convertView);
                 break;
             //今日新品，人气单品
             case ICON:
-                convertView = LayoutInflater.from(mContext).inflate(R.layout.jinri_xinpin_recycle,parent,false);
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.jinri_xinpin_recycle, parent, false);
                 //将布局传递给HomeViewHolder，便于找控件，显示
                 baseRecyviewViewHolder = new JinRiXinPinViewHolder(mContext, convertView);
                 break;
             //新品Chok好货 vol.22
             case BANNER:
-                convertView = LayoutInflater.from(mContext).inflate(R.layout.pin_pai_item,parent,false);
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.pin_pai_item, parent, false);
                 //将布局传递给HomeViewHolder，便于找控件，显示
                 baseRecyviewViewHolder = new PinPaiViewHolder(mContext, convertView);
                 break;
             //新人专享
             case NEW:
-                convertView = LayoutInflater.from(mContext).inflate(R.layout.xin_ren_item,parent,false);
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.xin_ren_item, parent, false);
                 //将布局传递给HomeViewHolder，便于找控件，显示
                 baseRecyviewViewHolder = new XinRenViewHolder(mContext, convertView);
                 break;
             //热门品类
             case HOTCATE:
-                convertView = LayoutInflater.from(mContext).inflate(R.layout.pin_lei_recycle,parent,false);
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.pin_lei_recycle, parent, false);
                 //将布局传递给HomeViewHolder，便于找控件，显示
                 baseRecyviewViewHolder = new PinLeiViewHolder(mContext, convertView);
                 break;
             //热门品牌
             case HOTBRAND:
-                convertView = LayoutInflater.from(mContext).inflate(R.layout.remem_pin_pai_recycle,parent,false);
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.remem_pin_pai_recycle, parent, false);
                 //将布局传递给HomeViewHolder，便于找控件，显示,复用热门品类
                 baseRecyviewViewHolder = new PinLeiViewHolder(mContext, convertView);
                 break;
             //搭配趋势
             case COLLOSPECIAL:
                 //复用热门品牌的Recycle
-                convertView = LayoutInflater.from(mContext).inflate(R.layout.remem_pin_pai_recycle,parent,false);
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.remem_pin_pai_recycle, parent, false);
                 //将布局传递给HomeViewHolder，便于找控件，显示,复用热门品类
                 baseRecyviewViewHolder = new PinLeiViewHolder(mContext, convertView);
                 break;
             //流行资讯
             case IMG:
                 //这个也是轮播图类型的
-                convertView = LayoutInflater.from(mContext).inflate(R.layout.liuxing_item,parent,false);
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.liuxing_item, parent, false);
                 //将布局传递给HomeViewHolder，便于找控件，显示
                 baseRecyviewViewHolder = new LunboViewHolder(mContext, convertView);
                 break;
             //上装
             case LISTV1:
-                    convertView = LayoutInflater.from(mContext).inflate(R.layout.xin_ren_item,parent,false);
-                    //将布局传递给HomeViewHolder，便于找控件，显示，复用新人专享的布局
-//                    convertView.setTag(e_title);
-                    baseRecyviewViewHolder = new ShangZhuangViewHolder(mContext, convertView);
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.xin_ren_item, parent, false);
+                //将布局传递给HomeViewHolder，便于找控件，显示，复用新人专享的布局
+                baseRecyviewViewHolder = new ShangZhuangViewHolder(mContext, convertView);
                 break;
             //今日最大牌
             case LISTV3:
-                convertView = LayoutInflater.from(mContext).inflate(R.layout.jinri_dapai_item,parent,false);
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.jinri_dapai_item, parent, false);
                 //将布局传递给HomeViewHolder，便于找控件，显示,复用品牌的holder
                 baseRecyviewViewHolder = new PinPaiViewHolder(mContext, convertView);
                 break;
             //新入驻品牌
             case LISTV4:
-                convertView = LayoutInflater.from(mContext).inflate(R.layout.ruzhu_pinpai_recycle,parent,false);
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.ruzhu_pinpai_recycle, parent, false);
                 //将布局传递给HomeViewHolder，便于找控件，显示
                 baseRecyviewViewHolder = new XinRuZhuViewHolder(mContext, convertView);
                 break;
             //猜你喜欢
             case LIKE:
-                convertView = LayoutInflater.from(mContext).inflate(R.layout.caini_xihuan_recycle,parent,false);
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.caini_xihuan_recycle, parent, false);
                 //将布局传递给HomeViewHolder，便于找控件，显示
                 baseRecyviewViewHolder = new CaiNiLikeViewHolder(mContext, convertView);
                 break;
             //有范公告
             case NOTICE:
-                convertView = LayoutInflater.from(mContext).inflate(R.layout.youfan_notice_item,parent,false);
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.youfan_notice_item, parent, false);
                 //将布局传递给HomeViewHolder，便于找控件，显示
                 baseRecyviewViewHolder = new YouFanViewHolder(mContext, convertView);
                 break;
