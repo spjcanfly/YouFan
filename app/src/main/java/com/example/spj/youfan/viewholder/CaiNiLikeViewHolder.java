@@ -2,7 +2,6 @@ package com.example.spj.youfan.viewholder;
 
 import android.content.Context;
 import android.graphics.Paint;
-import android.os.Handler;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,6 +17,7 @@ import com.example.spj.youfan.base.BaseRecyviewViewHolder;
 import com.example.spj.youfan.bean.shouye.CaiNiLike;
 import com.example.spj.youfan.bean.shouye.ShouYe;
 import com.example.spj.youfan.bean.shouye.ShouYeModuleData;
+import com.example.spj.youfan.uiself.MyRecycleView;
 import com.example.spj.youfan.utils.CacheUtils;
 import com.example.spj.youfan.utils.Constants;
 import com.example.spj.youfan.utils.LogUtil;
@@ -38,11 +38,10 @@ public class CaiNiLikeViewHolder extends BaseRecyviewViewHolder {
     private  TextView tv_shou_ye_chinese;
     private  TextView tv_shou_ye_english;
     private  ImageView iv_shou_ye_common;
-    private  RecyclerView recycleview;
+    private  MyRecycleView recycleview;
     private List<ShouYeModuleData> datas;
     private MyCaiNiLikeAdapter adapter;
     private List<CaiNiLike.DataBean.ListBean> lists;
-    private Handler handler = new Handler();
 
     public CaiNiLikeViewHolder(Context context, View itemView) {
         super(context, itemView);
@@ -53,7 +52,7 @@ public class CaiNiLikeViewHolder extends BaseRecyviewViewHolder {
 
         //更多的那个图片消失
         iv_shou_ye_common.setVisibility(View.GONE);
-        recycleview = (RecyclerView) itemView.findViewById(R.id.recycleview);
+        recycleview = (MyRecycleView) itemView.findViewById(R.id.recycleview);
     }
 
     @Override

@@ -2,7 +2,6 @@ package com.example.spj.youfan.pager.detailpager;
 
 import android.content.Context;
 import android.graphics.Paint;
-import android.os.Handler;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,9 +12,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.chanven.lib.cptr.PtrClassicFrameLayout;
-import com.chanven.lib.cptr.PtrDefaultHandler;
-import com.chanven.lib.cptr.PtrFrameLayout;
 import com.example.spj.youfan.R;
 import com.example.spj.youfan.bean.PinPaiDetail;
 import com.example.spj.youfan.utils.Constants;
@@ -37,8 +33,6 @@ public class BrandDetailPager {
     private final String mTitle;
     public View rootView;
     private RecyclerView recycleview;
-    private PtrClassicFrameLayout test_recycler_view_frame;
-    private Handler handler = new Handler();
     private MyBrandAdapter adapter;
     private List<PinPaiDetail.ResultsBean> results;
 
@@ -52,21 +46,6 @@ public class BrandDetailPager {
     private View initView() {
         View view = View.inflate(mContext, R.layout.brand_detail_recycle, null);
         recycleview = (RecyclerView) view.findViewById(R.id.recycleview);
-        test_recycler_view_frame = (PtrClassicFrameLayout) view.findViewById(R.id.test_recycler_view_frame);
-        test_recycler_view_frame.setPtrHandler(new PtrDefaultHandler() {
-
-            @Override
-            public void onRefreshBegin(PtrFrameLayout frame) {
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        //下拉刷新完成后消失
-                        test_recycler_view_frame.refreshComplete();
-                        test_recycler_view_frame.setLoadMoreEnable(true);
-                    }
-                }, 1500);
-            }
-        });
 
         return view;
     }
@@ -106,6 +85,7 @@ public class BrandDetailPager {
             //有数据
             adapter = new MyBrandAdapter();
             recycleview.setAdapter(adapter);
+            recycleview.setNestedScrollingEnabled(false);
             recycleview.setLayoutManager(new GridLayoutManager(mContext, 2));
         }
     }

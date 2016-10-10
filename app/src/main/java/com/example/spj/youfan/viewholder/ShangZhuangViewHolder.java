@@ -22,7 +22,7 @@ import java.util.List;
  * Created by spj on 2016/10/4.
  * 上装，鞋子
  */
-public class ShangZhuangViewHolder extends BaseRecyviewViewHolder{
+public class ShangZhuangViewHolder extends BaseRecyviewViewHolder {
 
     private final Context mContext;
     private final TextView tv_shou_ye_chinese;
@@ -49,15 +49,16 @@ public class ShangZhuangViewHolder extends BaseRecyviewViewHolder{
         datas = moduleBean.getData();
         tv_shou_ye_chinese.setText(moduleBean.getC_title());
         tv_shou_ye_english.setText(moduleBean.getE_title());
-        if(datas != null && datas.get(0) != null ) {
+        if (datas != null && datas.get(0) != null) {
+            //有数据
             Glide.with(mContext).load(datas.get(0).getImg())
                     .placeholder(R.drawable.fun_loading_0)
                     .diskCacheStrategy(DiskCacheStrategy.ALL).into(iv_xin_ren_big);
+            MyShangZhuangAdapter adapter = new MyShangZhuangAdapter();
+            recycleview.setAdapter(adapter);
+            //注意recycleview必须要加上这一句
+            recycleview.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
         }
-        MyShangZhuangAdapter adapter = new MyShangZhuangAdapter();
-        recycleview.setAdapter(adapter);
-        //注意recycleview必须要加上这一句
-        recycleview.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
     }
 
     class MyShangZhuangAdapter extends RecyclerView.Adapter<MyShangZhuangAdapter.ViewHolder> {
@@ -70,19 +71,19 @@ public class ShangZhuangViewHolder extends BaseRecyviewViewHolder{
         @Override
         public void onBindViewHolder(MyShangZhuangAdapter.ViewHolder holder, int position) {
             //position=0的位置已经有图片了
-            if(position < datas.size()-1) {
-                String img = datas.get(position+1).getImg();
-                    Glide.with(mContext).load(img).
-                            placeholder(R.drawable.fun_loading_0)
-                            .diskCacheStrategy(DiskCacheStrategy.ALL)
-                            .into(holder.iv_xin_ren_small);
+            if (position < datas.size() - 1) {
+                String img = datas.get(position + 1).getImg();
+                Glide.with(mContext).load(img).
+                        placeholder(R.drawable.fun_loading_0)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .into(holder.iv_xin_ren_small);
             }
         }
 
         //注意条目的数量
         @Override
         public int getItemCount() {
-            return datas.size()-1;
+            return datas.size() - 1;
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {

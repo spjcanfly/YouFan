@@ -1,6 +1,7 @@
 package com.example.spj.youfan.pager.detailpager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import com.chanven.lib.cptr.PtrClassicFrameLayout;
 import com.chanven.lib.cptr.PtrDefaultHandler;
 import com.chanven.lib.cptr.PtrFrameLayout;
 import com.example.spj.youfan.R;
+import com.example.spj.youfan.activity.shop.PinLeiDetailActivity;
 import com.example.spj.youfan.base.BaseSortViewPager;
 import com.example.spj.youfan.bean.fenlei.PinLeiNan;
 import com.example.spj.youfan.utils.CacheUtils;
@@ -40,6 +42,7 @@ public class SortPinLeiDetailPager extends BaseSortViewPager{
     private List<PinLeiNan.DataBean> datas;
     private PtrClassicFrameLayout test_recycler_view_frame;
     private Handler handler = new Handler();
+    private MyExpandableListAdapter adapter;
 
 
     public SortPinLeiDetailPager(Context context) {
@@ -54,6 +57,36 @@ public class SortPinLeiDetailPager extends BaseSortViewPager{
         test_recycler_view_frame = (PtrClassicFrameLayout) view.findViewById(R.id.test_recycler_view_frame);
         //把左边的箭头去掉
         eplistview.setGroupIndicator(null);
+
+        test_recycler_view_frame.setPtrHandler(new PtrDefaultHandler() {
+
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //下拉刷新完成后消失
+                        test_recycler_view_frame.refreshComplete();
+                    }
+                }, 1500);
+            }
+        });
+
+        //子item的点击事件
+        eplistview.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                Intent intent = new Intent(mContext,PinLeiDetailActivity.class);
+                String img = datas.get(groupPosition).getSubs().get(childPosition).getImg();
+                String name = datas.get(groupPosition).getSubs().get(childPosition).getCate_name();
+                String id1 = datas.get(groupPosition).getSubs().get(childPosition).getId();
+                intent.putExtra("img",img);
+                intent.putExtra("name",name);
+                intent.putExtra("id",id1);
+                mContext.startActivity(intent);
+                return true;
+            }
+        });
 
         return view;
     }
@@ -113,7 +146,7 @@ public class SortPinLeiDetailPager extends BaseSortViewPager{
         datas = bean.getData();
         if(datas != null && datas.size()>0) {
             //有数据
-            MyExpandableListAdapter adapter = new MyExpandableListAdapter();
+            adapter = new MyExpandableListAdapter();
             eplistview.setAdapter(adapter);
             test_recycler_view_frame.postDelayed(new Runnable() {
 
@@ -179,7 +212,7 @@ public class SortPinLeiDetailPager extends BaseSortViewPager{
              }
              ImageView iv_sort_pinlei = (ImageView) convertView.findViewById(R.id.iv_sort_pinlei);
              Glide.with(mContext).load(datas.get(groupPosition).getImg()).
-                     placeholder(R.drawable.ic_error_page)
+                     placeholder(R.drawable.fun_loading_0)
                      .diskCacheStrategy(DiskCacheStrategy.ALL)
                      .into(iv_sort_pinlei);
              return convertView;
@@ -195,6 +228,7 @@ public class SortPinLeiDetailPager extends BaseSortViewPager{
              return convertView;
          }
 
+         //子条目响应click事件，必须返回true
          @Override
          public boolean isChildSelectable(int groupPosition, int childPosition) {
              return true;

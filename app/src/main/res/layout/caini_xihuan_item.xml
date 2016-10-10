@@ -1,54 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:padding="10dp"
-    >
+    android:layout_height="wrap_content">
 
-    <ImageView
-        android:scaleType="centerCrop"
-        android:id="@+id/iv_xin_ren_small"
-        android:layout_width="170dp"
-        android:layout_height="200dp" />
-    <TextView
-        android:layout_margin="5dp"
-        android:layout_below="@+id/iv_xin_ren_small"
-        android:id="@+id/tv_like_brand"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:text="puma"
-        />
-    <TextView
-        android:singleLine="true"
-        android:layout_marginLeft="5dp"
-        android:layout_below="@+id/tv_like_brand"
-        android:id="@+id/tv_like_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#000000"
-        android:gravity="center_horizontal"
-        android:text="PUMA中性Blaze"
-        />
-    <TextView
-        android:layout_marginLeft="5dp"
-        android:layout_below="@+id/tv_like_name"
-        android:id="@+id/tv_like_price_now"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#000000"
-        android:gravity="center_horizontal"
-        android:text="￥608"
-        />
-    <TextView
-        android:layout_toRightOf="@+id/tv_like_price_now"
-        android:layout_alignBottom="@+id/tv_like_price_now"
-        android:layout_marginLeft="5dp"
-        android:id="@+id/tv_like_price_market"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="￥869"
-        android:textSize="12sp"
-        />
-</RelativeLayout>
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/iv_xin_ren_small"
+            android:layout_width="170dp"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/tv_like_brand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_xin_ren_small"
+            android:layout_margin="5dp"
+            android:singleLine="true"
+            android:text="puma" />
+
+        <TextView
+            android:id="@+id/tv_like_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_like_brand"
+            android:layout_marginLeft="5dp"
+            android:gravity="center_horizontal"
+            android:singleLine="true"
+            android:text="PUMA中性Blaze"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/tv_like_price_now"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_like_name"
+            android:layout_marginLeft="5dp"
+            android:gravity="center_horizontal"
+            android:text="￥608"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/tv_like_price_market"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tv_like_price_now"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/tv_like_price_now"
+            android:gravity="center_horizontal"
+            android:text="￥869"
+            android:textSize="12sp" />
+    </RelativeLayout>
+</LinearLayout>

@@ -88,7 +88,6 @@ public class PinPaiActivity extends FragmentActivity implements ObservableScroll
         String name = getIntent().getStringExtra("name");
 
         //请求数据的网络地址
-//        url = Constants.BRANDDETAIL_PRE + name + Constants.BRANDDETAIL_TAIL;
         url = Constants.BRAND_STORY_PRE + name + Constants.BRANDDETAIL_TAIL;
         //顶部的显示还是隐藏
         initView();
@@ -119,18 +118,18 @@ public class PinPaiActivity extends FragmentActivity implements ObservableScroll
     }
 
     private void bindTabAndVp(String name) {
-        //准备灵感详情页面的数据
+        //准备品牌详情页面的数据
         brandDetails = new ArrayList<>();
         //往Tablayout上准备装配的数据
         attrs = new String[]{"上新", "热销", "价格"};
 
         for (int i = 0; i < attrs.length; i++) {
-            brandDetails.add(new BrandDetailPager(PinPaiActivity.this, name,attrs[i]));
+            brandDetails.add(new BrandDetailPager(PinPaiActivity.this, name, attrs[i]));
         }
 
         //设置viewpager的高度，使其能够滑动
         ViewGroup.LayoutParams params = brandViewpager.getLayoutParams();
-        params.height = 10000;
+        params.height = 6000;
         brandViewpager.setLayoutParams(params);
 
         //设置ViewPager的适配器
@@ -144,6 +143,7 @@ public class PinPaiActivity extends FragmentActivity implements ObservableScroll
 
         //设置滑动(如果没有这个，上面的指针会跟着页面移动(MODE_SCROLLABLE,这个是会跟着移动))
         tablayout.setTabMode(TabLayout.MODE_FIXED);
+
     }
 
     private void getDataFromNet() {
@@ -174,8 +174,8 @@ public class PinPaiActivity extends FragmentActivity implements ObservableScroll
             String youfan_img = data.getYoufan_img();
             String ename = data.getEname();
             tvBrand.setText(ename);
-            Glide.with(PinPaiActivity.this).load(logo_img).placeholder(R.drawable.ic_error_page).diskCacheStrategy(DiskCacheStrategy.ALL).into(ivBrandLogo);
-            Glide.with(PinPaiActivity.this).load(youfan_img).placeholder(R.drawable.ic_error_page).diskCacheStrategy(DiskCacheStrategy.ALL).into(ivBrand);
+            Glide.with(PinPaiActivity.this).load(logo_img).placeholder(R.drawable.fun_loading_0).diskCacheStrategy(DiskCacheStrategy.ALL).into(ivBrandLogo);
+            Glide.with(PinPaiActivity.this).load(youfan_img).placeholder(R.drawable.fun_loading_0).diskCacheStrategy(DiskCacheStrategy.ALL).into(ivBrand);
         }
 
     }
@@ -297,5 +297,11 @@ public class PinPaiActivity extends FragmentActivity implements ObservableScroll
         public void onPageScrollStateChanged(int state) {
 
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);
     }
 }

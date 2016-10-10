@@ -17,7 +17,6 @@ import com.example.spj.youfan.R;
 import com.example.spj.youfan.activity.MainActivity;
 import com.example.spj.youfan.adapter.ShouYeAdapter;
 import com.example.spj.youfan.base.BasePager;
-import com.example.spj.youfan.bean.shouye.CaiNiLike;
 import com.example.spj.youfan.bean.shouye.ShouYe;
 import com.example.spj.youfan.utils.CacheUtils;
 import com.example.spj.youfan.utils.Constants;
@@ -65,80 +64,35 @@ public class HomePager extends BasePager {
         //初始化spinner控件
         initSpinner();
 
+        final String url = Constants.HOME_MEN;
         //首先判断缓存中有没有
-        getDataFromCache();
+        getDataFromCache(url);
 
         //联网请求数据
         refresh.setMaterialRefreshListener(new MaterialRefreshListener() {
             @Override
             public void onRefresh(MaterialRefreshLayout materialRefreshLayout) {
                 //最初的请求
-                getDataFromNet();
-            }
-
-            @Override
-            public void onRefreshLoadMore(MaterialRefreshLayout materialRefreshLayout) {
-                //更多的请求
-//                getMoreDataFromNet();
+                getDataFromNet(url);
             }
         });
-
         super.initData();
     }
 
-    private void getMoreDataFromNet() {
-        //使用OKhttp第三方封装库请求网络,请求男生
-        OkHttpUtils.get()
-                .url(Constants.HOMECASH_MAN_MORE)
-                .id(100)
-                .build()
-                .execute(new StringCallback() {
-                    @Override
-                    public void onError(Call call, Exception e, int id) {
-
-                    }
-
-                    @Override
-                    public void onResponse(String response, int id) {
-                        //缓存数据
-                        CacheUtils.putString(mContext, Constants.HOMECASH_MAN_MORE, response);
-
-                        processedMoreData(response);
-                        refresh.finishRefreshLoadMore();
-                    }
-                });
-
-    }
-
-    //解析加载更多的数据,猜你喜欢的数据
-    private void processedMoreData(String response) {
-        //解析json数据
-        CaiNiLike bean = parsedMoreJson(response);
-        List<CaiNiLike.DataBean.ListBean> lists = bean.getData().getList();
-        if(lists != null && lists.size()>0) {
-            //有数据
-        }
-    }
-
-    //解析json数据
-    private CaiNiLike parsedMoreJson(String response) {
-        return new Gson().fromJson(response,CaiNiLike.class);
-    }
-
-    private void getDataFromCache() {
-        String saveJson = CacheUtils.getString(mContext, Constants.HOME_MEN);
+    private void getDataFromCache(String url) {
+        String saveJson = CacheUtils.getString(mContext, url);
         if(!TextUtils.isEmpty(saveJson)) {
             //缓存中有数据,直接解析
             processedData(saveJson);
         }
 
-        getDataFromNet();
+        getDataFromNet(url);
     }
 
-    private void getDataFromNet() {
+    private void getDataFromNet(String url) {
         //使用OKhttp第三方封装库请求网络,请求男生
         OkHttpUtils.get()
-                .url(Constants.HOME_MEN)
+                .url(url)
                 .id(100)
                 .build()
                 .execute(new MyStringCallback());
@@ -154,6 +108,17 @@ public class HomePager extends BasePager {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(mContext, "你点击的是"+dataset.get(position), Toast.LENGTH_SHORT).show();
+                String url = null;
+                if("男生".equals(dataset.get(position))) {
+                    url = Constants.HOME_MEN;
+                }else if("女生".equals(dataset.get(position))) {
+                    url = Constants.HOME_WOMEN;
+                }
+                else if("生活".equals(dataset.get(position))) {
+                    url = Constants.HOME_LIFE;
+                }
+
+                getDataFromCache(url);
             }
 
             @Override
