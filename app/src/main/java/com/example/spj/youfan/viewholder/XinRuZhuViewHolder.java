@@ -22,10 +22,10 @@ import java.util.List;
  */
 public class XinRuZhuViewHolder extends BaseRecyviewViewHolder{
 
-    private final Context mContext;
+    private static  Context mContext;
     private final ImageView iv_xin_ren_big;
     private final RecyclerView recycleview;
-    private List<ShouYeModuleData> datas;
+    private static List<ShouYeModuleData> datas;
 
     public XinRuZhuViewHolder(Context context, View itemView) {
         super(context, itemView);
@@ -38,16 +38,17 @@ public class XinRuZhuViewHolder extends BaseRecyviewViewHolder{
     public void setData(ShouYe.DataBean.ModuleBean moduleBean) {
         datas = moduleBean.getData();
         //最上面的那个图片
-        Glide.with(mContext).load(datas.get(0).getImg())
-                .placeholder(R.drawable.fun_loading_0)
-                .diskCacheStrategy(DiskCacheStrategy.ALL).into(iv_xin_ren_big);
+        Glide.with(mContext).load(datas.get(0).getImg()).placeholder(R.drawable.fun_loading_0).diskCacheStrategy(DiskCacheStrategy.ALL).into(iv_xin_ren_big);
         MyXinRenAdapter adapter = new MyXinRenAdapter();
         recycleview.setAdapter(adapter);
         //注意recycleview必须要加上这一句
         recycleview.setLayoutManager(new GridLayoutManager(mContext, 3));
+
+
     }
 
-    class MyXinRenAdapter extends RecyclerView.Adapter<MyXinRenAdapter.ViewHolder> {
+    static class MyXinRenAdapter extends RecyclerView.Adapter<MyXinRenAdapter.ViewHolder>{
+
         @Override
         public MyXinRenAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View convertView = LayoutInflater.from(mContext).inflate(R.layout.remen_pinpai_item, parent, false);
@@ -64,7 +65,9 @@ public class XinRuZhuViewHolder extends BaseRecyviewViewHolder{
                         placeholder(R.drawable.fun_loading_0)
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .into(holder.iv_pin_lei);
+
             }
+
         }
 
         //注意条目的数量

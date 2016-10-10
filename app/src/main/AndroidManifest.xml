@@ -36,7 +36,8 @@
         <activity android:name=".activity.start.GuideActivity" />
         <activity android:name=".activity.shop.ShopDetailActivity" />
         <activity android:name=".activity.shop.PinPaiActivity" />
-        <activity android:name=".activity.shop.PinLeiDetailActivity"></activity>
+        <activity android:name=".activity.shop.PinLeiDetailActivity" />
+        <activity android:name=".activity.shop.ShopCarActivity"></activity>
     </application>
 
 </manifest>

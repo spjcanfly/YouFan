@@ -11,6 +11,7 @@
       <module fileurl="file://$PROJECT_DIR$/cptr/cptr.iml" filepath="$PROJECT_DIR$/cptr/cptr.iml" />
       <module fileurl="file://$PROJECT_DIR$/okhttputils_library/okhttputils_library.iml" filepath="$PROJECT_DIR$/okhttputils_library/okhttputils_library.iml" />
       <module fileurl="file://$PROJECT_DIR$/quicksidebar/quicksidebar.iml" filepath="$PROJECT_DIR$/quicksidebar/quicksidebar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/verticalslide/verticalslide.iml" filepath="$PROJECT_DIR$/verticalslide/verticalslide.iml" />
     </modules>
   </component>
 </project>

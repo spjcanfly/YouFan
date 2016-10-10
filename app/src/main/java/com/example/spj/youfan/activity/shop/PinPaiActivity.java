@@ -83,6 +83,7 @@ public class PinPaiActivity extends FragmentActivity implements ObservableScroll
 
         //请求数据的网络地址
         url = Constants.BRAND_STORY_PRE + name + Constants.BRANDDETAIL_TAIL;
+        LogUtil.e(url+"11111111");
         //顶部的显示还是隐藏
         initView();
 

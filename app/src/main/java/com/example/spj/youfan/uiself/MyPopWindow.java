@@ -1,7 +1,6 @@
 package com.example.spj.youfan.uiself;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -68,7 +67,7 @@ public class MyPopWindow extends PopupWindow {
         this.setFocusable(true);
 
         // 实例化一个ColorDrawable颜色为半透明
-        ColorDrawable dw = new ColorDrawable(0x00000000);
+        ColorDrawable dw = new ColorDrawable(0x000000);
         // 设置弹出窗体的背景
         this.setBackgroundDrawable(dw);
 
@@ -129,7 +128,7 @@ public class MyPopWindow extends PopupWindow {
             tv.setGravity(Gravity.CENTER);
             tv.setTextSize(18);
             tv.setBackgroundResource(R.drawable.pop_item_selector);
-            tv.setBackgroundColor(Color.WHITE);
+//            tv.setBackgroundColor(Color.WHITE);
             tv.setPadding(0,10,0,10);
             return tv;
         }

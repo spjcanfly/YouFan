@@ -1,6 +1,7 @@
 package com.example.spj.youfan.viewholder;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.spj.youfan.R;
+import com.example.spj.youfan.activity.shop.ShopCarActivity;
 import com.example.spj.youfan.base.BaseRecyviewViewHolder;
 import com.example.spj.youfan.bean.shouye.ShouYe;
 import com.example.spj.youfan.bean.shouye.ShouYeModuleData;
@@ -24,13 +26,13 @@ import java.util.List;
  */
 public class XinRenViewHolder extends BaseRecyviewViewHolder{
 
-    private final Context mContext;
+    private static Context mContext;
     private final TextView tv_shou_ye_chinese;
     private final TextView tv_shou_ye_english;
     private final ImageView iv_shou_ye_common;
     private final RecyclerView recycleview;
     private final ImageView iv_xin_ren_big;
-    private List<ShouYeModuleData> datas;
+    private static List<ShouYeModuleData> datas;
 
     public XinRenViewHolder(Context context, View itemView) {
         super(context, itemView);
@@ -58,12 +60,39 @@ public class XinRenViewHolder extends BaseRecyviewViewHolder{
         recycleview.setAdapter(adapter);
         //注意recycleview必须要加上这一句
         recycleview.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL,false));
+        //Recycleview的点击事件
+        adapter.setmOnItemClickListener(new MyXinRenAdapter.OnRecyclerViewItemClickListener() {
+            @Override
+            public void onItemClick(View view, ShouYeModuleData data) {
+                String tid = data.getJump().getTid();
+                Intent intent = new Intent(mContext, ShopCarActivity.class);
+                intent.putExtra("tid", tid);
+                mContext.startActivity(intent);
+            }
+        });
     }
 
-    class MyXinRenAdapter extends RecyclerView.Adapter<MyXinRenAdapter.ViewHolder> {
+    static class MyXinRenAdapter extends RecyclerView.Adapter<MyXinRenAdapter.ViewHolder> implements View.OnClickListener{
+
+        private OnRecyclerViewItemClickListener mOnItemClickListener = null;
+
+        @Override
+        public void onClick(View v) {
+            mOnItemClickListener.onItemClick(v, (ShouYeModuleData) v.getTag());
+        }
+
+        public interface OnRecyclerViewItemClickListener{
+            void onItemClick(View view, ShouYeModuleData data);
+        }
+
+        public void setmOnItemClickListener(OnRecyclerViewItemClickListener mOnItemClickListener) {
+            this.mOnItemClickListener = mOnItemClickListener;
+        }
+
         @Override
         public MyXinRenAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View convertView = LayoutInflater.from(mContext).inflate(R.layout.xinren_zhuan_item, parent, false);
+            convertView.setOnClickListener(this);
             return new ViewHolder(convertView);
         }
 
@@ -78,10 +107,9 @@ public class XinRenViewHolder extends BaseRecyviewViewHolder{
                     String title = datas.get(position+1).getTitle();
                     holder.tv_xin_ren.setText(title);
                 String img = datas.get(position+1).getImg();
-                Glide.with(mContext).load(img).
-                        placeholder(R.drawable.fun_loading_0)
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)
-                        .into(holder.iv_xin_ren_small);
+                Glide.with(mContext).load(img).placeholder(R.drawable.fun_loading_0).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.iv_xin_ren_small);
+                //将数据保存在itemView的Tag中，以便点击时进行获取
+                holder.itemView.setTag(datas.get(position + 1));
             }
         }
 
