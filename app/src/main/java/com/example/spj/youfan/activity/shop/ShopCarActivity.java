@@ -32,8 +32,15 @@ public class ShopCarActivity extends FragmentActivity implements View.OnClickLis
         //找控件
         initView();
 
+        //请求网络
+        getDataFromNet();
+
         //初始化Fragment
         initFragment();
+
+    }
+
+    private void getDataFromNet() {
 
     }
 

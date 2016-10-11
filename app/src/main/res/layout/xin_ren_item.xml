@@ -12,10 +12,18 @@
         android:layout_width="match_parent"
         android:layout_height="260dp" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycleview"
+    <com.example.spj.youfan.uiself.MyHorizontalScrollView
+        android:scrollbars="none"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycleview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.example.spj.youfan.uiself.MyHorizontalScrollView>
+
 
     <View
         android:layout_width="match_parent"

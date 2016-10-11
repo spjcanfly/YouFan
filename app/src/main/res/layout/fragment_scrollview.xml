@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:scrollbars="none"
     android:background="#fff"
     android:id="@+id/scrollView"
     android:orientation="vertical">
@@ -12,27 +13,229 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <RelativeLayout
+        <com.youth.banner.Banner
+            android:id="@+id/banner"
             android:layout_width="match_parent"
-            android:layout_height="45dp">
+            android:layout_height="350dp"/>
+
+        <TextView
+            android:id="@+id/tv_show_name"
+            android:padding="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CHARM'S×FUN+WEAR 男女同款韩版风衣"
+            android:textColor="#999"
+            android:textSize="16sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_like_price_now"
+                android:padding="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="￥ 210"
+                android:textColor="#000"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/tv_like_price_market"
+                android:padding="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="￥ 699"
+                android:textColor="#999"
+                android:textSize="13sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <ImageView
-                android:layout_marginLeft="8dp"
-                android:layout_centerVertical="true"
-                android:src="@drawable/top_back"
+                android:id="@+id/iv_send"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/fun_loading_0"
+                />
+
+            <TextView
+                android:id="@+id/tv_send_name"
+                android:padding="8dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="满99包邮"
+                android:textColor="#666"
+                android:textSize="13sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:padding="8dp"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="10dp"
+                android:text="100%正品保证"
+                />
+
+            <TextView
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="七天无理由退换货"
+                android:textColor="#666"
+                android:textSize="13sp"/>
+
+            <TextView
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="第三方发货"
+                android:textColor="#666"
+                android:textSize="13sp"/>
+        </LinearLayout>
+
+        <View
+            android:background="#cccccc"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"/>
+
+        <LinearLayout
+            android:padding="8dp"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textColor="#000000"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="10dp"
+                android:text="晒单评价(14)"
+                />
+
+            <TextView
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="购买咨询"
+                android:textColor="#666"
+                android:textSize="13sp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="有范品质，值得推荐，你值得拥有！"
+            android:textColor="#666"
+            android:textSize="13sp"/>
+
+        <TextView
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="点击查看更多"
+            android:textColor="#666"
+            android:textSize="13sp"/>
+
+        <View
+            android:background="#cccccc"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"/>
+
+        <LinearLayout
+            android:padding="8dp"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <ImageView
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="8dp"
-                android:layout_centerVertical="true"
-                android:src="@drawable/top_back"
+                android:src="@drawable/fun_loading_0"
+                android:background="#ffffff"
+                android:id="@+id/iv_brand_logo"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                />
+
+            <TextView
+                android:id="@+id/tv_brand_name"
+                android:textColor="#000000"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="10dp"
+                android:text="CHARM'S×FUN+WEAR"
+                />
+
+            <TextView
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="进入品牌"
+                android:textColor="#666"
+                android:textSize="13sp"/>
+
+        </LinearLayout>
+
+        <View
+            android:background="#cccccc"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#fafafa"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1px"
+                android:layout_weight="1"
+                android:background="#ddd"/>
+
+            <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:text="继续拖动，查看图文详情"
+                android:textColor="#777"
+                android:textSize="13sp"/>
 
-        </RelativeLayout>
-
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1px"
+                android:layout_weight="1"
+                android:background="#ddd"/>
+        </LinearLayout>
 
     </LinearLayout>
 

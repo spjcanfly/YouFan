@@ -4,24 +4,80 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+
+    <RelativeLayout
+        android:background="#fff"
         android:id="@+id/top"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#8456"
-        android:gravity="center"
-        android:text="可以自定义头布局"
-        android:textColor="#FFF"/>
+        android:layout_height="45dp">
 
-    <TextView
+        <ImageView
+            android:layout_marginLeft="8dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/top_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="8dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ico_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+    <!--<TextView-->
+        <!--android:id="@+id/top"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:background="#8456"-->
+        <!--android:gravity="center"-->
+        <!--android:text="可以自定义头布局"-->
+        <!--android:textColor="#FFF"/>-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/bottom"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:background="#8456"-->
+        <!--android:gravity="center"-->
+        <!--android:text="可以自定义脚布局"-->
+        <!--android:textColor="#FFF"/>-->
+
+    <RelativeLayout
+        android:background="#fff"
+        android:layout_alignParentBottom="true"
         android:id="@+id/bottom"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:background="#8456"
-        android:gravity="center"
-        android:text="可以自定义脚布局"
-        android:textColor="#FFF"/>
+        android:layout_height="45dp">
+
+        <ImageView
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/icon_shopping_bag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:textColor="#ffffff"
+            android:text="加入购物袋"
+            android:background="@drawable/btn_shop_selector"
+            android:layout_centerInParent="true"
+            android:layout_width="150dp"
+            android:layout_height="40dp" />
+
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/icon_collect_normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
 
     <com.lzy.widget.VerticalSlide
         android:id="@+id/dragLayout"
