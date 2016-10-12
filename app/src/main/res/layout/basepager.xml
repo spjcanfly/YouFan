@@ -4,7 +4,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/commontitle"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/ll_common_title"
+            layout="@layout/commontitle"/>
+
+        <include
+            android:id="@+id/rlTitleBar"
+            layout="@layout/include_topbar"
+            />
+    </FrameLayout>
+
 
     <View
         android:layout_width="match_parent"

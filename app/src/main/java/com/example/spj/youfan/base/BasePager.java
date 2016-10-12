@@ -26,6 +26,9 @@ public abstract class BasePager {
     public TextView tvTop;
     public TabLayout tablayout;
     public TextView tv_popwindow;
+    public View rlTitleBar;
+    public View ll_common_title;
+    public TextView tvEditAll;
 
     public BasePager(Context context) {
         this.mContext = context;
@@ -53,6 +56,9 @@ public abstract class BasePager {
         tvTop = (TextView) view.findViewById(R.id.tv_top);
         tablayout = (TabLayout) view.findViewById(R.id.tablayout);
         tv_popwindow = (TextView) view.findViewById(R.id.tv_popwindow);
+        rlTitleBar = (View) view.findViewById(R.id.rlTitleBar);
+        ll_common_title = (View) view.findViewById(R.id.ll_common_title);
+        tvEditAll = (TextView) view.findViewById(R.id.tvEditAll);
 
 
         flContent = (FrameLayout) view.findViewById(R.id.fl_content);

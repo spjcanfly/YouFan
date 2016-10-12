@@ -59,7 +59,11 @@ public class HomePager extends BasePager {
         }
 
         String name = CacheUtils.getString(mContext, "name");
-        tv_popwindow.setText(name);
+        if(!TextUtils.isEmpty(name)) {
+            tv_popwindow.setText(name);
+        }else {
+            tv_popwindow.setText("男生");
+        }
 
         //根据name判断请求的网址
         final String url = getData(name);
@@ -138,6 +142,8 @@ public class HomePager extends BasePager {
         tvTop.setVisibility(View.GONE);
         tablayout.setVisibility(View.INVISIBLE);
         tv_popwindow.setVisibility(View.VISIBLE);
+        rlTitleBar.setVisibility(View.GONE);
+        ll_common_title.setVisibility(View.VISIBLE);
     }
 
     @Override

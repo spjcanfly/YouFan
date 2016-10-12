@@ -119,6 +119,10 @@ public class InspirationPager extends BasePager {
         ivTopMail.setVisibility(View.GONE);
         ivTopBack.setVisibility(View.INVISIBLE);
         tvTop.setText("资讯");
+        tv_popwindow.setVisibility(View.GONE);
+        tvTop.setVisibility(View.VISIBLE);
+        rlTitleBar.setVisibility(View.GONE);
+        ll_common_title.setVisibility(View.VISIBLE);
     }
 
     @Override

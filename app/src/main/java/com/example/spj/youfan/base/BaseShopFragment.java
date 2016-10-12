@@ -7,5 +7,7 @@ import android.support.v4.app.Fragment;
  *
  */
 public abstract class BaseShopFragment extends Fragment{
+
+
     public abstract void goTop();
 }

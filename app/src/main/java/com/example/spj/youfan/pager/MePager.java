@@ -87,7 +87,11 @@ public class MePager extends BasePager {
         ivTopSeacher.setVisibility(View.GONE);
         ivTopMail.setVisibility(View.VISIBLE);
         ivTopBack.setVisibility(View.GONE);
+        tv_popwindow.setVisibility(View.GONE);
+        tvTop.setVisibility(View.VISIBLE);
         tvTop.setText("我的");
+        rlTitleBar.setVisibility(View.GONE);
+        ll_common_title.setVisibility(View.VISIBLE);
     }
 
     @Override

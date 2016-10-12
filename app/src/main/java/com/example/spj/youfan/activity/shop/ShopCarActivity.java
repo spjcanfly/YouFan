@@ -4,15 +4,25 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.spj.youfan.R;
 import com.example.spj.youfan.base.BaseShopFragment;
+import com.example.spj.youfan.bean.SingleShopDetail;
 import com.example.spj.youfan.fragment.FragmentBottom;
 import com.example.spj.youfan.fragment.FragmentTop;
+import com.example.spj.youfan.utils.CacheUtils;
 import com.example.spj.youfan.utils.Constants;
 import com.example.spj.youfan.utils.LogUtil;
+import com.google.gson.Gson;
 import com.lzy.widget.VerticalSlide;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
+
+import okhttp3.Call;
 
 public class ShopCarActivity extends FragmentActivity implements View.OnClickListener {
 
@@ -20,6 +30,9 @@ public class ShopCarActivity extends FragmentActivity implements View.OnClickLis
     private FloatingActionButton fab;
     private BaseShopFragment topFragment;
     private BaseShopFragment bottomFragment;
+    private SingleShopDetail.DataBean data;
+    private ImageView iv_top_back;
+    private Button btn_add_car;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,28 +42,63 @@ public class ShopCarActivity extends FragmentActivity implements View.OnClickLis
         String tid = getIntent().getStringExtra("tid");
         String url = Constants.GOODS_HEADER + tid + Constants.GOODS_TAIL;
         LogUtil.e(url+"22222");
+
         //找控件
         initView();
 
         //请求网络
-        getDataFromNet();
-
-        //初始化Fragment
-        initFragment();
+        getDataFromNet(url);
 
     }
 
-    private void getDataFromNet() {
+    private void getDataFromNet(final String url) {
+        //从缓存中取得数据
+        String response = CacheUtils.getString(ShopCarActivity.this, url);
+        if(!TextUtils.isEmpty(response)) {
+            processedData(response);
+        }
+        //使用OKhttp第三方封装库请求网络
+        OkHttpUtils.get()
+                .url(url)
+                .id(100)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        LogUtil.e("使用okhttp联网请求失败==单品详情" + e.getMessage());
+                    }
 
+                    @Override
+                    public void onResponse(String response, int id) {
+                        LogUtil.e("使用okhttp联网请求数据成功==单品详情" + response);
+                        //缓存数据
+                        CacheUtils.putString(ShopCarActivity.this, url, response);
+                        processedData(response);
+                    }
+                });
+    }
+
+    //获得解析后的bean对象
+    private void processedData(String json) {
+        SingleShopDetail bean = parsedJson(json);
+        data = bean.getData();
+        if(data != null) {
+            initFragment();
+        }
+    }
+
+    //解析json数据
+    private SingleShopDetail parsedJson(String response) {
+        return new Gson().fromJson(response, SingleShopDetail.class);
     }
 
     private void initFragment() {
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        topFragment = new FragmentTop();
+        topFragment = new FragmentTop(ShopCarActivity.this,data);
         transaction.replace(R.id.first, topFragment);
 
-        bottomFragment = new FragmentBottom();
+        bottomFragment = new FragmentBottom(ShopCarActivity.this,data);
         transaction.replace(R.id.second,bottomFragment);
         transaction.commit();
 
@@ -59,7 +107,11 @@ public class ShopCarActivity extends FragmentActivity implements View.OnClickLis
     private void initView() {
         verticalSlide = (VerticalSlide) findViewById(R.id.dragLayout);
         fab = (FloatingActionButton) findViewById(R.id.fab);
+        iv_top_back = (ImageView) findViewById(R.id.iv_top_back);
+        btn_add_car = (Button) findViewById(R.id.btn_add_car);
         fab.setOnClickListener(this);
+        iv_top_back.setOnClickListener(this);
+        btn_add_car.setOnClickListener(this);
     }
 
     @Override
@@ -72,12 +124,19 @@ public class ShopCarActivity extends FragmentActivity implements View.OnClickLis
          * OnGoTopListener 表示第一页滚动到顶部 的方法,这个由于采用什么布局,库内部并不知道,所以一般是自己实现
          * 也可以不实现,直接传null
          */
-        bottomFragment.goTop();
-        verticalSlide.goTop(new VerticalSlide.OnGoTopListener() {
-            @Override
-            public void goTop() {
-                topFragment.goTop();
-            }
-        });
+        switch (v.getId()) {
+            case R.id.fab :
+                bottomFragment.goTop();
+                verticalSlide.goTop(new VerticalSlide.OnGoTopListener() {
+                    @Override
+                    public void goTop() {
+                        topFragment.goTop();
+                    }
+                });
+                break;
+            case R.id.iv_top_back:
+                finish();
+                break;
+        }
     }
 }
