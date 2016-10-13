@@ -8,10 +8,13 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.spj.youfan.R;
 import com.example.spj.youfan.base.BaseShopFragment;
 import com.example.spj.youfan.bean.SingleShopDetail;
+import com.example.spj.youfan.bean.shop.Goods;
+import com.example.spj.youfan.dao.pre.ShoppingCartBiz;
 import com.example.spj.youfan.fragment.FragmentBottom;
 import com.example.spj.youfan.fragment.FragmentTop;
 import com.example.spj.youfan.utils.CacheUtils;
@@ -136,6 +139,13 @@ public class ShopCarActivity extends FragmentActivity implements View.OnClickLis
                 break;
             case R.id.iv_top_back:
                 finish();
+                break;
+            case R.id.btn_add_car:
+//                Goods good = new Goods(5,"1026919","风衣",150,"http://img7.ibanggo.com/sources/images/goods/TP/832565/832565_13_00.jpg");
+//                Goods good = new Goods(2,"804633","牛仔裤",99,"http://img6.ibanggo.com/sources/images/goods/TP/819559/819559_43_00.jpg");
+                Goods good = new Goods(1,"834262","PUMA背包",169,"http://img6.ibanggo.com/sources/images/goods/TP/834262/834262_40_00.jpg");
+                ShoppingCartBiz.addGoodToCart(good);
+                Toast.makeText(ShopCarActivity.this, "成功添加到购物车", Toast.LENGTH_SHORT).show();
                 break;
         }
     }

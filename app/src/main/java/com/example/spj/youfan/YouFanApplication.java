@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Handler;
 
+import com.example.spj.youfan.dao.pre.Modle;
+
 /**
  * Created by spj on 2016/9/27.
  * 应用启动时调用该类
@@ -23,6 +25,8 @@ public class YouFanApplication extends Application {
         mHandler = new Handler();
         currentThread = Thread.currentThread();
         currentThreadId = android.os.Process.myTid();
+
+        Modle.getInstance().init(mContext);
     }
 
 

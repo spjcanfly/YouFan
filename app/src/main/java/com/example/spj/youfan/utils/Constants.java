@@ -145,4 +145,8 @@ public class Constants {
     //上装
     public static String GOODS_HEADER = "http://api.funwear.com/mbfun_server/index.php?m=Product&a=getProductDetails&code=";
     public static String GOODS_TAIL = "&osMode=MI+NOTE+LTE&appName=youfanguanfang&source=android&osName=MI+NOTE+LTE&version=v4.2.5&deviceId=00000000-275a-2797-ffff-ffffc032cf9a&osCode=android&token=&deviceToken=00000000-275a-2797-ffff-ffffc032cf9a&osVersion=23&cid=1";
+
+    //点击加入购物袋之后弹出的popupwindow的所用商品数据地址，中间用code拼接
+    public static final String GOODS_DETAIL_SELECT_PRE = "http://api.funwear.com/mbfun_server/index.php?m=Product&a=ProductFilter&osMode=genymotion4.2.2&osCode=android&cid=1&osVersion=17&deviceId=ffffffff-e6e7-d772-ffff-ffff99d603a9&token=395d4f778969d0f1258b33f66656dc2a&version=v4.2.5&osName=genymotion4.2.2&prodClsIdList=";
+    public static final String GOODS_DETAIL_SELECT_TAIL = "&source=android&appName=youfanguanfang";
 }

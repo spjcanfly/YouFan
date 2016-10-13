@@ -11,10 +11,14 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.spj.youfan.R;
 import com.example.spj.youfan.base.BasePager;
+import com.example.spj.youfan.bean.shop.Goods;
+import com.example.spj.youfan.dao.pre.ShoppingCartBiz;
+import com.example.spj.youfan.utils.LogUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,7 +33,10 @@ public class ShopPager extends BasePager{
     private TextView tvCountMoney;
     private RelativeLayout rlBottomBar;
     private MyShopAdapter adapter;
-    private List<String> lists;
+    private ImageView imageView;
+    private TextView textView;
+    private List<Goods> lists;
+    private boolean isSelectAll = false;
 
     public ShopPager(Context context) {
         super(context);
@@ -40,12 +47,15 @@ public class ShopPager extends BasePager{
         //把这个放在这里，防止空指针
         View view = View.inflate(mContext, R.layout.shop_car_pay, null);
         shop_car_recyclevieew = (RecyclerView) view.findViewById(R.id.shop_car_recyclevieew);
+        imageView = (ImageView) view.findViewById(R.id.imageView);
+        textView = (TextView) view.findViewById(R.id.textView);
         ivSelectAll = (ImageView) view.findViewById(R.id.ivSelectAll);
         btnSettle = (TextView) view.findViewById(R.id.btnSettle);
         tvCountMoney = (TextView) view.findViewById(R.id.tvCountMoney);
         rlBottomBar = (RelativeLayout) view.findViewById(R.id.rlBottomBar);
 
         setAdapter();
+
         //把子视图添加到BasePager上的Fragment上
         if(flContent != null) {
             flContent.removeAllViews();
@@ -56,13 +66,35 @@ public class ShopPager extends BasePager{
     }
 
     private void setAdapter() {
-        lists = new ArrayList<>();
-        lists.add("1111");
-        lists.add("2222");
-        adapter = new MyShopAdapter();
-        shop_car_recyclevieew.setAdapter(adapter);
-        //注意recycleview必须要加上这一句
-        shop_car_recyclevieew.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL,false));
+        int goodsCount = ShoppingCartBiz.getGoodsCount();
+        if(goodsCount == 0) {
+            showEmpty(true);
+        }else {
+            showEmpty(false);
+            lists = ShoppingCartBiz.getListGood();
+            adapter = new MyShopAdapter();
+            shop_car_recyclevieew.setAdapter(adapter);
+            //注意recycleview必须要加上这一句
+            shop_car_recyclevieew.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
+        }
+    }
+
+    public void showEmpty(boolean isEmpty) {
+        if (isEmpty) {
+            //没有数据
+            shop_car_recyclevieew.setVisibility(View.GONE);
+            textView.setVisibility(View.VISIBLE);
+            imageView.setVisibility(View.VISIBLE);
+            rlBottomBar.setVisibility(View.GONE);
+            tvEditAll.setVisibility(View.GONE);
+        } else {
+            //有数据
+            shop_car_recyclevieew.setVisibility(View.VISIBLE);
+            textView.setVisibility(View.GONE);
+            imageView.setVisibility(View.GONE);
+            rlBottomBar.setVisibility(View.VISIBLE);
+            tvEditAll.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -75,17 +107,28 @@ public class ShopPager extends BasePager{
     @Override
     public void initListener() {
         //点击全部编辑的那个按钮
-        tvEditAll.setOnClickListener(new View.OnClickListener() {
+//        tvEditAll.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                for (int i = 0; i < lists.size(); i++) {
+//                }
+//            }
+//        });
+        ivSelectAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for (int i = 0; i < lists.size(); i++) {
-//                    lists.get(i).
-                }
+                isSelectAll = ShoppingCartBiz.selectAll(lists, isSelectAll, (ImageView) v);
+//                        setSettleInfo();
+                LogUtil.e("222222222222");
+                adapter.notifyDataSetChanged();
             }
         });
     }
 
     class MyShopAdapter extends RecyclerView.Adapter<MyShopAdapter.ViewHolder> {
+
+        private Goods goods;
+
         @Override
         public MyShopAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View convertView = LayoutInflater.from(mContext).inflate(R.layout.shop_pager_item, parent, false);
@@ -99,40 +142,35 @@ public class ShopPager extends BasePager{
             holder.ivAdd.setOnClickListener(listener);
             holder.ivReduce.setOnClickListener(listener);
             holder.llGoodInfo.setOnClickListener(listener);
+            goods = lists.get(position);
+            holder.tvItemChild.setText(goods.getName());
+            holder.tvPriceNew.setText("￥" + goods.getSale_price());
+            holder.tvNum.setText("×" + goods.getNumber());
+            Glide.with(mContext).load(goods.getMainImage()).placeholder(R.drawable.fun_loading_0).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.ivGoods);
+
         }
 
         View.OnClickListener listener = new View.OnClickListener() {
 
             public void onClick(View v) {
                 switch (v.getId()) {
-                    //main
-                    case R.id.ivSelectAll:
-//                        isSelectAll = ShoppingCartBiz.selectAll(mListGoods, isSelectAll, (ImageView) v);
-//                        setSettleInfo();
-//                        notifyDataSetChanged();
-                        break;
-                    case R.id.tvEditAll:
-                        break;
                     case R.id.btnSettle:
 //                        if (ShoppingCartBiz.hasSelectedGoods(mListGoods)) {
 //                            ToastHelper.getInstance()._toast("结算跳转");
 //                        } else {
 //                            ToastHelper.getInstance()._toast("亲，先选择商品！");
 //                        }
-                        //group
                         break;
                     //child
                     case R.id.ivCheckGood:
-//                        String tag = String.valueOf(v.getTag());
-//                        if (tag.contains(",")) {
-//                            String s[] = tag.split(",");
-//                            int groupPosition = Integer.parseInt(s[0]);
-//                            int childPosition = Integer.parseInt(s[1]);
-//                            isSelectAll = ShoppingCartBiz.selectOne(mListGoods, groupPosition, childPosition);
-//                            selectAll();
-//                            setSettleInfo();
-//                            notifyDataSetChanged();
-//                        }
+                        //刚开始给他设置为true
+                        boolean isSelected = true;
+                        if(isSelected) {
+                            goods.setIsSelected(isSelected);
+                            ShoppingCartBiz.checkItem(isSelected, (ImageView) v);
+                        }else {
+//                            ShoppingCartBiz.selectOne()
+                        }
                         break;
                     case R.id.tvDel:
 //                        String tagPos = String.valueOf(v.getTag());
