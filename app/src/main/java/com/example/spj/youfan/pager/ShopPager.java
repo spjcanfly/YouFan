@@ -6,8 +6,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.spj.youfan.R;
 import com.example.spj.youfan.adapter.MyShopAdapter;
@@ -34,6 +36,8 @@ public class ShopPager extends BasePager{
     private CheckBox checkbox_all;
     private static final int ACTION_EDIT = 0;
     private static final int ACTION_COMPLETE = 1;
+    private TextView btn_del;
+    private LinearLayout ll_text_price;
 
     public ShopPager(Context context) {
         super(context);
@@ -50,6 +54,8 @@ public class ShopPager extends BasePager{
         btnSettle = (TextView) view.findViewById(R.id.btnSettle);
         tvCountMoney = (TextView) view.findViewById(R.id.tvCountMoney);
         rlBottomBar = (RelativeLayout) view.findViewById(R.id.rlBottomBar);
+        btn_del = (TextView) view.findViewById(R.id.btn_del);
+        ll_text_price = (LinearLayout) view.findViewById(R.id.ll_text_price);
 
         setAdapter();
 
@@ -58,26 +64,34 @@ public class ShopPager extends BasePager{
             flContent.removeAllViews();
         }
 
+        btn_del.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShoppingCartBiz.delGood(lists);
+                adapter.deleteData();
+                adapter.showTotalPrice();
+                showEmpty(ShoppingCartBiz.getGoodsCount());
+                adapter.checkAll();
+                Toast.makeText(mContext, "删除成功", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         flContent.addView(view);
         super.initData();
     }
 
     private void setAdapter() {
         int goodsCount = ShoppingCartBiz.getGoodsCount();
-        if(goodsCount == 0) {
-            showEmpty(true);
-        }else {
-            showEmpty(false);
+            showEmpty(goodsCount);
             lists = ShoppingCartBiz.getListGood();
             adapter = new MyShopAdapter(mContext,lists,checkbox_all,tvCountMoney,tvEditAll);
             shop_car_recyclevieew.setAdapter(adapter);
             //注意recycleview必须要加上这一句
             shop_car_recyclevieew.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
-        }
     }
 
-    public void showEmpty(boolean isEmpty) {
-        if (isEmpty) {
+    public void showEmpty(int count) {
+        if (count == 0) {
             //没有数据
             shop_car_recyclevieew.setVisibility(View.GONE);
             textView.setVisibility(View.VISIBLE);
@@ -116,6 +130,10 @@ public class ShopPager extends BasePager{
                     //3.数据设置非全选
                     adapter.checkAll_none(false);
                     adapter.checkAll();
+                    //4.显示删除按钮，隐藏结算按钮
+                    btn_del.setVisibility(View.VISIBLE);
+                    btnSettle.setVisibility(View.INVISIBLE);
+
                     //刷新适配器
                     adapter.notifyDataSetChanged();
                     //重新计算价格
@@ -124,6 +142,14 @@ public class ShopPager extends BasePager{
                     tvEditAll.setText("编辑");
                     //点击后变为编辑状态，显示商品
                     tvEditAll.setTag(ACTION_EDIT);
+                    //3.数据设置全选
+                    adapter.checkAll_none(true);
+                    adapter.checkAll();
+                    //4.显示删除按钮，隐藏结算按钮
+                    btn_del.setVisibility(View.GONE);
+                    btnSettle.setVisibility(View.VISIBLE);
+                    //重新从数据库获取是否有数据
+                    ShoppingCartBiz.getListGood();
                     //刷新适配器
                     adapter.notifyDataSetChanged();
                     //重新计算价格

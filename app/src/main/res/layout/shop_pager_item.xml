@@ -108,23 +108,23 @@
 
 
         <com.example.spj.youfan.uiself.NumberAddSubView
-            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
             android:id="@+id/numberAddSubView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-        <TextView
+        <!--<TextView-->
 
-            android:layout_alignParentRight="true"
-            android:id="@+id/tvDel"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_centerVertical="true"
-            android:background="#ff5000"
-            android:gravity="center"
-            android:text="删除"
-            android:textColor="#FFF"
-            android:textSize="14sp"/>
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:id="@+id/tvDel"-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:background="#ff5000"-->
+            <!--android:gravity="center"-->
+            <!--android:text="删除"-->
+            <!--android:textColor="#FFF"-->
+            <!--android:textSize="14sp"/>-->
 
     </RelativeLayout>
 

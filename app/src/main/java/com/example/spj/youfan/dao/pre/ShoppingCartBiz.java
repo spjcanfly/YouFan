@@ -44,8 +44,14 @@ public class ShoppingCartBiz {
     /**
      * 删除某个商品,即删除其ProductID
      */
-    public static void delGood(Goods good) {
-            ShopCartDao.getInstance().deleteContactByHxId(good.getGoodsID());
+    public static void delGood(List<Goods> list) {
+        if(list != null && list.size()>0) {
+            for (int i = 0; i < list.size(); i++) {
+                if(list.get(i).isSelected()) {
+                    ShopCartDao.getInstance().deleteContactByHxId(list.get(i).getGoodsID());
+                }
+            }
+        }
     }
 
 //    /** 删除全部商品 */

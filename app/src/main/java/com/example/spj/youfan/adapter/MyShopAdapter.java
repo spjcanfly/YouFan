@@ -17,7 +17,9 @@ import com.example.spj.youfan.R;
 import com.example.spj.youfan.bean.shop.Goods;
 import com.example.spj.youfan.dao.pre.ShoppingCartBiz;
 import com.example.spj.youfan.uiself.NumberAddSubView;
+import com.example.spj.youfan.utils.LogUtil;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -32,7 +34,6 @@ public class MyShopAdapter extends RecyclerView.Adapter<MyShopAdapter.ViewHolder
     private final TextView tv_edit_all;
     private static final int ACTION_EDIT = 0;
     private static final int ACTION_COMPLETE = 1;
-    private Goods goods;
 
     public MyShopAdapter(Context context, final List<Goods> list, CheckBox checkbox_all, TextView tvCountMoney, TextView tvEditAll) {
         this.mContext = context;
@@ -106,7 +107,7 @@ public class MyShopAdapter extends RecyclerView.Adapter<MyShopAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(final MyShopAdapter.ViewHolder holder, final int position) {
-        goods = lists.get(position);
+        final Goods goods = lists.get(position);
         holder.checkbox_single.setChecked(goods.isSelected());
         holder.tvItemChild.setText(goods.getName());
         holder.tvPriceNew.setText("￥" + goods.getSale_price());
@@ -130,6 +131,7 @@ public class MyShopAdapter extends RecyclerView.Adapter<MyShopAdapter.ViewHolder
         holder.numberAddSubView.setOnNumberClickListener(new NumberAddSubView.OnNumberClickListener() {
             @Override
             public void onButtonSub(View view, int value) {
+                LogUtil.e("正在减少数据"+value);
                 goods.setNumber(value);
                 ShoppingCartBiz.updateGoodsNumber(goods,value);
                 //2.重新显示价格
@@ -138,6 +140,7 @@ public class MyShopAdapter extends RecyclerView.Adapter<MyShopAdapter.ViewHolder
 
             @Override
             public void onButtonAdd(View view, int value) {
+                LogUtil.e("正在增加数据"+value);
                 //增加.1.更新数据
                 goods.setNumber(value);
                 //重新更新到本地
@@ -147,20 +150,28 @@ public class MyShopAdapter extends RecyclerView.Adapter<MyShopAdapter.ViewHolder
             }
         });
 
-        holder.tvDel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //本地数据库删除
-                ShoppingCartBiz.delGood(goods);
-                notifyItemRemoved(position);
-            }
-        });
     }
 
     //注意条目的数量
     @Override
     public int getItemCount() {
         return lists == null ? 0 : lists.size();
+    }
+
+    public void deleteData() {
+        if(lists != null && lists.size()>0) {
+            for (Iterator iterator = lists.iterator();iterator.hasNext();){
+                Goods goods = (Goods) iterator.next();
+                if(goods.isSelected()) {
+                    //根据对象找到它的位置
+                    int position = lists.indexOf(goods);
+                    //2.删除当前内存的
+                    iterator.remove();
+                    //3.刷新数据
+                    notifyItemRemoved(position);
+                }
+            }
+        }
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -172,7 +183,6 @@ public class MyShopAdapter extends RecyclerView.Adapter<MyShopAdapter.ViewHolder
         TextView tvPriceNew;
         TextView tvNum;
         RelativeLayout rlEditStatus;
-        TextView tvDel;
         LinearLayout llGoodInfo;
         CheckBox checkbox_single;
 
@@ -186,8 +196,6 @@ public class MyShopAdapter extends RecyclerView.Adapter<MyShopAdapter.ViewHolder
             tvPriceNew = (TextView) convertView.findViewById(R.id.tvPriceNew);
             tvNum = (TextView) convertView.findViewById(R.id.tvNum);
             rlEditStatus = (RelativeLayout) convertView.findViewById(R.id.rlEditStatus);
-            tvDel = (TextView) convertView.findViewById(R.id.tvDel);
-            tvDel = (TextView) convertView.findViewById(R.id.tvDel);
             numberAddSubView = (NumberAddSubView) convertView.findViewById(R.id.numberAddSubView);
 
             checkbox_single.setOnClickListener(new View.OnClickListener() {
