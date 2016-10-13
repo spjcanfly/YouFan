@@ -16,6 +16,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.spj.youfan.R;
 import com.example.spj.youfan.bean.shop.Goods;
 import com.example.spj.youfan.dao.pre.ShoppingCartBiz;
+import com.example.spj.youfan.uiself.NumberAddSubView;
 
 import java.util.List;
 
@@ -59,7 +60,7 @@ public class MyShopAdapter extends RecyclerView.Adapter<MyShopAdapter.ViewHolder
 
     }
 
-    private void checkAll() {
+    public void checkAll() {
         if(lists != null && lists.size()>0) {
             int number = 0;
             for (int i = 0; i < lists.size(); i++) {
@@ -112,17 +113,48 @@ public class MyShopAdapter extends RecyclerView.Adapter<MyShopAdapter.ViewHolder
         holder.tvNum.setText("×" + goods.getNumber());
         Glide.with(mContext).load(goods.getMainImage()).placeholder(R.drawable.fun_loading_0).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.ivGoods);
 
+        //给该商品设置从数据库得到的数量
+        holder.numberAddSubView.setValue(goods.getNumber());
+        holder.numberAddSubView.setMaxValue(10);
         int action = (int) tv_edit_all.getTag();
         if(action == ACTION_EDIT) {
+            //点击后变成完成状态
             holder.rlEditStatus.setVisibility(View.GONE);
             holder.llGoodInfo.setVisibility(View.VISIBLE);
-//            notifyDataSetChanged();
         }else if(action == ACTION_COMPLETE) {
             //点击后变为编辑状态，显示商品的详细
             holder.rlEditStatus.setVisibility(View.VISIBLE);
             holder.llGoodInfo.setVisibility(View.GONE);
-//            notifyDataSetChanged();
         }
+
+        holder.numberAddSubView.setOnNumberClickListener(new NumberAddSubView.OnNumberClickListener() {
+            @Override
+            public void onButtonSub(View view, int value) {
+                goods.setNumber(value);
+                ShoppingCartBiz.updateGoodsNumber(goods,value);
+                //2.重新显示价格
+                showTotalPrice();
+            }
+
+            @Override
+            public void onButtonAdd(View view, int value) {
+                //增加.1.更新数据
+                goods.setNumber(value);
+                //重新更新到本地
+                ShoppingCartBiz.updateGoodsNumber(goods, value);
+                //2.重新显示价格
+                showTotalPrice();
+            }
+        });
+
+        holder.tvDel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //本地数据库删除
+                ShoppingCartBiz.delGood(goods);
+                notifyItemRemoved(position);
+            }
+        });
     }
 
     //注意条目的数量
@@ -133,15 +165,13 @@ public class MyShopAdapter extends RecyclerView.Adapter<MyShopAdapter.ViewHolder
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
+        NumberAddSubView numberAddSubView;
         ImageView ivGoods;
         TextView tvItemChild;
         TextView tvGoodsParam;
         TextView tvPriceNew;
         TextView tvNum;
         RelativeLayout rlEditStatus;
-        ImageView ivAdd;
-        TextView tvNum2;
-        ImageView ivReduce;
         TextView tvDel;
         LinearLayout llGoodInfo;
         CheckBox checkbox_single;
@@ -156,20 +186,19 @@ public class MyShopAdapter extends RecyclerView.Adapter<MyShopAdapter.ViewHolder
             tvPriceNew = (TextView) convertView.findViewById(R.id.tvPriceNew);
             tvNum = (TextView) convertView.findViewById(R.id.tvNum);
             rlEditStatus = (RelativeLayout) convertView.findViewById(R.id.rlEditStatus);
-            ivAdd = (ImageView) convertView.findViewById(R.id.ivAdd);
-            tvNum2 = (TextView) convertView.findViewById(R.id.tvNum2);
-            ivReduce = (ImageView) convertView.findViewById(R.id.ivReduce);
             tvDel = (TextView) convertView.findViewById(R.id.tvDel);
             tvDel = (TextView) convertView.findViewById(R.id.tvDel);
+            numberAddSubView = (NumberAddSubView) convertView.findViewById(R.id.numberAddSubView);
 
             checkbox_single.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(mOnItemClickListener != null) {
-                        mOnItemClickListener.onItemClick(convertView,getLayoutPosition());
+                    if (mOnItemClickListener != null) {
+                        mOnItemClickListener.onItemClick(convertView, getLayoutPosition());
                     }
                 }
             });
+
         }
 
     }

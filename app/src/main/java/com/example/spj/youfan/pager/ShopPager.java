@@ -73,7 +73,6 @@ public class ShopPager extends BasePager{
             shop_car_recyclevieew.setAdapter(adapter);
             //注意recycleview必须要加上这一句
             shop_car_recyclevieew.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
-
         }
     }
 
@@ -114,14 +113,21 @@ public class ShopPager extends BasePager{
                     tvEditAll.setText("完成");
                     //点击后变为完成状态，显示可以增删的按钮
                     tvEditAll.setTag(ACTION_COMPLETE);
+                    //3.数据设置非全选
+                    adapter.checkAll_none(false);
+                    adapter.checkAll();
                     //刷新适配器
                     adapter.notifyDataSetChanged();
+                    //重新计算价格
+                    adapter.showTotalPrice();
                 }else if(action == ACTION_COMPLETE) {
                     tvEditAll.setText("编辑");
                     //点击后变为编辑状态，显示商品
                     tvEditAll.setTag(ACTION_EDIT);
                     //刷新适配器
                     adapter.notifyDataSetChanged();
+                    //重新计算价格
+                    adapter.showTotalPrice();
                 }
             }
         });

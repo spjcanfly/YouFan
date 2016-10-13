@@ -76,12 +76,12 @@
         "source": "E:\\androidstudio-exersice\\YouFan\\MaterialRefreshLayout_library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\abc_action_mode_bar.xml"
     },
     {
-        "merged": "E:\\androidstudio-exersice\\YouFan\\MaterialRefreshLayout_library\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media.xml",
-        "source": "E:\\androidstudio-exersice\\YouFan\\MaterialRefreshLayout_library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\notification_template_big_media.xml"
-    },
-    {
         "merged": "E:\\androidstudio-exersice\\YouFan\\MaterialRefreshLayout_library\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_close_item_material.xml",
         "source": "E:\\androidstudio-exersice\\YouFan\\MaterialRefreshLayout_library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\abc_action_mode_close_item_material.xml"
+    },
+    {
+        "merged": "E:\\androidstudio-exersice\\YouFan\\MaterialRefreshLayout_library\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media.xml",
+        "source": "E:\\androidstudio-exersice\\YouFan\\MaterialRefreshLayout_library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\notification_template_big_media.xml"
     },
     {
         "merged": "E:\\androidstudio-exersice\\YouFan\\MaterialRefreshLayout_library\\build\\intermediates\\res\\merged\\debug\\layout\\abc_expanded_menu_layout.xml",

@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:spj="http://schemas.android.com/tools"
     android:background="#ffffff">
 
 
@@ -37,7 +38,7 @@
         android:layout_toRightOf="@+id/ivGoods"
         android:gravity="center_vertical"
         android:orientation="vertical"
-        android:visibility="visible"
+        android:visibility="gone"
         android:weightSum="3">
 
         <TextView
@@ -102,54 +103,25 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/ivGoods"
-        android:orientation="horizontal"
-        android:visibility="gone"
+        android:visibility="visible"
         >
 
 
-        <LinearLayout
-            android:id="@+id/llGoodLeft"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
+        <com.example.spj.youfan.uiself.NumberAddSubView
             android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/tvDel"
-            >
-
-            <ImageView
-                android:id="@+id/ivAdd"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/ic_add"/>
-
-            <TextView
-                android:id="@+id/tvNum2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_horizontal|center_vertical"
-                android:text="1"/>
-
-            <ImageView
-                android:id="@+id/ivReduce"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/ic_reduce"/>
-
-        </LinearLayout>
+            android:id="@+id/numberAddSubView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
         <TextView
-            android:id="@+id/tvDel"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+
             android:layout_alignParentRight="true"
+            android:id="@+id/tvDel"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_centerVertical="true"
             android:background="#ff5000"
-            android:gravity="center_vertical"
-            android:paddingLeft="7.5dp"
-            android:paddingRight="7.5dp"
+            android:gravity="center"
             android:text="删除"
             android:textColor="#FFF"
             android:textSize="14sp"/>

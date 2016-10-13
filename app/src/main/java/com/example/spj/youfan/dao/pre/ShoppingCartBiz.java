@@ -45,11 +45,7 @@ public class ShoppingCartBiz {
      * 删除某个商品,即删除其ProductID
      */
     public static void delGood(Goods good) {
-        boolean selected = good.isSelected();
-        //如果选中，根据id删除商品
-        if (selected) {
             ShopCartDao.getInstance().deleteContactByHxId(good.getGoodsID());
-        }
     }
 
 //    /** 删除全部商品 */
@@ -65,7 +61,7 @@ public class ShoppingCartBiz {
      *
      * @param num
      */
-    public static void updateGoodsNumber(Goods good, String num) {
+    public static void updateGoodsNumber(Goods good, int num) {
         String goodsID = good.getGoodsID();
         ShopCartDao.getInstance().updateGoodsNum(goodsID, num);
     }
