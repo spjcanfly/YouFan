@@ -1,10 +1,12 @@
 package com.example.spj.youfan.bean.shop;
 
+import java.io.Serializable;
+
 /**
  * Created by spj on 2016/10/12.
  * 商品的bean类
  */
-public class Goods {
+public class Goods implements Serializable{
     /**
      * 数量
      */

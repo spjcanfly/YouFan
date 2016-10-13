@@ -143,7 +143,8 @@ public class ShopCarActivity extends FragmentActivity implements View.OnClickLis
             case R.id.btn_add_car:
 //                Goods good = new Goods(5,"1026919","风衣",150,"http://img7.ibanggo.com/sources/images/goods/TP/832565/832565_13_00.jpg");
 //                Goods good = new Goods(2,"804633","牛仔裤",99,"http://img6.ibanggo.com/sources/images/goods/TP/819559/819559_43_00.jpg");
-                Goods good = new Goods(1,"834262","PUMA背包",169,"http://img6.ibanggo.com/sources/images/goods/TP/834262/834262_40_00.jpg");
+//                Goods good = new Goods(1,"834262","PUMA背包",169,"http://img6.ibanggo.com/sources/images/goods/TP/834262/834262_40_00.jpg");
+                Goods good = new Goods(1,"1269717","印花T恤",199,"http://img6.ibanggo.com/sources/images/goods/TP/834641/834641_49_00.jpg");
                 ShoppingCartBiz.addGoodToCart(good);
                 Toast.makeText(ShopCarActivity.this, "成功添加到购物车", Toast.LENGTH_SHORT).show();
                 break;
