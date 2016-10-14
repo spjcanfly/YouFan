@@ -55,7 +55,6 @@ public class ShopPager extends BasePager{
         tvCountMoney = (TextView) view.findViewById(R.id.tvCountMoney);
         rlBottomBar = (RelativeLayout) view.findViewById(R.id.rlBottomBar);
         btn_del = (TextView) view.findViewById(R.id.btn_del);
-        ll_text_price = (LinearLayout) view.findViewById(R.id.ll_text_price);
 
         setAdapter();
 

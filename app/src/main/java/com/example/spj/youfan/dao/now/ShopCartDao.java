@@ -69,7 +69,17 @@ public class ShopCartDao {
         value.put(mhelper.COL_PRICE,goods.getSale_price());
         value.put(mhelper.COL_IMAGE,goods.getMainImage());
         value.put(mhelper.COL_NUM,goods.getNumber());
-        db.replace(mhelper.TB_SHOPPING_CART,null,value);
+        db.replace(mhelper.TB_SHOPPING_CART, null, value);
+    }
+
+    //添加好多个商品（用于没有接口的情况）
+    public void saveGoods(List<Goods> list){
+        if(list != null && list.size()>0) {
+            for (int i = 0; i < list.size(); i++) {
+                Goods goods = list.get(i);
+                saveContact(goods);
+            }
+        }
     }
 
 

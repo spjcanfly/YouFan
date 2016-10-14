@@ -35,10 +35,17 @@ public class ShoppingCartBiz {
     }
 
     /**
-     * 添加某商品的数量到数据库（非通用部分，都有这个动作，但是到底存什么，未可知）
+     * 添加单个商品到数据库
      */
     public static void addGoodToCart(Goods good) {
         ShopCartDao.getInstance().saveContact(good);
+    }
+
+    /**
+     * 添加多个商品到数据库
+     */
+    public static void addGoodsToCart(List<Goods> list){
+        ShopCartDao.getInstance().saveGoods(list);
     }
 
     /**

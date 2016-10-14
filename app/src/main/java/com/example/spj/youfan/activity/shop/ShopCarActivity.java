@@ -25,6 +25,9 @@ import com.lzy.widget.VerticalSlide;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import okhttp3.Call;
 
 public class ShopCarActivity extends FragmentActivity implements View.OnClickListener {
@@ -141,11 +144,27 @@ public class ShopCarActivity extends FragmentActivity implements View.OnClickLis
                 finish();
                 break;
             case R.id.btn_add_car:
-//                Goods good = new Goods(5,"1026919","风衣",150,"http://img7.ibanggo.com/sources/images/goods/TP/832565/832565_13_00.jpg");
-//                Goods good = new Goods(2,"804633","牛仔裤",99,"http://img6.ibanggo.com/sources/images/goods/TP/819559/819559_43_00.jpg");
-//                Goods good = new Goods(1,"834262","PUMA背包",169,"http://img6.ibanggo.com/sources/images/goods/TP/834262/834262_40_00.jpg");
-                Goods good = new Goods(1,"1269717","印花T恤",199,"http://img6.ibanggo.com/sources/images/goods/TP/834641/834641_49_00.jpg");
-                ShoppingCartBiz.addGoodToCart(good);
+                List<Goods> list = new ArrayList<>();
+                Goods good1 = new Goods(5,"1026919","风衣",150,"http://img7.ibanggo.com/sources/images/goods/TP/832565/832565_13_00.jpg");
+                Goods good2 = new Goods(2,"804633","牛仔裤",99,"http://img6.ibanggo.com/sources/images/goods/TP/819559/819559_43_00.jpg");
+                Goods good3 = new Goods(1,"834262","PUMA背包",169,"http://img6.ibanggo.com/sources/images/goods/TP/834262/834262_40_00.jpg");
+                Goods good4 = new Goods(8,"1269717","印花T恤",88,"http://img6.ibanggo.com/sources/images/goods/TP/834641/834641_49_00.jpg");
+                Goods good5 = new Goods(4,"3548","拉绳短裤",30,"http://img7.ibanggo.com/sources/images/goods/TP/834626/834626_99_00.jpg");
+                Goods good6 = new Goods(3,"6789","印花T恤",60,"\"http://img6.ibanggo.com/sources/images/goods/TP/834029/834029_05_00.jpg");
+                Goods good7 = new Goods(3,"6779","印花T恤",60,"\"http://img6.ibanggo.com/sources/images/goods/TP/834029/834029_05_00.jpg");
+                Goods good8 = new Goods(3,"6769","印花T恤",60,"\"http://img6.ibanggo.com/sources/images/goods/TP/834029/834029_05_00.jpg");
+                Goods good9 = new Goods(3,"6759","印花T恤",60,"\"http://img6.ibanggo.com/sources/images/goods/TP/834029/834029_05_00.jpg");
+                list.add(good1);
+                list.add(good2);
+                list.add(good3);
+                list.add(good4);
+                list.add(good5);
+                list.add(good6);
+                list.add(good7);
+                list.add(good8);
+                list.add(good9);
+//                ShoppingCartBiz.addGoodToCart(good);
+                ShoppingCartBiz.addGoodsToCart(list);
                 Toast.makeText(ShopCarActivity.this, "成功添加到购物车", Toast.LENGTH_SHORT).show();
                 break;
         }

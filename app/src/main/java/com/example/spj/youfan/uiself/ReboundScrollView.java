@@ -12,7 +12,7 @@ import android.widget.ScrollView;
  * 作者：tpkeeper on 2016/10/8 18:20
  * 微信：lzy1056883354
  * QQ号：1056883354
- * 作用：xxxx
+ * 作用：无缝连接ScrollView
  */
 public class ReboundScrollView extends ScrollView{
     private static final String TAG = "ReboundScrollView";
