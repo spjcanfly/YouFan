@@ -12,9 +12,9 @@ if (Build.VERSION.SDK_INT >= 21) {
 		}
 	}
 }
-4.第三方的spinner想要的效果不显示，在代码里面设置属性，spinner不能获得想要的其他方面的扩展，而且技术比较老，用popupwindow替代spinner，
-5.今日新品，必须设置具体高度。不能用wrap_content，这样不显示
-6.自定义button的样式
+4.第三方的spinner想要的效果不显示，在代码里面设置属性，spinner不能获得想要的其他方面的扩展，而且技术比较老，用popupwindow替代spinner。用popupwindow的时候，为了避免当前类代码臃肿，最好自定义个popupwindow的类继承popupwindow，在这个里面写需要的功能。
+5.今日新品，必须设置具体高度。不能用wrap_content，这样不显示（见8，解决办法）
+6.自定义button的样式，在background属性中写一个shap，或者根据需要。
 7.重影问题    //解决重影  flContent.removeAllViews();
 8.Recycleview嵌套Recycleview高度设置为wrap_content，子item不显示（compile 'com.android.support:recyclerview-v7:23.2.0'之后才行，之前的版本有bug）
 http://blog.csdn.net/zhuojianhai88/article/details/42392217
