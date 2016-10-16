@@ -21,7 +21,7 @@ http://blog.csdn.net/zhuojianhai88/article/details/42392217
 9.分类型的Recycleview中，每一个item的条目的高度都要设置成wrap_content，不然的话，在显示
 的时候，会出现显示的特别难看
 10.使用RelativeLayout这种布局的时候，要想让某些控件悬浮在上面，必须把这些控件放到最后的位置
-11.解析json数据的时候，男生的价格是int，而女生的是float出错。
+11.解析json数据的时候，男生的价格是int，而女生的是float出错。解析的时候必须得统一
 12.Tablayout和viewpager关联，里面放Fragment，继承的是Fragmentpageradpter
 13.activity里面放Fragment，里面得有个framlayout填充。
 14.用scrollview当作最外面的布局时，滑动时，不会出现弹性滑动，使用网上找的ReboundScrollView
