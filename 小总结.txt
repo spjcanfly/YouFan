@@ -1,26 +1,27 @@
-1.viewpagerÀïÃæÓÃButterKnifeµÄcontextÓÃapplicationµÄ£¬µ¼ÖÂµã»÷ÊÂ¼ş²»ÄÜÓÃ£¬ËùÒÔµÃÓÃfindview
-2.ÊÓÍ¼µÄÖØµş  if(flContent != null) {flContent.removeAllViews(); }
-3.ÓÃµÚÈı·½µÄslidingmenu£¬³öÏÖ÷È×åÊÖ»úÊÊÅäÎÊÌâ£¬ÏÂ·½ÆÁÄ»Áô³ö¿Õ°×£¬ÔÚslidingmenu.javaÖĞµÄfitSystemWindows·½·¨ÖĞ¼ÓÈëÏÂÃæ´úÂë
+1.viewpageré‡Œé¢ç”¨ButterKnifeçš„contextç”¨applicationçš„ï¼Œå¯¼è‡´ç‚¹å‡»äº‹ä»¶ä¸èƒ½ç”¨ï¼Œæ‰€ä»¥å¾—ç”¨findview
+2.è§†å›¾çš„é‡å   if(flContent != null) {flContent.removeAllViews(); }
+3.ç”¨ç¬¬ä¸‰æ–¹çš„slidingmenuï¼Œå‡ºç°é­…æ—æ‰‹æœºé€‚é…é—®é¢˜ï¼Œä¸‹æ–¹å±å¹•ç•™å‡ºç©ºç™½ï¼Œåœ¨slidingmenu.javaä¸­çš„fitSystemWindowsæ–¹æ³•ä¸­åŠ å…¥ä¸‹é¢ä»£ç 
 if (Build.VERSION.SDK_INT >= 21) {
 	Resources resources = getContent().getResources();
 	int resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android");
 	if(Build.MANUFACTURER.equals("Meizu")||Build.MANUFACTURER.equals("meizu")) {
-	    //²»×ö´¦Àí
+	    //ä¸åšå¤„ç†
 	}else {
 		if (resourceId > 0) {
 			bottomPadding += resources.getDimensionPixelSize(resourceId);
 		}
 	}
 }
-4.µÚÈı·½µÄspinnerÏëÒªµÄĞ§¹û²»ÏÔÊ¾£¬ÔÚ´úÂëÀïÃæÉèÖÃÊôĞÔ
-5.½ñÈÕĞÂÆ·£¬±ØĞëÉèÖÃ¾ßÌå¸ß¶È¡£²»ÄÜÓÃwrap_content£¬ÕâÑù²»ÏÔÊ¾
-6.×Ô¶¨ÒåbuttonµÄÑùÊ½
-7.ÖØÓ°ÎÊÌâ    //½â¾öÖØÓ°  flContent.removeAllViews();
-8.RecycleviewÇ¶Ì×Recycleview¸ß¶ÈÉèÖÃÎªwrap_content£¬×Óitem²»ÏÔÊ¾£¨compile 'com.android.support:recyclerview-v7:23.2.0'Ö®ºó²ÅĞĞ£¬Ö®Ç°µÄ°æ±¾ÓĞbug£©
+4.ç¬¬ä¸‰æ–¹çš„spinneræƒ³è¦çš„æ•ˆæœä¸æ˜¾ç¤ºï¼Œåœ¨ä»£ç é‡Œé¢è®¾ç½®å±æ€§
+5.ä»Šæ—¥æ–°å“ï¼Œå¿…é¡»è®¾ç½®å…·ä½“é«˜åº¦ã€‚ä¸èƒ½ç”¨wrap_contentï¼Œè¿™æ ·ä¸æ˜¾ç¤º
+6.è‡ªå®šä¹‰buttonçš„æ ·å¼
+7.é‡å½±é—®é¢˜    //è§£å†³é‡å½±  flContent.removeAllViews();
+8.RecycleviewåµŒå¥—Recycleviewé«˜åº¦è®¾ç½®ä¸ºwrap_contentï¼Œå­itemä¸æ˜¾ç¤ºï¼ˆcompile 'com.android.support:recyclerview-v7:23.2.0'ä¹‹åæ‰è¡Œï¼Œä¹‹å‰çš„ç‰ˆæœ¬æœ‰bugï¼‰
 http://blog.csdn.net/zhuojianhai88/article/details/42392217
-9.·ÖÀàĞÍµÄRecycleviewÖĞ£¬Ã¿Ò»¸öitemµÄÌõÄ¿µÄ¸ß¶È¶¼ÒªÉèÖÃ³Éwrap_content£¬²»È»µÄ»°£¬ÔÚÏÔÊ¾
-µÄÊ±ºò£¬»á³öÏÖÏÔÊ¾µÄÌØ±ğÄÑ¿´
-10.Ê¹ÓÃRelativeLayoutÕâÖÖ²¼¾ÖµÄÊ±ºò£¬ÒªÏëÈÃÄ³Ğ©¿Ø¼şĞü¸¡ÔÚÉÏÃæ£¬±ØĞë°ÑÕâĞ©¿Ø¼ş·Åµ½×îºóµÄÎ»ÖÃ
-11.½âÎöjsonÊı¾İµÄÊ±ºò£¬ÄĞÉúµÄ¼Û¸ñÊÇint£¬¶øÅ®ÉúµÄÊÇfloat³ö´í¡£
-12.TablayoutºÍviewpager¹ØÁª£¬ÀïÃæ·ÅFragment£¬¼Ì³ĞµÄÊÇFragmentpageradpter
-13.activityÀïÃæ·ÅFragment£¬ÀïÃæµÃÓĞ¸öframlayoutÌî³ä¡£
+9.åˆ†ç±»å‹çš„Recycleviewä¸­ï¼Œæ¯ä¸€ä¸ªitemçš„æ¡ç›®çš„é«˜åº¦éƒ½è¦è®¾ç½®æˆwrap_contentï¼Œä¸ç„¶çš„è¯ï¼Œåœ¨æ˜¾ç¤º
+çš„æ—¶å€™ï¼Œä¼šå‡ºç°æ˜¾ç¤ºçš„ç‰¹åˆ«éš¾çœ‹
+10.ä½¿ç”¨RelativeLayoutè¿™ç§å¸ƒå±€çš„æ—¶å€™ï¼Œè¦æƒ³è®©æŸäº›æ§ä»¶æ‚¬æµ®åœ¨ä¸Šé¢ï¼Œå¿…é¡»æŠŠè¿™äº›æ§ä»¶æ”¾åˆ°æœ€åçš„ä½ç½®
+11.è§£æjsonæ•°æ®çš„æ—¶å€™ï¼Œç”·ç”Ÿçš„ä»·æ ¼æ˜¯intï¼Œè€Œå¥³ç”Ÿçš„æ˜¯floatå‡ºé”™ã€‚
+12.Tablayoutå’Œviewpagerå…³è”ï¼Œé‡Œé¢æ”¾Fragmentï¼Œç»§æ‰¿çš„æ˜¯Fragmentpageradpter
+13.activityé‡Œé¢æ”¾Fragmentï¼Œé‡Œé¢å¾—æœ‰ä¸ªframlayoutå¡«å……ã€‚
+14.ç”¨scrollviewå½“ä½œæœ€å¤–é¢çš„å¸ƒå±€æ—¶ï¼Œæ»‘åŠ¨æ—¶ï¼Œä¸ä¼šå‡ºç°å¼¹æ€§æ»‘åŠ¨ï¼Œä½¿ç”¨ç½‘ä¸Šæ‰¾çš„ReboundScrollView
