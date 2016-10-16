@@ -30,3 +30,4 @@ http://blog.csdn.net/zhuojianhai88/article/details/42392217
 ①.在写分类型Recycleview的时候，用一个基类BaseRecyviewViewHolder，里面写一个abstract修饰的方法，里面的参数是网络得到的数据
 ，其他的具体的viewholder都继承它。如果有其他的功能，那么就在基类中加上方法就行了。
 ②.两个类以上用到相同的常量，在constans的类中添加上静态常量，这样会少写重复代码，而且不会在引用相同的常量的值出错。
+16.在做商品展示页面的顶部悬浮的时候，RelativeLayout的布局里面，要把需要悬浮的控件，放在这个布局最下面。因为最后一个覆盖前面的。
