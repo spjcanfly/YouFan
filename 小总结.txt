@@ -25,3 +25,4 @@ http://blog.csdn.net/zhuojianhai88/article/details/42392217
 12.Tablayout和viewpager关联，里面放Fragment，继承的是Fragmentpageradpter
 13.activity里面放Fragment，里面得有个framlayout填充。
 14.用scrollview当作最外面的布局时，滑动时，不会出现弹性滑动，使用网上找的ReboundScrollView
+15.代码的优化：在写分类型Recycleview的时候，用一个基类BaseRecyviewViewHolder，里面写一个abstract修饰的方法，里面的参数是网络得到的数据，，其他的具体的viewholder都继承它，
