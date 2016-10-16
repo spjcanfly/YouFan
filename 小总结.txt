@@ -12,7 +12,8 @@ if (Build.VERSION.SDK_INT >= 21) {
 		}
 	}
 }
-4.第三方的spinner想要的效果不显示，在代码里面设置属性，spinner不能获得想要的其他方面的扩展，而且技术比较老，用popupwindow替代spinner。用popupwindow的时候，为了避免当前类代码臃肿，最好自定义个popupwindow的类继承popupwindow，在这个里面写需要的功能。
+4.第三方的spinner想要的效果不显示，在代码里面设置属性，spinner不能获得想要的其他方面的扩展，而且技术比较老，
+用popupwindow替代spinner。用popupwindow的时候，为了避免当前类代码臃肿，最好自定义个popupwindow的类继承popupwindow，在这个里面写需要的功能。
 5.今日新品，必须设置具体高度。不能用wrap_content，这样不显示（见8，解决办法）
 6.自定义button的样式，在background属性中写一个shap，或者根据需要。
 7.重影问题    //解决重影  flContent.removeAllViews();
@@ -25,4 +26,7 @@ http://blog.csdn.net/zhuojianhai88/article/details/42392217
 12.Tablayout和viewpager关联，里面放Fragment，继承的是Fragmentpageradpter
 13.activity里面放Fragment，里面得有个framlayout填充。
 14.用scrollview当作最外面的布局时，滑动时，不会出现弹性滑动，使用网上找的ReboundScrollView
-15.代码的优化：在写分类型Recycleview的时候，用一个基类BaseRecyviewViewHolder，里面写一个abstract修饰的方法，里面的参数是网络得到的数据，，其他的具体的viewholder都继承它，
+15.代码的优化：
+①.在写分类型Recycleview的时候，用一个基类BaseRecyviewViewHolder，里面写一个abstract修饰的方法，里面的参数是网络得到的数据
+，其他的具体的viewholder都继承它。如果有其他的功能，那么就在基类中加上方法就行了。
+②.两个类以上用到相同的常量，在constans的类中添加上静态常量，这样会少写重复代码，而且不会在引用相同的常量的值出错。
