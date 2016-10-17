@@ -1,0 +1,37 @@
+1.viewpager里面用ButterKnife的context用application的，导致点击事件不能用，所以得用findview
+2.视图的重叠  if(flContent != null) {flContent.removeAllViews(); }
+3.用第三方的slidingmenu，出现魅族手机适配问题，下方屏幕留出空白，在slidingmenu.java中的fitSystemWindows方法中加入下面代码
+if (Build.VERSION.SDK_INT >= 21) {
+	Resources resources = getContent().getResources();
+	int resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android");
+	if(Build.MANUFACTURER.equals("Meizu")||Build.MANUFACTURER.equals("meizu")) {
+	    //不做处理
+	}else {
+		if (resourceId > 0) {
+			bottomPadding += resources.getDimensionPixelSize(resourceId);
+		}
+	}
+}
+4.第三方的spinner想要的效果不显示，在代码里面设置属性，spinner不能获得想要的其他方面的扩展，而且技术比较老，
+用popupwindow替代spinner。用popupwindow的时候，为了避免当前类代码臃肿，最好自定义个popupwindow的类继承popupwindow，在这个里面写需要的功能。
+5.今日新品，必须设置具体高度。不能用wrap_content，这样不显示（见8，解决办法）
+6.自定义button的样式，在background属性中写一个shap，或者根据需要。
+7.重影问题    //解决重影  flContent.removeAllViews();
+8.Recycleview嵌套Recycleview高度设置为wrap_content，子item不显示（compile 'com.android.support:recyclerview-v7:23.2.0'之后才行，之前的版本有bug）
+http://blog.csdn.net/zhuojianhai88/article/details/42392217
+9.分类型的Recycleview中，每一个item的条目的高度都要设置成wrap_content，不然的话，在显示
+的时候，会出现显示的特别难看
+10.使用RelativeLayout这种布局的时候，要想让某些控件悬浮在上面，必须把这些控件放到最后的位置
+11.解析json数据的时候，男生的价格是int，而女生的是float出错。解析的时候必须得统一
+12.Tablayout和viewpager关联，里面放Fragment，继承的是Fragmentpageradpter
+13.activity里面放Fragment，里面得有个framlayout填充。
+14.用scrollview当作最外面的布局时，滑动时，不会出现弹性滑动，使用网上找的ReboundScrollView
+15.代码的优化：
+①.在写分类型Recycleview的时候，用一个基类BaseRecyviewViewHolder，里面写一个abstract修饰的方法，里面的参数是网络得到的数据
+，其他的具体的viewholder都继承它。如果有其他的功能，那么就在基类中加上方法就行了。
+②.两个类以上用到相同的常量，在constans的类中添加上静态常量，这样会少写重复代码，而且不会在引用相同的常量的值出错。
+③.当有公共的title的时候，将该布局的根布局写成一个自定义的类，例如：public class Titlebar extends LinearLayout，在这个类中详细写各个控件的
+点击事件，可以省好多事。 找控件的时候可以用，getChildAt(0)，下标从0开始，也可以用findviewbyid
+16.在做商品展示页面的顶部悬浮的时候，RelativeLayout的布局里面，要把需要悬浮的控件，放在这个布局最下面。因为最后一个覆盖前面的。
+17.做购物车的时候非常费劲，出现了好多的问题。大部分都是点击按钮中没有出现想要的效果，需要在每次的点击时都要调用相应的方法，比如计算总价格，
+在封装商品的bean类时候把ischeck当作它的属性放置到里面。当时做的时候没有把isEdit当作属性，做起来有点麻烦，判断增多。最好是把它也当作商品属性。
