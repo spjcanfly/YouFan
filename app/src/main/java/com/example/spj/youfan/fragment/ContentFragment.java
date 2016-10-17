@@ -67,6 +67,10 @@ public class ContentFragment extends BaseFragment {
         isEnableSlidingMenu(SlidingMenu.TOUCHMODE_NONE);
     }
 
+    public void getCar(){
+        rgMain.check(R.id.rb_shop);
+    }
+
     //设置模式不可以滑动
     private void isEnableSlidingMenu(int touchMode) {
         MainActivity mainActivity = (MainActivity) mContext;

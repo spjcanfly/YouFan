@@ -42,6 +42,8 @@ public class MainActivity extends SlidingFragmentActivity {
 
     @Bind(R.id.fl_main_content)
     FrameLayout flMainContent;
+    private FragmentTransaction ft;
+    private ContentFragment cf;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,12 +61,22 @@ public class MainActivity extends SlidingFragmentActivity {
 
         fm = getSupportFragmentManager();
         //开启事务
-        FragmentTransaction ft = fm.beginTransaction();
+        ft = fm.beginTransaction();
         //替换
-        ft.replace(R.id.fl_main_content, new ContentFragment(), MAIN_CONTENT_TAG);//主页
+        cf = new ContentFragment();
+        ft.replace(R.id.fl_main_content, cf, MAIN_CONTENT_TAG);//主页
         ft.replace(R.id.fl_leftmenu, new LeftmenuFragment(), LEFTMENU_TAG);//左侧菜单
         //提交
         ft.commit();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        int car = getIntent().getIntExtra("car", 0);
+        if(car == 3) {
+            cf.getCar();
+        }
     }
 
     private void initView() {

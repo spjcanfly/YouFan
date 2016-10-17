@@ -1,5 +1,6 @@
 package com.example.spj.youfan.activity.shop;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentActivity;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.spj.youfan.R;
+import com.example.spj.youfan.activity.MainActivity;
 import com.example.spj.youfan.base.BaseShopFragment;
 import com.example.spj.youfan.bean.SingleShopDetail;
 import com.example.spj.youfan.bean.shop.Goods;
@@ -39,6 +41,7 @@ public class ShopCarActivity extends FragmentActivity implements View.OnClickLis
     private SingleShopDetail.DataBean data;
     private ImageView iv_top_back;
     private Button btn_add_car;
+    private ImageView iv_go_shopcar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,9 +117,11 @@ public class ShopCarActivity extends FragmentActivity implements View.OnClickLis
         verticalSlide = (VerticalSlide) findViewById(R.id.dragLayout);
         fab = (FloatingActionButton) findViewById(R.id.fab);
         iv_top_back = (ImageView) findViewById(R.id.iv_top_back);
+        iv_go_shopcar = (ImageView) findViewById(R.id.iv_go_shopcar);
         btn_add_car = (Button) findViewById(R.id.btn_add_car);
         fab.setOnClickListener(this);
         iv_top_back.setOnClickListener(this);
+        iv_go_shopcar.setOnClickListener(this);
         btn_add_car.setOnClickListener(this);
     }
 
@@ -142,6 +147,11 @@ public class ShopCarActivity extends FragmentActivity implements View.OnClickLis
                 break;
             case R.id.iv_top_back:
                 finish();
+                break;
+            case R.id.iv_go_shopcar:
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.putExtra("car",3);
+                startActivity(intent);
                 break;
             case R.id.btn_add_car:
                 List<Goods> list = new ArrayList<>();

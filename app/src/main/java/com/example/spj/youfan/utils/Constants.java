@@ -84,7 +84,7 @@ public class Constants {
 
     public static final String LG_12 = "http://api.funwear.com/mbfun_server/index.php?m=Special&a=getSpecialListForInsp&osCode=android&cid=4&pageIndex=1&aid=104";
 
-    //    单品搜索页面
+    //    单品搜索页面 + 输入商品的名字
     public static  final  String SERACH="http://api.funwear.com/mbfun_server/index.php?m=Search&a=getProductListByKey&osCode=android&cid=0&useNewSearchEngine=1&sortType=0&osVersion=19&deviceId=ffffffff-a66b-bc18-95f9-8e737e716946&token=&sortField=3&source=android&version=v4.2.2&osName=SM-G3818&page=0&pageSize=20&appName=youfanguanfang&keyword=";
 
     //品牌搜索
